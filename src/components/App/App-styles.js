@@ -1,13 +1,14 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
-export const Body = styled.div`
-  background-color: #f0ebf8;
-  min-height: 100vh;
-  a {
-    color: #8b44fc;
+export const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #f0ebf8;
+    min-height: 100vh;
+    a {
+      color: #8b44fc;
+    }
   }
 `;
-Body.displayName = 'S.Body';
 
 export const Container = styled.div`
   max-width: 650px;

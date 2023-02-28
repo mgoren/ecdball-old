@@ -1,16 +1,5 @@
 import styled from 'styled-components';
 
-export const Box = styled.div`
-  background-color: white;
-  border: 1px solid #dadce0;
-  border-radius: 8px;
-  margin-top: 12px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 40px;
-`;
-Box.displayName = 'S.Box';
-
 export const Title = styled.h3`
   font-size: 1.2rem;
   font-weight: 600;
@@ -34,6 +23,8 @@ export const Warning = styled.p`
   padding-top: .5rem;
 `;
 
-export const Spacer = styled.div`
-  height: 2rem;
+export const DonationButton = styled.button`
+  font-size: 1rem;
+  padding-left: 16px;
+  padding-right: 16px;
 `;

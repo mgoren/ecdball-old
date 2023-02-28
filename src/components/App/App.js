@@ -1,27 +1,35 @@
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { useState } from "react";
 import * as S from './App-styles';
-import Header from '../Header';
-import Form from '../Form';
-import PaypalCheckoutButton from '../PaypalCheckoutButton';
+import Header from 'components/Header';
+import Form from 'components/Form';
+import Checkout from "components/Checkout";
+import { PAYPAL_OPTIONS, ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE } from "consts";
 
-const paypalOptions = {
-  "client-id": "AfeU3URC6FLukidcSjXRzZh2BwwwS_JsMM_T9VkjXsP591D4r__zomC4c4R5OIIk3OZiewFplpwBw9oG",
-  "disable-funding": "paylater,credit",
-  "enable-funding": "venmo",
-  "currency": "USD",
-  "locale": "en_US"
-};
+const DEFAULTS = { 
+  fullName: '', 
+  email: '', 
+  phone: '', 
+  admissionCost: ADMISSION_COST_RANGE[1], 
+  admissionQuantity: ADMISSION_QUANTITY_RANGE[0], 
+  donation: DONATION_RANGE[0], 
+  person2: '', 
+  person3: '', 
+  person4: ''
+}
 
 export default function App() {
+  const [order, setOrder] = useState(DEFAULTS);
+  const [checkingOut, setCheckingOut] = useState(false);
+
   return (
-    <PayPalScriptProvider options={paypalOptions}>
-      <S.Body className='S.Body'>
-        <S.Container className='S.Container'>
-          <Header />
-          <Form />
-          <PaypalCheckoutButton product={{ description:'ticket', amount: '5' }} />
-        </S.Container>
-      </S.Body>
+    <PayPalScriptProvider options={PAYPAL_OPTIONS}>
+      <S.GlobalStyle />
+      <S.Container className='S.Container'>
+        {!checkingOut && <Header />}
+        {!checkingOut && <Form order={order} setOrder={setOrder} setCheckingOut={setCheckingOut} />}
+        {checkingOut && <Checkout order={order} setOrder={setOrder} setCheckingOut={setCheckingOut} />}
+      </S.Container>
     </PayPalScriptProvider>
   );
 }

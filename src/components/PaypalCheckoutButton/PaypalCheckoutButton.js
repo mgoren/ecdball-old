@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
-import * as S from './PaypalCheckoutButton-styles';
 
 const PaypalCheckoutButton = ({ product }) => {
 	const [paidFor, setPaidFor] = useState(false);
@@ -38,18 +37,16 @@ const PaypalCheckoutButton = ({ product }) => {
 	};
 	
 	const onClick=(data, actions) => {
-		// document.querySelector('.form').style.display = 'none';
-		const hasAlreadyBoughtCourse = false;
-	
-		if (hasAlreadyBoughtCourse) {
-			setError(
-				"You already bought this course. Go to your account to view your list of courses."
-			);
-	
-			return actions.reject();
-		} else {
+		
+		// const hasAlreadyBoughtCourse = false;
+		// if (hasAlreadyBoughtCourse) {
+		// 	setError(
+		// 		"You already bought this course. Go to your account to view your list of courses."
+		// 	);
+		// 	return actions.reject();
+		// } else {
 			return actions.resolve();
-		}
+		// }
 	};
 	
 
@@ -78,15 +75,16 @@ const PaypalCheckoutButton = ({ product }) => {
 	}
 	
 	return (
-		<S.Box>
+		<section className='paypal-buttons'>
 			<PayPalButtons 
 				style={{ height: 48, tagline: false, shape: "pill" }}
 				createOrder={(data, actions) => createOrder(data, actions)}
 				onApprove={(data, actions) => onApprove(data, actions)}
 				onClick={(data, actions) => onClick(data, actions)}
 				onError={(err) => onError(err)}
-				onCancel={onCancel} />
-		</S.Box>
+				onCancel={onCancel} 
+			/>
+		</section>
 	);
 };
 
