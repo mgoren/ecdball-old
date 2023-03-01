@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as S from './Form-styles';
-import { Box, Spacer } from 'components/SharedStyles.js';
+import * as SS from 'components/SharedStyles.js';
 import { clamp } from 'utils';
 import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PHONE_REGEX } from "consts";
 import Input from './Input';
@@ -9,6 +9,8 @@ import Donation from './Donation';
 const INPUT_RANGES = { 'admissionCost': ADMISSION_COST_RANGE, 'admissionQuantity': ADMISSION_QUANTITY_RANGE, 'donation': DONATION_RANGE };
 
 export default function Form({ order, setOrder, setCheckingOut }) {
+  useEffect(() => { window.scrollTo(0,0); },[])
+
   const [quantity, setQuantity] = useState(order.admissionQuantity);
 
   function onBlur(e) {
@@ -38,7 +40,7 @@ export default function Form({ order, setOrder, setCheckingOut }) {
   return (
     <form onSubmit={onSubmit}>
 
-      <Box className='Box'>
+      <SS.Box className='Box'>
         <S.Title className='S.Title'>Contact information</S.Title>
         <Input
           label = 'Name'
@@ -47,7 +49,7 @@ export default function Form({ order, setOrder, setCheckingOut }) {
           initialValue = {order.fullName}
           pattern = {NAME_REGEX}
           required = 'required'
-          autoFocus = 'autoFocus'
+          autoFocus = {order.fullName == '' ? 'autoFocus' : ''}
           onBlur = {onBlur}
         />
 
@@ -71,9 +73,9 @@ export default function Form({ order, setOrder, setCheckingOut }) {
           pattern = {PHONE_REGEX}
           onBlur = {onBlur}
         />
-      </Box>
+      </SS.Box>
 
-      <Box>
+      <SS.Box>
         <S.Title className='S.Title'>Megaband dance admissions</S.Title>
         
         <div className='form-group'>
@@ -92,7 +94,7 @@ export default function Form({ order, setOrder, setCheckingOut }) {
           </div>
         </div>
 
-        <Spacer />
+        <SS.Spacer />
 
         <div className='form-group'>
           <div className='row'>
@@ -109,7 +111,7 @@ export default function Form({ order, setOrder, setCheckingOut }) {
           </div>
         </div>
 
-        <Spacer />
+        <SS.Spacer />
 
         { quantity >= 2 &&
           <Input
@@ -147,17 +149,14 @@ export default function Form({ order, setOrder, setCheckingOut }) {
           />
         }
 
-        <Spacer />
-        <hr />
-        <Spacer />
-
+        <SS.Spacer /><hr /><SS.Spacer />
+        
         <Donation order={order} onBlur={onBlur} />
+      </SS.Box>
 
-      </Box>
-
-      <Box>
-        <button type='submit' className='btn btn-warning'>Proceed to checkout</button>
-      </Box>
+      <SS.Box className='text-end'>
+        <S.NextButton type='submit' className='btn btn-primary'>Next</S.NextButton>
+      </SS.Box>
     </form>
   );
 }

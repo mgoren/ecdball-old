@@ -28,3 +28,10 @@ export const DonationButton = styled.button`
   padding-left: 16px;
   padding-right: 16px;
 `;
+
+export const NextButton = styled.button`
+  background: var(--color-mediumpurple);
+  &:hover, &:focus, &:active {
+    background: var(--color-darkpurple) !important;
+  }
+`;
