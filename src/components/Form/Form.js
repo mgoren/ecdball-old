@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import * as S from './Form-styles';
-import * as SS from 'components/SharedStyles.js';
 import { clamp } from 'utils';
 import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PHONE_REGEX } from "consts";
 import Input from './Input';
@@ -40,7 +39,7 @@ export default function Form({ order, setOrder, setCheckingOut }) {
   return (
     <form onSubmit={onSubmit}>
 
-      <SS.Box className='Box'>
+      <S.Box className='Box'>
         <S.Title className='S.Title'>Contact information</S.Title>
         <Input
           label = 'Name'
@@ -49,7 +48,7 @@ export default function Form({ order, setOrder, setCheckingOut }) {
           initialValue = {order.fullName}
           pattern = {NAME_REGEX}
           required = 'required'
-          autoFocus = {order.fullName == '' ? 'autoFocus' : ''}
+          autoFocus = {order.fullName === '' ? 'autoFocus' : ''}
           onBlur = {onBlur}
         />
 
@@ -73,9 +72,9 @@ export default function Form({ order, setOrder, setCheckingOut }) {
           pattern = {PHONE_REGEX}
           onBlur = {onBlur}
         />
-      </SS.Box>
+      </S.Box>
 
-      <SS.Box>
+      <S.Box className='Box'>
         <S.Title className='S.Title'>Megaband dance admissions</S.Title>
         
         <div className='form-group'>
@@ -94,7 +93,7 @@ export default function Form({ order, setOrder, setCheckingOut }) {
           </div>
         </div>
 
-        <SS.Spacer />
+        <S.Spacer />
 
         <div className='form-group'>
           <div className='row'>
@@ -111,7 +110,7 @@ export default function Form({ order, setOrder, setCheckingOut }) {
           </div>
         </div>
 
-        <SS.Spacer />
+        <S.Spacer />
 
         { quantity >= 2 &&
           <Input
@@ -149,14 +148,14 @@ export default function Form({ order, setOrder, setCheckingOut }) {
           />
         }
 
-        <SS.Spacer /><hr /><SS.Spacer />
+        <S.Spacer /><hr /><S.Spacer />
         
         <Donation order={order} onBlur={onBlur} />
-      </SS.Box>
+      </S.Box>
 
-      <SS.Box className='text-end'>
+      <S.Box className='Box text-end'>
         <S.NextButton type='submit' className='btn btn-primary'>Next</S.NextButton>
-      </SS.Box>
+      </S.Box>
     </form>
   );
 }

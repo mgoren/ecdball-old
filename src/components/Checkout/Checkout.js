@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import * as S from './Checkout-styles.js';
-import * as SS from 'components/SharedStyles.js';
 import PaypalCheckoutButton from 'components/PaypalCheckoutButton';
 import Title from 'components/Title';
 
@@ -11,41 +10,41 @@ export default function Checkout({ setCheckingOut, order, setOrder }) {
 
   return (
     <section className='checkout'>
-      <SS.TopBox className='SS.TopBox'>
+      <S.TopBox className='S.TopBox'>
         <Title />
           <S.Subhead className='text-center'>Order summary</S.Subhead>
-          <SS.Text>
+          <S.Text>
             <strong>Contact info:</strong><br />
             {order.fullName}<br />
             {order.email}<br />
             {order.phone}
-          </SS.Text>
+          </S.Text>
 
-          <SS.Text>
+          <S.Text>
             <strong>Admissions:</strong><br />
             {order.fullName}<br />
-            {order.person2 && "{order.person2}<br />"}
-            {order.person3 && "{order.person3}<br />"}
-            {order.person4 && "{order.person4}<br />"}
-          </SS.Text>
+            {order.person2 && <>{order.person2}<br /></>}
+            {order.person3 && <>{order.person3}<br /></>}
+            {order.person4 && <>{order.person4}<br /></>}
+          </S.Text>
           
-          <SS.Text>
+          <S.Text>
             <strong>Order summary:</strong><br />
             Admissions: {order.admissionQuantity} x ${order.admissionCost} = ${order.admissionQuantity * order.admissionCost}<br />
-            {order.donation > 0 && "Donation: ${order.donation}<br />"}
+            {order.donation > 0 && <>Donation: ${order.donation}<br /></>}
             Total: ${total}
-          </SS.Text>
-          <SS.Spacer/>
+          </S.Text>
+          <S.Spacer/>
 
           <hr/>
           
           <S.Subhead className='text-center'>Amount due: ${total}</S.Subhead>
-          <SS.Spacer />
+          <S.Spacer />
           <PaypalCheckoutButton product={{ description: 'Megaband', amount: total }} />
-      </SS.TopBox>
-      <SS.Box>
+      </S.TopBox>
+      <S.Box>
         <button onClick={() => setCheckingOut(false)} className='btn btn-secondary'>Back</button>
-      </SS.Box>
+      </S.Box>
     </section>    
   );
 }

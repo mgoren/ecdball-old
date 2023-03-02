@@ -1,26 +1,18 @@
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as S from './App-styles';
 import Header from 'components/Header';
 import Form from 'components/Form';
 import Checkout from "components/Checkout";
-import { PAYPAL_OPTIONS, ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE } from "consts";
-
-const DEFAULTS = { 
-  fullName: '', 
-  email: '', 
-  phone: '', 
-  admissionCost: ADMISSION_COST_RANGE[1], 
-  admissionQuantity: ADMISSION_QUANTITY_RANGE[0], 
-  donation: DONATION_RANGE[0], 
-  person2: '', 
-  person3: '', 
-  person4: ''
-}
+import { PAYPAL_OPTIONS, DEFAULTS } from "consts";
 
 export default function App() {
-  const [order, setOrder] = useState(DEFAULTS);
+  const [order, setOrder] = useState(JSON.parse(sessionStorage.getItem('cachedOrder')) || DEFAULTS);
   const [checkingOut, setCheckingOut] = useState(false);
+
+  useEffect(() => {
+    sessionStorage.setItem('cachedOrder', JSON.stringify(order));
+  }, [order]);
 
   return (
     <PayPalScriptProvider options={PAYPAL_OPTIONS}>

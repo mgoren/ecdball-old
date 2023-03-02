@@ -35,3 +35,5 @@ export const NextButton = styled.button`
     background: var(--color-darkpurple) !important;
   }
 `;
+
+export { Box, Spacer } from 'components/SharedStyles';
