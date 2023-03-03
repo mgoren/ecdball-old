@@ -3,7 +3,7 @@ import * as S from './Checkout-styles.js';
 import PaypalCheckoutButton from 'components/PaypalCheckoutButton';
 import Title from 'components/Title';
 
-export default function Checkout({ setCheckingOut, order, setOrder }) {
+export default function Checkout({ setStatus, order }) {
   useEffect(() => { window.scrollTo(0,0); },[])
 
   const total = order.admissionCost * order.admissionQuantity + order.donation;
@@ -40,10 +40,10 @@ export default function Checkout({ setCheckingOut, order, setOrder }) {
           
           <S.Subhead className='text-center'>Amount due: ${total}</S.Subhead>
           <S.Spacer />
-          <PaypalCheckoutButton product={{ description: 'Megaband', amount: total }} />
+          <PaypalCheckoutButton order={order} total={total} setStatus={setStatus} />
       </S.TopBox>
-      <S.Box>
-        <button onClick={() => setCheckingOut(false)} className='btn btn-secondary'>Back</button>
+      <S.Box className='box-back'>
+        <button onClick={() => setStatus('form')} className='btn btn-secondary'>Back</button>
       </S.Box>
     </section>    
   );

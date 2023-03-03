@@ -3,7 +3,7 @@ export const ADMISSION_QUANTITY_RANGE = [1, 4];
 export const DONATION_RANGE = [0, 999];
 
 export const PAYPAL_OPTIONS = {
-  "client-id": "AfeU3URC6FLukidcSjXRzZh2BwwwS_JsMM_T9VkjXsP591D4r__zomC4c4R5OIIk3OZiewFplpwBw9oG",
+  "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,
   "disable-funding": "paylater,credit",
   "enable-funding": "venmo",
   "currency": "USD",

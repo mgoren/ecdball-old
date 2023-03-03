@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import { push, ref } from "firebase/database";
+import db from 'firebase.js';
 
-const PaypalCheckoutButton = ({ product }) => {
+const PaypalCheckoutButton = ({ setStatus, order, total }) => {
 	const [paidFor, setPaidFor] = useState(false);
 	const [error, setError] = useState(null);
 
@@ -9,9 +11,9 @@ const PaypalCheckoutButton = ({ product }) => {
 		return actions.order.create({
 			purchase_units: [
 				{
-					description: product.description,
+					description: 'Megaband 2023',
 					amount: {
-						value: product.amount // must be a string
+						value: total.toString() // must be a string
 					}
 				}
 			],
@@ -22,8 +24,8 @@ const PaypalCheckoutButton = ({ product }) => {
 	};
 	
 	const onApprove = async (data, actions) => {
-		const order = await actions.order.capture();
-		handleApprove(order);
+		const paypalOrder = await actions.order.capture();
+		handleApprove(paypalOrder);
 	};
 	
 	const onError = (err) => {
@@ -33,10 +35,12 @@ const PaypalCheckoutButton = ({ product }) => {
 
 	const onCancel=() => {
 		console.log('canceled');
-		// Display cancel message, modal or redirect user to cancel page or back to cart
+		document.querySelector(".box-back").style.display = "block";
 	};
 	
 	const onClick=(data, actions) => {
+		console.log('clicked');
+		document.querySelector(".box-back").style.display = "none";
 		
 		// const hasAlreadyBoughtCourse = false;
 		// if (hasAlreadyBoughtCourse) {
@@ -53,11 +57,25 @@ const PaypalCheckoutButton = ({ product }) => {
 
 
 	
-	const handleApprove = (order) => {
-		console.log("order", order);
+	const handleApprove = (paypalOrder) => {
+		console.log("paypalOrder", paypalOrder);
 
-		if (order.status === 'COMPLETED') { // is this actually how we check if it was approved?
+		if (paypalOrder.status === 'COMPLETED') { // is this actually how we check if it was approved?
 			setPaidFor(true);
+
+			// save order to firebase realtime database
+			push(ref(db, 'orders/'), {
+				...order,
+				paypalEmail: paypalOrder.payer.email_address
+			}).then(() => {
+				console.log('order saved to firebase');
+			})
+			.catch((err) => {
+				console.log('firebase error', err);
+				setError(err);
+			});
+
+			setStatus('confirmation');
 			// Refresh user's account or subscription status
 		} else {
 			setError("Your payment was processed successfully. However, we are unable to fulfill your purchase. Please contact us at _______ for assistance.");

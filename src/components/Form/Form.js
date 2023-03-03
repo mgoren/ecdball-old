@@ -7,7 +7,7 @@ import Donation from './Donation';
 
 const INPUT_RANGES = { 'admissionCost': ADMISSION_COST_RANGE, 'admissionQuantity': ADMISSION_QUANTITY_RANGE, 'donation': DONATION_RANGE };
 
-export default function Form({ order, setOrder, setCheckingOut }) {
+export default function Form({ order, setOrder, setStatus }) {
   useEffect(() => { window.scrollTo(0,0); },[])
 
   const [quantity, setQuantity] = useState(order.admissionQuantity);
@@ -33,7 +33,7 @@ export default function Form({ order, setOrder, setCheckingOut }) {
   
   function onSubmit(e) {
     e.preventDefault();
-    setCheckingOut(true);
+    setStatus('checkout');
   }
 
   return (
@@ -153,7 +153,7 @@ export default function Form({ order, setOrder, setCheckingOut }) {
         <Donation order={order} onBlur={onBlur} />
       </S.Box>
 
-      <S.Box className='Box text-end'>
+      <S.Box className='box-next text-end'>
         <S.NextButton type='submit' className='btn btn-primary'>Next</S.NextButton>
       </S.Box>
     </form>
