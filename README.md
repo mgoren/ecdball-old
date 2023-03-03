@@ -1,3 +1,7 @@
+# Deployment
+
+`firebase deploy --only hosting`
+
 # Registration site
 
 Simple registration / admissions sales site for contra dance events.

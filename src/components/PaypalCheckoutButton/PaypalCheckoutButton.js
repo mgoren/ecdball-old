@@ -1,5 +1,5 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
-import { push, ref } from "firebase/database";
+import { push, ref, serverTimestamp } from "firebase/database";
 import db from 'firebase.js';
 import { EMAIL_CONTACT } from "consts";
 
@@ -23,7 +23,9 @@ const PaypalCheckoutButton = ({ order, total, setStatus, setError }) => {
 	
 	const onApprove = async (data, actions) => {
 		const paypalOrder = await actions.order.capture();
+		console.log('saving order to db', paypalOrder);
 		saveOrderToFirebase(paypalOrder); // async, but doesn't have to finish before we move on
+		console.log('clearing session storage');
 		sessionStorage.clear();
 		setStatus('confirmation');
 	};
@@ -39,13 +41,16 @@ const PaypalCheckoutButton = ({ order, total, setStatus, setError }) => {
 	
 	const onClick=(data, actions) => {
 		document.querySelector(".box-back").style.display = "none";
+		setError(null);
 	};
 
 	const saveOrderToFirebase = (paypalOrder) => {
+		console.log(serverTimestamp());
 		push(ref(db, 'orders/'), {
 			...order,
 			total: total,
-			paypalEmail: paypalOrder.payer.email_address
+			paypalEmail: paypalOrder.payer.email_address,
+			timestamp: serverTimestamp()
 		}).then(() => {
 			console.log('order saved to firebase');
 		})
@@ -57,6 +62,7 @@ const PaypalCheckoutButton = ({ order, total, setStatus, setError }) => {
 
 	return (
 		<section className='paypal-buttons'>
+			<p className='text-center text-danger'>Test card number: 4012000077777777<br />(any future exp; any valid data for other fields)</p>
 			<PayPalButtons 
 				style={{ height: 48, tagline: false, shape: "pill" }}
 				createOrder={(data, actions) => createOrder(data, actions)}
