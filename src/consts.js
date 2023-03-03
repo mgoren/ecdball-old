@@ -1,6 +1,7 @@
 export const ADMISSION_COST_RANGE = [15, 30];
 export const ADMISSION_QUANTITY_RANGE = [1, 4];
 export const DONATION_RANGE = [0, 999];
+export const EMAIL_CONTACT = 'contra@portlandcountrydance.org';
 
 export const PAYPAL_OPTIONS = {
   "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,
