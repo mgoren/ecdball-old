@@ -1,5 +1,6 @@
 # Deployment
 
+`npm run build`
 `firebase deploy --only hosting`
 
 # Registration site
