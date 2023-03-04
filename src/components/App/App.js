@@ -9,11 +9,13 @@ import Error from "components/Error";
 import { PAYPAL_OPTIONS, DEFAULTS } from "consts";
 
 export default function App() {
-  logBuildDate();
-
   const [order, setOrder] = useState(JSON.parse(sessionStorage.getItem('cachedOrder')) || DEFAULTS);
   const [status, setStatus] = useState('form');
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    logBuildDate();
+  }, []);
 
   useEffect(() => {
     sessionStorage.setItem('cachedOrder', JSON.stringify(order));

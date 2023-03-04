@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import InputMask from 'react-input-mask'; // this triggers findDOMNode deprecation warning
+import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PHONE_REGEX } from "consts";
 import * as S from './Form-styles';
 import { clamp } from 'utils';
-import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PHONE_REGEX } from "consts";
 import Header from "./Header";
 import Input from './Input';
 import Donation from './Donation';
@@ -31,7 +32,7 @@ export default function Form({ order, setOrder, setStatus }) {
       e.target.nextElementSibling.style.visibility = e.target.checkValidity() ? 'hidden' : 'visible';
     }
   }
-  
+
   function onSubmit(e) {
     e.preventDefault();
     setStatus('checkout');
@@ -66,16 +67,16 @@ export default function Form({ order, setOrder, setStatus }) {
             onBlur = {onBlur}
           />
 
-          <Input
-            label = 'Phone'
-            type = 'tel'
-            id = 'phone'
-            initialValue = {order.phone}
-            required = 'required'
-            warning = 'Please enter a valid phone number.'
-            pattern = {PHONE_REGEX}
-            onBlur = {onBlur}
-          />
+          <div className='row'>
+            <div className="form-group col-sm-8">
+              <S.Label className='S.Label' htmlFor='phone'>Phone</S.Label>
+              <InputMask 
+                type='tel' id='phone' name='phone' className='form-control' pattern={PHONE_REGEX} required
+                defaultValue={order.phone} onBlur={onBlur} mask='(999) 999-9999' />
+              <S.Warning className='S.Warning'>Please enter a valid phone number.</S.Warning>
+            </div>
+          </div>
+
         </S.Box>
 
         <S.Box className='Box'>
