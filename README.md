@@ -3,6 +3,8 @@
 `npm run build`
 `firebase deploy --only hosting`
 
+Or set env variables as repo secrets for use by github actions.
+
 # Registration site
 
 Simple registration / admissions sales site for contra dance events.
