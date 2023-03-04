@@ -1,5 +1,6 @@
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useState, useEffect } from "react";
+import preval from 'preval.macro'
 import * as S from './App-styles';
 import Form from 'components/Form';
 import Checkout from "components/Checkout";
@@ -8,6 +9,8 @@ import Error from "components/Error";
 import { PAYPAL_OPTIONS, DEFAULTS } from "consts";
 
 export default function App() {
+  logBuildDate();
+
   const [order, setOrder] = useState(JSON.parse(sessionStorage.getItem('cachedOrder')) || DEFAULTS);
   const [status, setStatus] = useState('form');
   const [error, setError] = useState(null);
@@ -35,4 +38,9 @@ export default function App() {
       </S.Container>
     </PayPalScriptProvider>
   );
+}
+
+function logBuildDate() {
+  const buildDate = preval`module.exports = new Date();`;
+  console.log('last build', new Date(buildDate).toLocaleString());
 }
