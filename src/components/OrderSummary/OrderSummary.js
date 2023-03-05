@@ -28,7 +28,7 @@ export default function OrderSummary({ order, orderComplete = false }) {
         </strong><br />
         Megaband admissions: {order.admissionQuantity} x ${order.admissionCost} = ${order.admissionQuantity * order.admissionCost}<br />
         {order.donation > 0 && <>Additional donation: ${order.donation}<br /></>}
-        Total: ${total}
+        {order.donation > 0 && <>Total: ${total}</>}
       </S.Text>
     </>
   );
