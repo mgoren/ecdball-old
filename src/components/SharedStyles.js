@@ -20,6 +20,11 @@ TopBox.displayName = 'SS.TopBox';
 
 // headings, text, links
 
+export const Subhead = styled.h4`
+  padding-top: 22px;
+`;
+Subhead.displayName = 'SS.Subhead';
+
 export const Text = styled.div`
   padding: 10px 24px 1rem 24px;
 `;

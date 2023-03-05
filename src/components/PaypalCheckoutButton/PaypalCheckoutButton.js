@@ -3,7 +3,7 @@ import { push, ref, serverTimestamp } from "firebase/database";
 import db from 'firebase.js';
 import { EMAIL_CONTACT } from "consts";
 
-const PaypalCheckoutButton = ({ order, total, setStatus, setError }) => {
+const PaypalCheckoutButton = ({ order, total, setStatus, setError, setPaying, setProcessing }) => {
 
 	const createOrder = (data, actions) => {
 		return actions.order.create({
@@ -22,30 +22,33 @@ const PaypalCheckoutButton = ({ order, total, setStatus, setError }) => {
 	};
 	
 	const onApprove = async (data, actions) => {
+		setError(null);
+		setProcessing(true);
 		const paypalOrder = await actions.order.capture();
-		console.log('saving order to db', paypalOrder);
 		saveOrderToFirebase(paypalOrder); // async, but doesn't have to finish before we move on
-		console.log('clearing session storage');
 		sessionStorage.clear();
+		setPaying(false);
+		setProcessing(false);
 		setStatus('confirmation');
 	};
 	
 	const onError = (err) => {
-		console.error("PayPal Checkout onError", err);
+		setPaying(false);
 		setError(`PayPal encountered an error: ${err}. Please try again or contact ${EMAIL_CONTACT}.`);
 	};
 
 	const onCancel=() => {
-		document.querySelector(".box-back").style.display = "block";
+		setPaying(false);
 	};
 	
 	const onClick=(data, actions) => {
-		document.querySelector(".box-back").style.display = "none";
 		setError(null);
+		setPaying(true);
 	};
 
 	const saveOrderToFirebase = (paypalOrder) => {
-		console.log(serverTimestamp());
+		setError(null);
+		console.log('saving order to db', paypalOrder);
 		push(ref(db, 'orders/'), {
 			...order,
 			total: total,
@@ -55,7 +58,6 @@ const PaypalCheckoutButton = ({ order, total, setStatus, setError }) => {
 			console.log('order saved to firebase');
 		})
 		.catch((err) => {
-			console.error('Firebase error', err);
 			setError(`Your payment was processed successfully but we encountered an issue recording your information: ${err}. Please contact ${EMAIL_CONTACT}.`);
 		});
 	}
