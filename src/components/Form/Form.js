@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import InputMask from 'react-input-mask'; // this triggers findDOMNode deprecation warning
 import { isMobile } from "react-device-detect";
 import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PHONE_REGEX } from "consts";
@@ -9,33 +9,40 @@ import Input from './Input';
 import Donation from './Donation';
 
 const INPUT_RANGES = { 'admissionCost': ADMISSION_COST_RANGE, 'admissionQuantity': ADMISSION_QUANTITY_RANGE, 'donation': DONATION_RANGE };
+const RANGE_FIELDS = Object.keys(INPUT_RANGES);
+const TEXT_FIELDS = ['fullName', 'email', 'phone', 'person2', 'person3', 'person4'];
 
 export default function Form({ order, setOrder, setStatus }) {
   useEffect(() => { window.scrollTo(0,0); },[])
 
-  const [quantity, setQuantity] = useState(order.admissionQuantity);
-
   function onBlur(e) {
-    let [field, value, fieldType] = [e.target.id, e.target.value, e.target.type];
-    if (Object.keys(INPUT_RANGES).includes(field)) {      
-      value = validatedNumericInput(value, INPUT_RANGES[field]);
+    let [field, value] = [e.target.id, e.target.value];
+    if (RANGE_FIELDS.includes(field)) {
+      if (e.type === 'blur') { // THIS IS SO HACKY
+        value = validatedNumericInput(value, INPUT_RANGES[field]);
+      }
       e.target.value = value;
     }
     let updatedOrder = Object.assign({}, order);
     updatedOrder[e.target.id] = value;
-    if (field === 'admissionQuantity') {
-      for (let i=ADMISSION_QUANTITY_RANGE[0]+1; i<=ADMISSION_QUANTITY_RANGE[1]; i++) {
-        updatedOrder[`person${i}`] = quantity >= i ? updatedOrder[`person${i}`] : '';
-      }
-    }
     setOrder(updatedOrder);
-    if (['text', 'email', 'tel'].includes(fieldType)) {
+
+    if (TEXT_FIELDS.includes(field)) { // DON'T DIRECTLY MANIPULATE DOM
       e.target.nextElementSibling.style.visibility = e.target.checkValidity() ? 'hidden' : 'visible';
     }
+
   }
 
   function onSubmit(e) {
     e.preventDefault();
+
+    // FACTOR THIS OUT
+    let updatedOrder = Object.assign({}, order);
+    for (let i = ADMISSION_QUANTITY_RANGE[0] + 1; i <= ADMISSION_QUANTITY_RANGE[1]; i++) {
+      updatedOrder[`person${i}`] = order.admissionQuantity >= i ? updatedOrder[`person${i}`] : '';
+    }
+    setOrder(updatedOrder);
+
     setStatus('checkout');
   }
 
@@ -110,7 +117,7 @@ export default function Form({ order, setOrder, setStatus }) {
                 <div className={`input-group mb-3 ${isMobile ? '' : 'justify-content-end'}`}>
                   <input 
                     type={isMobile ? 'tel' : 'number'} className={`numericInput ${isMobile ? "form-control" : "text-center"}`} id="admissionQuantity" name="order[admission_quantity]" min={ADMISSION_QUANTITY_RANGE[0]} max={ADMISSION_QUANTITY_RANGE[1]} step="1" 
-                    defaultValue={order.admissionQuantity} onBlur={onBlur} onChange={(e) => setQuantity(e.target.value)} />
+                    defaultValue={order.admissionQuantity} onBlur={onBlur} onChange={onBlur} />
                 </div>
               </div>
             </div>
@@ -118,7 +125,7 @@ export default function Form({ order, setOrder, setStatus }) {
 
           <S.Spacer />
 
-          { quantity >= 2 &&
+          { order.admissionQuantity >= 2 &&
             <Input
               label = 'Name for second admission:'
               type = 'text'
@@ -130,7 +137,7 @@ export default function Form({ order, setOrder, setStatus }) {
             />
           }
 
-          { quantity >= 3 &&
+          { order.admissionQuantity >= 3 &&
             <Input
               label = 'Name for third admission:'
               type = 'text'
@@ -142,7 +149,7 @@ export default function Form({ order, setOrder, setStatus }) {
             />
           }
 
-          { quantity >= 4 &&
+          { order.admissionQuantity >= 4 &&
             <Input
               label = 'Name for fourth admission:'
               type = 'text'
