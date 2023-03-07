@@ -1,6 +1,6 @@
 import * as S from './Title-styles';
 
-export default function Title({ text = 'Portland Megaband Dance 2023', classes }) {
+export default function Title({ text = 'Test Registration Site', classes }) {
   const classNames = 'S.Title ' + classes;
 
   return (

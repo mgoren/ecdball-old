@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import InputMask from 'react-input-mask'; // this triggers findDOMNode deprecation warning
+import { isMobile } from "react-device-detect";
 import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PHONE_REGEX } from "consts";
 import * as S from './Form-styles';
 import { clamp } from 'utils';
@@ -91,7 +92,7 @@ export default function Form({ order, setOrder, setStatus }) {
                 <div className="input-group mb-3 justify-content-end">
                   <div className="input-group-prepend"><span className="input-group-text" style={{padding: 6}}>$</span></div>
                   <input 
-                    type="number" className="text-center" id="admissionCost" name="order[admission_cost]" min={ADMISSION_COST_RANGE[0]} max={ADMISSION_COST_RANGE[1]} step="1" 
+                    type={isMobile ? 'tel' : 'number'} className={`numericInput text-center ${isMobile ? "form-control" : ""}`} id="admissionCost" name="order[admission_cost]" min={ADMISSION_COST_RANGE[0]} max={ADMISSION_COST_RANGE[1]} step="1" 
                     defaultValue={order.admissionCost} onBlur={onBlur} />
                 </div>
               </div>
@@ -108,7 +109,7 @@ export default function Form({ order, setOrder, setStatus }) {
               <div className="col-sm-3">
                 <div className="input-group mb-3 justify-content-end">
                   <input 
-                    type="number" className="text-center" id="admissionQuantity" name="order[admission_quantity]" min={ADMISSION_QUANTITY_RANGE[0]} max={ADMISSION_QUANTITY_RANGE[1]} step="1" 
+                    type={isMobile ? 'tel' : 'number'} className={`numericInput text-center ${isMobile ? "form-control" : ""}`} id="admissionQuantity" name="order[admission_quantity]" min={ADMISSION_QUANTITY_RANGE[0]} max={ADMISSION_QUANTITY_RANGE[1]} step="1" 
                     defaultValue={order.admissionQuantity} onBlur={onBlur} onChange={(e) => setQuantity(e.target.value)} />
                 </div>
               </div>

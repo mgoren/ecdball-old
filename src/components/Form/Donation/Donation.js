@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { isMobile } from "react-device-detect";
 import * as S from '../Form-styles';
 import { DONATION_RANGE } from "consts";
 
@@ -23,9 +24,9 @@ export default function Form({ order, onBlur }) {
                 <>
                   <div className="input-group-prepend"><span className="input-group-text" style={{padding: 6}}>$</span></div>
                   <input 
-                    type="number" className="text-center" id="donation" name="donation" min={DONATION_RANGE[0]} max={DONATION_RANGE[1]} step="1" 
+                    type={isMobile ? 'tel' : 'number'} className={`numericInput text-center ${isMobile ? "form-control" : ""}`} id="donation" name="donation" min={DONATION_RANGE[0]} max={DONATION_RANGE[1]} step="1" 
                     defaultValue={order.donation} onBlur={onBlur} />
-                </>
+                </> 
               }
             </div>
           </div>
