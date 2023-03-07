@@ -6,14 +6,20 @@ export const Box = styled.div`
   background-color: white;
   border: 1px solid #dadce0;
   border-radius: 8px;
-  margin-top: 12px;
   padding: 40px;
+
+  &.desktop {
+    margin-top: 12px;
+  }
 `;
 Box.displayName = 'SS.Box';
 
 export const TopBox = styled(Box)`
-  border-top: 10px solid var(--color-darkpurple);
   padding: 0 24px 24px 24px;
+
+  &.desktop {
+    border-top: 10px solid var(--color-darkpurple);
+  }
 `;
 TopBox.displayName = 'SS.TopBox';
 

@@ -45,7 +45,7 @@ export default function Form({ order, setOrder, setStatus }) {
 
       <form onSubmit={onSubmit}>
 
-        <S.Box className='Box'>
+        <S.Box className={isMobile ? 'mobile' : 'desktop'}>
           <S.Title className='S.Title'>Contact information</S.Title>
           <Input
             label = 'Name'
@@ -54,7 +54,7 @@ export default function Form({ order, setOrder, setStatus }) {
             initialValue = {order.fullName}
             pattern = {NAME_REGEX}
             required = 'required'
-            autoFocus = {order.fullName === '' ? 'autoFocus' : ''}
+            autoFocus = {isMobile || order.fullName ? '' : 'autoFocus'}
             onBlur = {onBlur}
           />
 
@@ -80,19 +80,19 @@ export default function Form({ order, setOrder, setStatus }) {
 
         </S.Box>
 
-        <S.Box className='Box'>
+        <S.Box className={isMobile ? 'mobile' : 'desktop'}>
           <S.Title className='S.Title'>Megaband dance admissions</S.Title>
 
           <div className='form-group'>
-            <div className='row'>
+            <div className={isMobile ? '' : 'row'}>
               <div className="col-sm-9">
                 <S.Label className='S.Label' htmlFor="order_admission_cost">How much are you able to pay per admission? ($15-30)</S.Label>
               </div>
               <div className="col-sm-3">
-                <div className="input-group mb-3 justify-content-end">
+                <div className={`input-group mb-3 ${isMobile ? '' : 'justify-content-end'}`}>
                   <div className="input-group-prepend"><span className="input-group-text" style={{padding: 6}}>$</span></div>
                   <input 
-                    type={isMobile ? 'tel' : 'number'} className={`numericInput text-center ${isMobile ? "form-control" : ""}`} id="admissionCost" name="order[admission_cost]" min={ADMISSION_COST_RANGE[0]} max={ADMISSION_COST_RANGE[1]} step="1" 
+                    type={isMobile ? 'tel' : 'number'} className={`numericInput ${isMobile ? "form-control" : "text-center"}`} id="admissionCost" name="order[admission_cost]" min={ADMISSION_COST_RANGE[0]} max={ADMISSION_COST_RANGE[1]} step="1" 
                     defaultValue={order.admissionCost} onBlur={onBlur} />
                 </div>
               </div>
@@ -102,14 +102,14 @@ export default function Form({ order, setOrder, setStatus }) {
           <S.Spacer />
 
           <div className='form-group'>
-            <div className='row'>
+            <div className={isMobile ? '' : 'row'}>
               <div className="col-sm-9">
                 <S.Label htmlFor="admissionQuantity">Select admissions quantity (1-4)</S.Label>
               </div>
               <div className="col-sm-3">
-                <div className="input-group mb-3 justify-content-end">
+                <div className={`input-group mb-3 ${isMobile ? '' : 'justify-content-end'}`}>
                   <input 
-                    type={isMobile ? 'tel' : 'number'} className={`numericInput text-center ${isMobile ? "form-control" : ""}`} id="admissionQuantity" name="order[admission_quantity]" min={ADMISSION_QUANTITY_RANGE[0]} max={ADMISSION_QUANTITY_RANGE[1]} step="1" 
+                    type={isMobile ? 'tel' : 'number'} className={`numericInput ${isMobile ? "form-control" : "text-center"}`} id="admissionQuantity" name="order[admission_quantity]" min={ADMISSION_QUANTITY_RANGE[0]} max={ADMISSION_QUANTITY_RANGE[1]} step="1" 
                     defaultValue={order.admissionQuantity} onBlur={onBlur} onChange={(e) => setQuantity(e.target.value)} />
                 </div>
               </div>
@@ -159,7 +159,7 @@ export default function Form({ order, setOrder, setStatus }) {
           <Donation order={order} onBlur={onBlur} />
         </S.Box>
 
-        <S.Box className='box-next text-end'>
+        <S.Box className={`text-end ${isMobile ? 'mobile' : 'desktop'}`}>
           <S.NextButton type='submit' className='btn btn-primary'>Next</S.NextButton>
         </S.Box>
       </form>

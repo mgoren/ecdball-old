@@ -12,8 +12,10 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const Container = styled.div`
-  max-width: 650px;
-  margin: auto;
-  padding: 15px;
+  &.desktop {
+    max-width: 650px;
+    margin: auto;
+    padding: 15px;
+  }
 `;
 Container.displayName = 'S.Container';

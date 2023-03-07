@@ -1,5 +1,6 @@
 import { TailSpin } from 'react-loading-icons'
 import { useState, useEffect } from "react";
+import { isMobile } from "react-device-detect";
 import * as S from './Checkout-styles.js';
 import PaypalCheckoutButton from 'components/PaypalCheckoutButton';
 import Title from 'components/Title';
@@ -14,7 +15,7 @@ export default function Checkout({ order, setStatus, setError }) {
 
   return (
     <section className='checkout'>
-      <S.TopBox className='S.TopBox'>
+      <S.TopBox className={isMobile ? 'mobile' : 'desktop'}>
         {processing && 
           <>
             <S.Spacer />
@@ -44,7 +45,7 @@ export default function Checkout({ order, setStatus, setError }) {
       </S.TopBox>
 
       {!paying && 
-        <S.Box className='box-back'>
+        <S.Box className={isMobile ? 'mobile' : 'desktop'}>
           <button onClick={() => setStatus('form')} className='btn btn-secondary'>Back</button>
         </S.Box>
       }

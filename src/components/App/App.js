@@ -1,5 +1,6 @@
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useState, useEffect } from "react";
+import { isMobile } from "react-device-detect";
 import preval from 'preval.macro'
 import * as S from './App-styles';
 import Form from 'components/Form';
@@ -24,7 +25,7 @@ export default function App() {
   return (
     <PayPalScriptProvider options={PAYPAL_OPTIONS}>
       <S.GlobalStyle />
-      <S.Container className='S.Container'>
+      <S.Container className={isMobile ? 'mobile' : 'desktop'}>
         {error &&
           <Error error={error} />
         }

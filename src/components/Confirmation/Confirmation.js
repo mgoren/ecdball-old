@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { isMobile } from 'react-device-detect';
 import * as S from './Confirmation-styles';
 import { EMAIL_CONTACT, DETAILS_WEBSITE, CONTACT_TRACING_LINK, WAIVER_LINK } from 'consts';
 import Title from 'components/Title';
@@ -12,7 +13,7 @@ export default function Confirmation({ order }) {
   const websiteLink = `https://${DETAILS_WEBSITE}`;
 
   return (
-    <S.TopBox className='box-confirmation'>
+    <S.TopBox className={isMobile ? 'mobile' : 'desktop'}>
       <Title text='Megaband Confirmation' />
       <S.Text>Thanks, {order.fullName}!</S.Text>
       <S.Text>
