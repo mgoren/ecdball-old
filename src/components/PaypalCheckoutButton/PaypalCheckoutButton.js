@@ -1,9 +1,11 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import { useNavigate } from 'react-router-dom';
 import { push, ref, serverTimestamp } from "firebase/database";
 import db from 'firebase.js';
 import { EMAIL_CONTACT } from "consts";
 
-const PaypalCheckoutButton = ({ order, total, setStatus, setError, setPaying, setProcessing }) => {
+const PaypalCheckoutButton = ({ order, total, setError, setPaying, setProcessing }) => {
+	const navigate = useNavigate();
 
 	const createOrder = (data, actions) => {
 		return actions.order.create({
@@ -26,10 +28,11 @@ const PaypalCheckoutButton = ({ order, total, setStatus, setError, setPaying, se
 		setProcessing(true);
 		const paypalOrder = await actions.order.capture();
 		saveOrderToFirebase(paypalOrder); // async, but doesn't have to finish before we move on
-		sessionStorage.clear();
+		sessionStorage.removeItem('cachedOrder');
+		sessionStorage.setItem('lastCompletedOrder', JSON.stringify(order));
 		setPaying(false);
 		setProcessing(false);
-		setStatus('confirmation');
+		navigate('/confirmation');
 	};
 	
 	const onError = (err) => {
@@ -48,7 +51,6 @@ const PaypalCheckoutButton = ({ order, total, setStatus, setError, setPaying, se
 
 	const saveOrderToFirebase = (paypalOrder) => {
 		setError(null);
-		console.log('saving order to db', paypalOrder);
 		push(ref(db, 'orders/'), {
 			...order,
 			total: total,

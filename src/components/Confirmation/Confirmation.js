@@ -6,7 +6,17 @@ import Title from 'components/Title';
 import OrderSummary from 'components/OrderSummary';
 
 export default function Confirmation({ order }) {
-  useEffect(() => { window.scrollTo(0,0); },[])
+  if (sessionStorage.getItem('lastCompletedOrder') === null) {
+    window.location.replace('/');
+  } 
+
+  if (order.fullName === '') {
+    order = JSON.parse(sessionStorage.getItem('lastCompletedOrder'));
+  }
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  },[])
 
   const total = order.admissionCost * order.admissionQuantity + order.donation;
   const mailtoLink = `mailto:${EMAIL_CONTACT}`;

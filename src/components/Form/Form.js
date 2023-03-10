@@ -1,7 +1,8 @@
 import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import InputMask from 'react-input-mask'; // this triggers findDOMNode deprecation warning
 import { isMobile } from "react-device-detect";
-import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PHONE_REGEX } from "consts";
+import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PHONE_REGEX, DEFAULTS } from "consts";
 import * as S from './Form-styles';
 import { clamp } from 'utils';
 import Header from "./Header";
@@ -12,7 +13,13 @@ const INPUT_RANGES = { 'admissionCost': ADMISSION_COST_RANGE, 'admissionQuantity
 const RANGE_FIELDS = Object.keys(INPUT_RANGES);
 const TEXT_FIELDS = ['fullName', 'email', 'phone', 'person2', 'person3', 'person4'];
 
-export default function Form({ order, setOrder, setStatus }) {
+export default function Form({ order, setOrder }) {
+  const navigate = useNavigate();
+
+  if (JSON.stringify(order) === JSON.stringify(DEFAULTS) ) {
+    sessionStorage.removeItem('lastCompletedOrder');
+  }
+
   useEffect(() => { window.scrollTo(0,0); },[])
 
   function onBlur(e) {
@@ -43,7 +50,7 @@ export default function Form({ order, setOrder, setStatus }) {
     }
     setOrder(updatedOrder);
 
-    setStatus('checkout');
+    navigate('/checkout');
   }
 
   return (

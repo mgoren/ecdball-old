@@ -1,17 +1,25 @@
 import { TailSpin } from 'react-loading-icons'
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { isMobile } from "react-device-detect";
 import * as S from './Checkout-styles.js';
 import PaypalCheckoutButton from 'components/PaypalCheckoutButton';
 import Title from 'components/Title';
 import OrderSummary from "components/OrderSummary";
 
-export default function Checkout({ order, setStatus, setError }) {
+export default function Checkout({ order, setError }) {
+  const navigate = useNavigate();
   const [paying, setPaying] = useState(null);
   const [processing, setProcessing] = useState(null);
   const total = order.admissionCost * order.admissionQuantity + order.donation;
 
-  useEffect(() => { window.scrollTo(0,0); },[])
+  if (order.fullName === '' || order.email === '' || order.phone === '') {
+    window.location.replace('/');
+  } 
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  },[])
 
   return (
     <section className='checkout'>
@@ -41,12 +49,12 @@ export default function Checkout({ order, setStatus, setError }) {
           </>
         }
 
-        <PaypalCheckoutButton order={order} total={total} setStatus={setStatus} setError={setError} setPaying={setPaying} setProcessing={setProcessing} />
+        <PaypalCheckoutButton order={order} total={total} setError={setError} setPaying={setPaying} setProcessing={setProcessing} />
       </S.TopBox>
 
       {!paying && 
         <S.Box className={isMobile ? 'mobile' : 'desktop'}>
-          <button onClick={() => setStatus('form')} className='btn btn-secondary'>Back</button>
+          <button onClick={() => navigate('/')} className='btn btn-secondary'>Back</button>
         </S.Box>
       }
     </section>    
