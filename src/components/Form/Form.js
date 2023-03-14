@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import InputMask from 'react-input-mask'; // this triggers findDOMNode deprecation warning
 import { isMobile } from "react-device-detect";
@@ -13,7 +13,8 @@ const INPUT_RANGES = { 'admissionCost': ADMISSION_COST_RANGE, 'admissionQuantity
 const RANGE_FIELDS = Object.keys(INPUT_RANGES);
 const TEXT_FIELDS = ['fullName', 'email', 'phone', 'person2', 'person3', 'person4'];
 
-export default function Form({ order, setOrder }) {
+export default function Form({ order, setOrder, emailConfirmation, setEmailConfirmation }) {
+  const [emailsMatch, setEmailsMatch] = useState(order.email === emailConfirmation);
   const navigate = useNavigate();
 
   if (JSON.stringify(order) === JSON.stringify(DEFAULTS) ) {
@@ -21,6 +22,10 @@ export default function Form({ order, setOrder }) {
   }
 
   useEffect(() => { window.scrollTo(0,0); },[])
+
+  useEffect(() => {
+    setEmailsMatch(order.email === emailConfirmation);
+  }, [order.email, emailConfirmation])
 
   function onBlur(e) {
     let [field, value] = [e.target.id, e.target.value];
@@ -34,10 +39,9 @@ export default function Form({ order, setOrder }) {
     updatedOrder[e.target.id] = value;
     setOrder(updatedOrder);
 
-    if (TEXT_FIELDS.includes(field)) { // DON'T DIRECTLY MANIPULATE DOM
+    if (TEXT_FIELDS.includes(field) && value) { // DON'T DIRECTLY MANIPULATE DOM
       e.target.nextElementSibling.style.visibility = e.target.checkValidity() ? 'hidden' : 'visible';
     }
-
   }
 
   function onSubmit(e) {
@@ -81,6 +85,17 @@ export default function Form({ order, setOrder }) {
             warning = 'Please enter a valid email address.'
             onBlur = {onBlur}
           />
+
+          <div className='row'>
+            <div className="form-group col-sm-8">
+              <S.Label className='S.Label' htmlFor='emailConfirmation'>Email confirmation</S.Label>
+              <input 
+                type='email' id='emailConfirmation' name='emailConfirmation' className='form-control' required='required'
+                onBlur={(e) => setEmailConfirmation(e.target.value)} 
+              />
+              <S.Warning className={`S.Warning ${emailsMatch || !emailConfirmation ? '' : 'visible'}`}>Email addresses do not match.</S.Warning>
+            </div>
+          </div>
 
           <div className='row'>
             <div className="form-group col-sm-8">
@@ -174,7 +189,7 @@ export default function Form({ order, setOrder }) {
         </S.Box>
 
         <S.Box className={`text-end ${isMobile ? 'mobile' : 'desktop'}`}>
-          <S.NextButton type='submit' className='btn btn-primary'>Next</S.NextButton>
+          <S.NextButton type='submit' className='btn btn-primary'>Checkout...</S.NextButton>
         </S.Box>
       </form>
     </>

@@ -21,6 +21,10 @@ export const Warning = styled.p`
   color: red;
   font-weight: 500;
   padding-top: .5rem;
+
+  &.visible {
+    visibility: visible;
+  }
 `;
 
 export const DonationButton = styled.button`

@@ -12,6 +12,7 @@ import { PAYPAL_OPTIONS, DEFAULTS } from "consts";
 
 export default function App() {
   const [order, setOrder] = useState(JSON.parse(sessionStorage.getItem('cachedOrder')) || DEFAULTS);
+  const [emailConfirmation, setEmailConfirmation] = useState('');
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -29,7 +30,10 @@ export default function App() {
         <S.Container className={isMobile ? 'mobile' : 'desktop'}>
           {error && <Error error={error} />}
           <Routes>
-            <Route path="/" element={<Form order={order} setOrder={setOrder} />} />
+            <Route path="/" element={<Form 
+              order={order} setOrder={setOrder}
+              emailConfirmation={emailConfirmation} setEmailConfirmation={setEmailConfirmation}
+            />} />
             <Route path="/checkout" element={<Checkout order={order} setError={setError} />} />
             <Route path="/confirmation" element={<Confirmation order={order} />} />
           </Routes>
