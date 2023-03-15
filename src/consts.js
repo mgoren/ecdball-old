@@ -20,6 +20,7 @@ export const PHONE_REGEX = "^[0-9-() ]*$";
 export const DEFAULTS = { 
   fullName: '', 
   email: '', 
+  emailConfirmation: '', 
   phone: '', 
   admissionCost: ADMISSION_COST_RANGE[1], 
   admissionQuantity: ADMISSION_QUANTITY_RANGE[0], 

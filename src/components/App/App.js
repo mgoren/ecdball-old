@@ -4,7 +4,7 @@ import { isMobile } from "react-device-detect";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import preval from 'preval.macro'
 import * as S from './App-styles';
-import Form from 'components/Form';
+import MainForm from "components/MainForm";
 import Checkout from "components/Checkout";
 import Confirmation from "components/Confirmation";
 import Error from "components/Error";
@@ -30,7 +30,7 @@ export default function App() {
         <S.Container className={isMobile ? 'mobile' : 'desktop'}>
           {error && <Error error={error} />}
           <Routes>
-            <Route path="/" element={<Form 
+            <Route path="/" element={<MainForm 
               order={order} setOrder={setOrder}
               emailConfirmation={emailConfirmation} setEmailConfirmation={setEmailConfirmation}
             />} />
