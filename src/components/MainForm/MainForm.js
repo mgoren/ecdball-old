@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import Header from "./Header";
 import { useNavigate } from 'react-router-dom';
 import FormContents from "./FormContents";
-import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PHONE_REGEX, DEFAULTS } from "consts";
+import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PHONE_REGEX, DEFAULTS } from "config";
 
 export default function MainForm({ order, setOrder }) {
   const navigate = useNavigate();

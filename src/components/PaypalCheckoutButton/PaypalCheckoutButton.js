@@ -2,7 +2,7 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import { useNavigate } from 'react-router-dom';
 import { push, ref, serverTimestamp } from "firebase/database";
 import db from 'firebase.js';
-import { EMAIL_CONTACT } from "consts";
+import { EMAIL_CONTACT } from "config";
 
 const PaypalCheckoutButton = ({ order, total, setError, setPaying, setProcessing }) => {
 	const navigate = useNavigate();

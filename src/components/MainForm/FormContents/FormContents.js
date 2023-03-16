@@ -4,7 +4,7 @@ import { isMobile } from "react-device-detect";
 import { clamp } from 'utils';
 import * as S from '../Form-styles';
 import { Input, PhoneInput, NumericInput, ButtonInput } from '../Input';
-import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE } from "consts";
+import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE } from "config";
 
 export default function FormContents({ admissionQuantity, setAdmissionQuantity}) {
   const formik = useFormikContext();

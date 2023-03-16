@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { isMobile } from 'react-device-detect';
 import * as S from './Confirmation-styles';
-import { EMAIL_CONTACT, DETAILS_WEBSITE, CONTACT_TRACING_LINK, WAIVER_LINK } from 'consts';
+import { mailtoLink, websiteLink } from 'utils';
+
+import { EMAIL_CONTACT, DETAILS_URL, CONTACT_TRACING_URL, WAIVER_URL } from 'config';
 import Title from 'components/Title';
 import OrderSummary from 'components/OrderSummary';
 
@@ -19,8 +21,6 @@ export default function Confirmation({ order }) {
   },[])
 
   const total = order.admissionCost * order.admissionQuantity + order.donation;
-  const mailtoLink = `mailto:${EMAIL_CONTACT}`;
-  const websiteLink = `https://${DETAILS_WEBSITE}`;
 
   return (
     <S.TopBox className={isMobile ? 'mobile' : 'desktop'}>
@@ -40,8 +40,8 @@ export default function Confirmation({ order }) {
       <S.Subhead className='text-center'>Expedited Entry</S.Subhead>
       <S.Text>If you have not already done so, you can expedite the sign-in process by doing these ahead of time:</S.Text>
       <S.Text>
-      &#8674; Fill out the <a href={CONTACT_TRACING_LINK} target="_blank" rel="noreferrer">PCDC Contact Tracing form</a> online.<br />
-      &#8674; Print and bring with you a signed copy of the <a href={WAIVER_LINK} target="_blank" rel="noreferrer">PCDC event waiver</a>.
+      &#8674; Fill out the <S.Link href={websiteLink(CONTACT_TRACING_URL)} target="_blank" rel="noreferrer">PCDC Contact Tracing form</S.Link> online.<br />
+      &#8674; Print and bring with you a signed copy of the <S.Link href={websiteLink(WAIVER_URL)} target="_blank" rel="noreferrer">PCDC event waiver</S.Link>.
       </S.Text>
         
       <hr />
@@ -54,10 +54,10 @@ export default function Confirmation({ order }) {
         7805 SE Oaks Park Way in Portland
       </S.Text>
       <S.Text>Parking is $3/car.</S.Text>
-      <S.Text><strong>Covid policy:</strong> Everyone must be vaccinated, including at least one booster if eligible. A well-fitted mask covering nose and mouth is required for attendees. PCDC's full Covid policy is available <a href="https://pcdc.fun/covid19" target="_blank" rel="noreferrer">here</a>.</S.Text>
+      <S.Text><strong>Covid policy:</strong> Everyone must be vaccinated, including at least one booster if eligible. A well-fitted mask covering nose and mouth is required for attendees. PCDC's full Covid policy is available <S.Link href="https://pcdc.fun/covid19" target="_blank" rel="noreferrer">here</S.Link>.</S.Text>
       <S.Text>
-        See <a href={websiteLink} target="_blank" rel="noreferrer">{DETAILS_WEBSITE}</a> for further details.<br />
-        Email <a href={mailtoLink}>{EMAIL_CONTACT}</a> if you have any questions.
+        See <S.Link href={websiteLink(DETAILS_URL)} target="_blank" rel="noreferrer">{DETAILS_URL}</S.Link> for further details.<br />
+        Email <S.Link href={mailtoLink(EMAIL_CONTACT)}>{EMAIL_CONTACT}</S.Link> if you have any questions.
 
       </S.Text>
     </S.TopBox>

@@ -8,7 +8,7 @@ import MainForm from "components/MainForm";
 import Checkout from "components/Checkout";
 import Confirmation from "components/Confirmation";
 import Error from "components/Error";
-import { PAYPAL_OPTIONS, DEFAULTS } from "consts";
+import { PAYPAL_OPTIONS, DEFAULTS } from "config";
 
 export default function App() {
   const [order, setOrder] = useState(JSON.parse(sessionStorage.getItem('cachedOrder')) || DEFAULTS);
