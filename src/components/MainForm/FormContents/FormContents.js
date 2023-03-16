@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useFormikContext } from 'formik';
+import { Form, useFormikContext } from 'formik';
 import { isMobile } from "react-device-detect";
 import { clamp } from 'utils';
 import * as S from '../Form-styles';
@@ -23,8 +23,7 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity})
   };
 
   return(
-    <form onSubmit={formik.handleSubmit}>
-
+    <Form>
       <section className='contact-section'>
         <S.Box className={isMobile ? 'mobile' : 'desktop'}>
           <S.Title className='S.Title'>Contact information</S.Title>
@@ -137,7 +136,6 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity})
           <S.NextButton type='submit' className='btn btn-primary'>Checkout...</S.NextButton>
         </S.Box>
       </section>
-
-    </form>
+    </Form>
   )
 }
