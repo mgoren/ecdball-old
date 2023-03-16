@@ -3,7 +3,7 @@ import { useFormikContext } from 'formik';
 import { isMobile } from "react-device-detect";
 import { clamp } from 'utils';
 import * as S from '../Form-styles';
-import { Input, NumericInput, ButtonInput } from '../Input';
+import { Input, PhoneInput, NumericInput, ButtonInput } from '../Input';
 import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE } from "consts";
 
 export default function FormContents({ admissionQuantity, setAdmissionQuantity}) {
@@ -48,7 +48,7 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity})
             type="email"
           />
 
-          <Input
+          <PhoneInput
             label="Phone"
             name="phone"
             type="tel"

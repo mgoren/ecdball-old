@@ -1,5 +1,6 @@
 import { useField } from 'formik';
 import { isMobile } from "react-device-detect";
+import { PatternFormat } from 'react-number-format';
 import * as S from '../Form-styles';
 
 const Input = ({ label, ...props }) => {
@@ -10,6 +11,21 @@ const Input = ({ label, ...props }) => {
         <div className="form-group col-sm-8">
           <S.Label className='S.Label' htmlFor={props.id || props.name}>{label}</S.Label>
           <input className='form-control' {...field} {...props} />
+          <S.Warning className={`S.Warning ${meta.touched && meta.error ? 'visible' : ''}`}>{meta.error || '-'}</S.Warning>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const PhoneInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <div className='form-group'>
+      <div className='row'>
+        <div className="form-group col-sm-8">
+          <S.Label className='S.Label' htmlFor={props.id || props.name}>{label}</S.Label>
+          <PatternFormat className='form-control' format="###-###-####" mask="_" {...field} {...props} />
           <S.Warning className={`S.Warning ${meta.touched && meta.error ? 'visible' : ''}`}>{meta.error || '-'}</S.Warning>
         </div>
       </div>
@@ -63,4 +79,4 @@ const ButtonInput = (props) => {
   );
 }
 
-export { Input, NumericInput, ButtonInput };
+export { Input, PhoneInput, NumericInput, ButtonInput };

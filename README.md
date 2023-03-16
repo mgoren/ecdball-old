@@ -36,9 +36,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 # To do
 
-- Email confirmation box
+- Refactor / DRY up input components
 
-- Don't direclty manipulate dom!
+- Write tests!
 
 - Give option to pay by check, and show instructions for that when clicked
 
