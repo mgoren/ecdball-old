@@ -2,6 +2,7 @@ import { TailSpin } from 'react-loading-icons'
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { isMobile } from "react-device-detect";
+import { scrollToTop } from 'utils';
 import * as S from './Checkout-styles.js';
 import PaypalCheckoutButton from 'components/PaypalCheckoutButton';
 import Title from 'components/Title';
@@ -15,11 +16,14 @@ export default function Checkout({ order, setError }) {
 
   if (order.fullName === '' || order.email === '' || order.phone === '') {
     window.location.replace('/');
-  } 
+  }
 
-  useEffect(() => {
-    window.scrollTo(0,0);
-  },[])
+  useEffect(() => { scrollToTop(); },[])
+
+  const handleClickBackButton = () => {
+    setError(null);
+    navigate('/');
+  }
 
   return (
     <section className='checkout'>
@@ -54,7 +58,7 @@ export default function Checkout({ order, setError }) {
 
       {!paying && 
         <S.Box className={isMobile ? 'mobile' : 'desktop'}>
-          <button onClick={() => navigate('/')} className='btn btn-secondary'>Back</button>
+          <button onClick={() => handleClickBackButton() } className='btn btn-secondary'>Back</button>
         </S.Box>
       }
     </section>    

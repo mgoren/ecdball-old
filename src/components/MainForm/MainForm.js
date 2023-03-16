@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { isEqual } from 'lodash';
+import { scrollToTop } from 'utils';
 import Header from "./Header";
 import { useNavigate } from 'react-router-dom';
 import FormContents from "./FormContents";
@@ -10,9 +12,9 @@ export default function MainForm({ order, setOrder }) {
   const navigate = useNavigate();
   const [admissionQuantity, setAdmissionQuantity] = useState(order.admissionQuantity);
 
-  useEffect(() => { window.scrollTo(0,0); },[])
+  useEffect(() => { scrollToTop(); },[])
 
-  if (JSON.stringify(order) === JSON.stringify(DEFAULTS) ) {
+  if (isEqual(order, DEFAULTS)) {
     sessionStorage.removeItem('lastCompletedOrder');
   }
   

@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
+import { scrollToTop } from 'utils';
 import * as S from './Error-styles';
 
 export default function Error({ error }) {
-  useEffect(() => { window.scrollTo(0,0); },[])
+  useEffect(() => { scrollToTop(); },[])
   return (
     <S.ErrorBox className='box-error'>
       <S.Text>{error}</S.Text>

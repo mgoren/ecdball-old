@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { isMobile } from 'react-device-detect';
 import * as S from './Confirmation-styles';
-import { mailtoLink, websiteLink } from 'utils';
+import { mailtoLink, websiteLink, scrollToTop } from 'utils';
 
 import { EMAIL_CONTACT, DETAILS_URL, CONTACT_TRACING_URL, WAIVER_URL } from 'config';
 import Title from 'components/Title';
@@ -16,9 +16,7 @@ export default function Confirmation({ order }) {
     order = JSON.parse(sessionStorage.getItem('lastCompletedOrder'));
   }
 
-  useEffect(() => {
-    window.scrollTo(0,0);
-  },[])
+  useEffect(() => { scrollToTop(); },[])
 
   const total = order.admissionCost * order.admissionQuantity + order.donation;
 
