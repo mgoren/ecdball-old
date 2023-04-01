@@ -49,7 +49,7 @@ export default function Checkout({ order, setOrder, setError }) {
 		push(ref(db, 'orders/'), updatedOrderWithReceipt).then(() => {
 			console.log('order saved to firebase');
       sessionStorage.removeItem('cachedOrder');
-      sessionStorage.setItem('lastCompletedOrder', JSON.stringify(order));  
+      sessionStorage.setItem('lastCompletedOrder', JSON.stringify(updatedOrderWithReceipt));
       setPaying(false);
       setProcessing(false);
       navigate('/confirmation');
