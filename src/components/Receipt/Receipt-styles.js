@@ -1,1 +1,1 @@
-export { Subhead, Text, Link } from 'components/SharedStyles';
+export { Subhead, Link } from 'components/SharedStyles';

@@ -72,7 +72,9 @@ export default function Checkout({ order, setOrder, setError }) {
         {!processing &&
           <>
             <Title />
-            <OrderSummary order={order} />
+            <S.Container>
+              <OrderSummary order={order} />
+            </S.Container>
             <S.Spacer/>
             <hr/>
             <S.Subhead className='text-center'>Amount due: ${total}</S.Subhead>

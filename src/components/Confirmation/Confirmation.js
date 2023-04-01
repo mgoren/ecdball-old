@@ -21,7 +21,7 @@ export default function Confirmation({ order }) {
       <Title text={order.paypalEmail === 'check' ? 'Megaband Registration' : 'Megaband Confirmation'} />
       <Receipt order={order} />
       <hr />
-      <S.Text><p><em>A receipt containing this information is being sent to {order.email}.</em></p></S.Text>
+      <p><small>A receipt containing this information is being sent to {order.email}.</small></p>
     </S.TopBox>
   );
 }
