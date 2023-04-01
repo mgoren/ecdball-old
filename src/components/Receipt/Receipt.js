@@ -9,9 +9,7 @@ export default function Receipt({ order }) {
   return (
     <>
       <S.Text>
-        <p>
-          Thanks, {order.fullName}!
-        </p>
+        <p>Thanks, {order.fullName}!</p>
       </S.Text>
       {paidByCheck && 
         <>
@@ -38,14 +36,6 @@ export default function Receipt({ order }) {
         </S.Text>
       }
 
-      {!paidByCheck &&
-        <S.Text>
-          <p>
-            A receipt containing this information is being sent to {order.email}.
-          </p>
-        </S.Text>
-      }
-
       <OrderSummary order={order} orderComplete={!paidByCheck} />
 
       {!paidByCheck &&
@@ -54,9 +44,7 @@ export default function Receipt({ order }) {
 
           <S.Subhead className='text-center'>Expedited Entry</S.Subhead>
           <S.Text>
-            <p>
-              If you have not already done so, you can expedite the sign-in process by doing these ahead of time:
-            </p>
+            <p>If you have not already done so, you can expedite the sign-in process by doing these ahead of time:</p>
           </S.Text>
           <S.Text>
             <p>
@@ -77,14 +65,10 @@ export default function Receipt({ order }) {
             </p>
           </S.Text>
           <S.Text>
-            <p>
-              Parking is $3/car.
-            </p>
+            <p>Parking is $3/car.</p>
           </S.Text>
           <S.Text>
-            <p>
-              <strong>Covid policy:</strong> Everyone must be vaccinated, including at least one booster if eligible. A well-fitted mask covering nose and mouth is required for attendees. PCDC's full Covid policy is available <S.Link href="https://pcdc.fun/covid19" target="_blank" rel="noreferrer">here</S.Link>.
-            </p>
+            <p><strong>Covid policy:</strong> Everyone must be vaccinated, including at least one booster if eligible. A well-fitted mask covering nose and mouth is required for attendees. PCDC's full Covid policy is available <S.Link href="https://pcdc.fun/covid19" target="_blank" rel="noreferrer">here</S.Link>.</p>
           </S.Text>
           <S.Text>
             <p>

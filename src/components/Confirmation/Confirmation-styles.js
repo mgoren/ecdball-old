@@ -1,1 +1,1 @@
-export { TopBox } from 'components/SharedStyles';
+export { TopBox, Text } from 'components/SharedStyles';

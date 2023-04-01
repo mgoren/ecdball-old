@@ -19,3 +19,9 @@ export const Container = styled.div`
   }
 `;
 Container.displayName = 'S.Container';
+
+export const localhostBanner = styled.div`
+  color: red;
+  font-weight: bold;
+  text-align: center;
+`;
