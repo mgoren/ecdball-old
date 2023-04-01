@@ -20,7 +20,7 @@ export const Container = styled.div`
 `;
 Container.displayName = 'S.Container';
 
-export const localhostBanner = styled.div`
+export const LocalhostBanner = styled.div`
   color: red;
   font-weight: bold;
   text-align: center;

@@ -6,7 +6,7 @@ import { scrollToTop, sanitizeValue } from 'utils';
 import Header from "./Header";
 import { useNavigate } from 'react-router-dom';
 import FormContents from "./FormContents";
-import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PHONE_REGEX, DEFAULTS } from "config";
+import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PRONOUNS_REGEX, PHONE_REGEX, DEFAULTS } from "config";
 
 export default function MainForm({ order, setOrder }) {
   const navigate = useNavigate();
@@ -49,6 +49,7 @@ export default function MainForm({ order, setOrder }) {
           person2: personValidationSchema(2),
           person3: personValidationSchema(3),
           person4: personValidationSchema(4),
+          pronouns: Yup.string().matches(PRONOUNS_REGEX, 'Invalid characters :('),
           email: Yup.string().email('Please enter a valid email.').required('Please enter your email.'),
           emailConfirmation: Yup.string().required('Please confirm your email.').oneOf([Yup.ref('email'), null], 'Email addresses do not match.'),
           phone: Yup.string().matches(PHONE_REGEX, 'Please enter a valid phone number.').required('Please enter your phone number.'),

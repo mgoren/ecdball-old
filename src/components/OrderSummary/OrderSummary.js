@@ -10,6 +10,7 @@ export default function OrderSummary({ order, orderComplete = false }) {
       <p>
         <strong>Contact info:</strong><br />
         {order.fullName}<br />
+        {order.pronouns && <>{order.pronouns}<br /></>}
         {order.email}<br />
         {order.phone}
       </p>

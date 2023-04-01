@@ -27,7 +27,7 @@ export default function App() {
     <PayPalScriptProvider options={PAYPAL_OPTIONS}>
       <S.GlobalStyle />
       <BrowserRouter>
-        {window.location.hostname === 'localhost' && <S.localhostBanner>[ LOCALHOST ]</S.localhostBanner>}
+        {window.location.hostname === 'localhost' && <S.LocalhostBanner>[ LOCALHOST ]</S.LocalhostBanner>}
         <S.Container className={isMobile ? 'mobile' : 'desktop'}>
           {error && <Error error={error} />}
           <Routes>

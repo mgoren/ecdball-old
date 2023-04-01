@@ -23,10 +23,12 @@ export const PAYPAL_OPTIONS = {
 };
 
 export const NAME_REGEX = "^[^<>&@]+$";
+export const PRONOUNS_REGEX = "^[^<>&@]+$";
 export const PHONE_REGEX = "^[0-9-() ]*$";
 
 export const DEFAULTS = { 
   fullName: '', 
+  pronouns: '',
   email: '', 
   emailConfirmation: '', 
   phone: '', 

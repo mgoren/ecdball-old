@@ -5,11 +5,19 @@ import { clamp } from 'utils';
 import * as S from '../Form-styles';
 import { Input, NumericInput, ButtonInput } from '../Input';
 import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_OPTION, DONATION_RANGE } from "config";
+import ContactInfoInputs from '../ContactInfoInputs';
 
 export default function FormContents({ admissionQuantity, setAdmissionQuantity}) {
   const formik = useFormikContext();
   const { values } = formik;
   const [donate, setDonate] = useState(values.donation > 0);
+
+  useEffect(() => {
+    if (formik.isSubmitting && Object.keys(formik.errors).length > 0) {
+      // refactor to use refs instead of directly accessing DOM
+      document.getElementsByName(Object.keys(formik.errors)[0])[0].focus();
+    }
+  }, [formik.isSubmitting, formik.errors]);
 
   useEffect(() => {
     setAdmissionQuantity(values.admissionQuantity);
@@ -28,31 +36,12 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity})
         <S.Box className={isMobile ? 'mobile' : 'desktop'}>
           <S.Title className='S.Title'>Contact information</S.Title>
 
-          <Input
-            label="Full Name"
-            name="fullName"
-            type="text"
+          <ContactInfoInputs
+            values={values}
+            showInputs={['name', 'pronouns', 'email', 'emailConfirmation', 'phone']}
             autoFocus = {isMobile || values.fullName ? '' : 'autoFocus'}
           />
 
-          <Input
-            label="Email"
-            name="email"
-            type="email"
-          />
-
-          <Input
-            label="Re-enter email"
-            name="emailConfirmation"
-            type="email"
-          />
-
-          <Input
-            label="Phone"
-            name="phone"
-            type="tel"
-            pattern="###-###-####"
-          />
         </S.Box>
       </section>
 
