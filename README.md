@@ -33,23 +33,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-# To do
-
-- Refactor / DRY up input components
-
-- Write tests!
-
-- Give option to pay by check, and show instructions for that when clicked
-
-- Ask for email and pronouns also for each additional person
-
-- On checkout page ask how much each person wants to pay
-
-- have frontend talk to cloud functions which talks to firebase(?)
-
-- Allow paying just a deposit upfront
-
-- Provide READMEs with instructions on what variables to set
-
-- [next field arrow greyed out or not incorrectly on changing number of people]

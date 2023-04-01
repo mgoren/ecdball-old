@@ -1,17 +1,24 @@
-import { TailSpin } from 'react-loading-icons'
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { isMobile } from "react-device-detect";
-import { scrollToTop } from 'utils';
+import { push, ref, serverTimestamp } from "firebase/database";
+import { renderToStaticMarkup } from 'react-dom/server';
+import { clearCachedOrder, scrollToTop } from 'utils';
 import * as S from './Checkout-styles.js';
+import { PAYMENT_METHODS, EMAIL_CONTACT } from 'config';
+import db from 'firebase.js';
 import PaypalCheckoutButton from 'components/PaypalCheckoutButton';
 import Title from 'components/Title';
 import OrderSummary from "components/OrderSummary";
+import Check from "components/Check";
+import Loading from 'components/Loading';
+import Receipt from 'components/Receipt';
 
-export default function Checkout({ order, setError }) {
+export default function Checkout({ order, setOrder, setError }) {
   const navigate = useNavigate();
   const [paying, setPaying] = useState(null);
   const [processing, setProcessing] = useState(null);
+  const [checkPayment, setCheckPayment] = useState(null);
   const total = order.admissionCost * order.admissionQuantity + order.donation;
 
   if (order.fullName === '' || order.email === '' || order.phone === '') {
@@ -22,25 +29,45 @@ export default function Checkout({ order, setError }) {
 
   const handleClickBackButton = () => {
     setError(null);
+    clearCachedOrder();
     navigate('/');
   }
+
+	const saveOrderToFirebase = (paypalOrder) => {
+    console.log(checkPayment ? 'paid via check' : 'paid successfully via paypal');
+    const updatedOrder = {
+      ...order,
+      total,
+      deposit: checkPayment ? 0 : total,
+      paypalEmail: checkPayment ? 'check' : paypalOrder.payer.email_address,
+      timestamp: serverTimestamp()
+    };
+    const receipt = renderToStaticMarkup(<Receipt order={updatedOrder}/>);
+    const updatedOrderWithReceipt = { ...updatedOrder, receipt };
+    console.log('setting order', updatedOrderWithReceipt);
+    setOrder(updatedOrderWithReceipt);
+		push(ref(db, 'orders/'), updatedOrderWithReceipt).then(() => {
+			console.log('order saved to firebase');
+      sessionStorage.removeItem('cachedOrder');
+      sessionStorage.setItem('lastCompletedOrder', JSON.stringify(order));  
+      setPaying(false);
+      setProcessing(false);
+      navigate('/confirmation');
+		})
+		.catch((err) => {
+      console.err('error saving order to firebase');
+			setError(checkPayment ? 
+        `We encountered an issue recording your information: ${err}. Please contact ${EMAIL_CONTACT}.` 
+        : `Your payment was processed successfully but we encountered an issue recording your information: ${err}. Please contact ${EMAIL_CONTACT}.`
+      );
+		});
+	}
 
   return (
     <section className='checkout'>
       <S.TopBox className={isMobile ? 'mobile' : 'desktop'}>
-        {processing && 
-          <>
-            <S.Spacer />
-            <S.Spacer />
-            <div className='text-center loading-icon-container'>
-              <TailSpin stroke='black' strokeWidth='2.5' />
-            </div>
-            <S.Spacer />
-            <S.Subhead className='text-center text-danger'>Processing your payment...</S.Subhead>
-            <S.Spacer />
-            <S.Spacer />
-          </>
-        }
+
+        {processing && <Loading text='Processing payment...' />}
 
         {!processing &&
           <>
@@ -53,7 +80,30 @@ export default function Checkout({ order, setError }) {
           </>
         }
 
-        <PaypalCheckoutButton order={order} total={total} setError={setError} setPaying={setPaying} setProcessing={setProcessing} />
+        {PAYMENT_METHODS.includes('paypal') && !checkPayment &&
+          <PaypalCheckoutButton 
+            order={order} 
+            total={total} 
+            setError={setError} 
+            setPaying={setPaying} 
+            setProcessing={setProcessing} 
+            saveOrderToFirebase={saveOrderToFirebase}
+          />
+        }
+
+        {PAYMENT_METHODS.includes('check') && !checkPayment && !paying &&
+          <S.Text className='text-center'>
+            <S.Link onClick={() => setCheckPayment(true)}>or click here to pay by check</S.Link>
+          </S.Text>
+        }
+
+        {checkPayment && 
+          <Check 
+            setCheckPayment={setCheckPayment} 
+            saveOrderToFirebase={saveOrderToFirebase}
+          />
+        }
+
       </S.TopBox>
 
       {!paying && 
@@ -61,6 +111,6 @@ export default function Checkout({ order, setError }) {
           <button onClick={() => handleClickBackButton() } className='btn btn-secondary'>Back</button>
         </S.Box>
       }
-    </section>    
+    </section>
   );
 }

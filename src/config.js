@@ -1,6 +1,13 @@
+export const SANDBOX_MODE = true;
+
+export const PAYMENT_METHODS = ['paypal', 'check']; // options are paypal and/or check
+
 export const ADMISSION_COST_RANGE = [15, 30];
 export const ADMISSION_QUANTITY_RANGE = [1, 4];
+
+export const DONATION_OPTION = true;
 export const DONATION_RANGE = [0, 999];
+
 export const EMAIL_CONTACT = 'contra@portlandcountrydance.org';
 export const DETAILS_URL = 'portlandmegaband.com';
 export const COVID_POLICY_URL = 'pcdc.fun/covid19';
@@ -15,7 +22,7 @@ export const PAYPAL_OPTIONS = {
   "locale": "en_US"
 };
 
-export const NAME_REGEX = "^[\\sa-zA-Z '-]*$";
+export const NAME_REGEX = "^[^<>&@]+$";
 export const PHONE_REGEX = "^[0-9-() ]*$";
 
 export const DEFAULTS = { 

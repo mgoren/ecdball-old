@@ -4,7 +4,7 @@ import { isMobile } from "react-device-detect";
 import { clamp } from 'utils';
 import * as S from '../Form-styles';
 import { Input, NumericInput, ButtonInput } from '../Input';
-import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE } from "config";
+import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_OPTION, DONATION_RANGE } from "config";
 
 export default function FormContents({ admissionQuantity, setAdmissionQuantity}) {
   const formik = useFormikContext();
@@ -42,7 +42,7 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity})
           />
 
           <Input
-            label="Email confirmation"
+            label="Re-enter email"
             name="emailConfirmation"
             type="email"
           />
@@ -106,30 +106,32 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity})
         </S.Box>
       </section>
 
-      <section className='donation-section'>
-        <S.Box className={isMobile ? 'mobile' : 'desktop'}>
-          <S.Title className="S.Title">Additional donation (tax deductible)</S.Title>
+      {DONATION_OPTION &&
+        <section className='donation-section'>
+          <S.Box className={isMobile ? 'mobile' : 'desktop'}>
+            <S.Title className="S.Title">Additional donation (tax deductible)</S.Title>
 
-          {!donate && 
-            <ButtonInput 
-              label="Would you like to make an additional donation to PCDC?"
-              name="donate"
-              buttonText="Yes"
-              onClick={() => setDonate(true)}
-            />
-          }
+            {!donate && 
+              <ButtonInput 
+                label="Would you like to make an additional donation to PCDC?"
+                name="donate"
+                buttonText="Yes"
+                onClick={() => setDonate(true)}
+              />
+            }
 
-          {donate && 
-            <NumericInput 
-              label="How much would you like to donate to PCDC?"
-              name="donation" 
-              range={DONATION_RANGE}
-              onBlur={(event) => clampValue({ event: event, range: DONATION_RANGE})}
-              showDollarSign={true}
-            />
-          }
-        </S.Box>
-      </section>
+            {donate && 
+              <NumericInput 
+                label="How much would you like to donate to PCDC?"
+                name="donation" 
+                range={DONATION_RANGE}
+                onBlur={(event) => clampValue({ event: event, range: DONATION_RANGE})}
+                showDollarSign={true}
+              />
+            }
+          </S.Box>
+        </section>
+      }
 
       <section className='continue-button'>
         <S.Box className={`text-end ${isMobile ? 'mobile' : 'desktop'}`}>

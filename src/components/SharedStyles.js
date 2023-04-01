@@ -38,6 +38,11 @@ Text.displayName = 'SS.Text';
 
 export const Link = styled.a`
   color: var(--color-link);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-link-hover);
+  }
 `;
 
 
