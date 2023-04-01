@@ -3,9 +3,13 @@ import { Form, useFormikContext } from 'formik';
 import { isMobile } from "react-device-detect";
 import { clamp } from 'utils';
 import * as S from '../Form-styles';
-import { Input, NumericInput, ButtonInput } from '../Input';
-import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_OPTION, DONATION_RANGE } from "config";
+import { NumericInput, ButtonInput } from '../Input';
 import ContactInfoInputs from '../ContactInfoInputs';
+import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_OPTION, DONATION_RANGE } from "config";
+
+const person2Inputs = { fullName: {label: 'Name for second admission', id: 'person2'} };
+const person3Inputs = { fullName: {label: 'Name for third admission', id: 'person3'} };
+const person4Inputs = { fullName: {label: 'Name for fourth admission', id: 'person4'} };
 
 export default function FormContents({ admissionQuantity, setAdmissionQuantity}) {
   const formik = useFormikContext();
@@ -38,7 +42,6 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity})
 
           <ContactInfoInputs
             values={values}
-            showInputs={['name', 'pronouns', 'email', 'emailConfirmation', 'phone']}
             autoFocus = {isMobile || values.fullName ? '' : 'autoFocus'}
           />
 
@@ -68,29 +71,9 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity})
 
           <S.Spacer />
 
-          { admissionQuantity >= 2 &&
-            <Input
-              label = 'Name for second admission'
-              type = 'text'
-              name = 'person2'
-            />
-          }
-
-          { admissionQuantity >= 3 &&
-            <Input
-              label = 'Name for third admission'
-              type = 'text'
-              name = 'person3'
-            />
-          }
-
-          { admissionQuantity >= 4 &&
-            <Input
-              label = 'Name for fourth admission'
-              type = 'text'
-              name = 'person4'
-            />
-          }
+          { admissionQuantity >= 2 && <ContactInfoInputs inputs={person2Inputs} /> }
+          { admissionQuantity >= 3 && <ContactInfoInputs inputs={person3Inputs} /> }
+          { admissionQuantity >= 4 && <ContactInfoInputs inputs={person4Inputs} /> }
 
         </S.Box>
       </section>

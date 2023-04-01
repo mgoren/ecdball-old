@@ -1,28 +1,34 @@
 import { Input } from '../Input';
 
-const showInputDefaults = ['name', 'pronouns', 'email', 'emailConfirmation', 'phone'];
+const contactInfoDefaults = {
+  fullName: { id: 'fullName', label: 'Full Name' },
+  pronouns: { id: 'pronouns', label: 'Pronouns (optional)' },
+  email: { id: 'email', label: 'Email' },
+  emailConfirmation: { id: 'emailConfirmation', label: 'Re-enter email' },
+  phone: { id: 'phone', label: 'Phone' }
+}
 
-export default function ContactInfoInputs({ values, showInputs = showInputDefaults, autoFocus = false }) {
-  const { name, pronouns, email, emailConfirmation, phone } = showInputs.reduce((acc, input) => {
-    acc[input] = true;
-    return acc;
-  }, {});  
+export default function ContactInfoInputs({ inputs = contactInfoDefaults, autoFocus = false }) {
+  Object.keys(inputs).forEach (key => {
+    inputs[key] = { ...contactInfoDefaults[key], ...inputs[key] };
+  });
+  const { fullName, pronouns, email, emailConfirmation, phone } = inputs;
 
   return (
     <>
-      {name && 
+      {fullName &&
         <Input
-          label="Full Name"
-          name="fullName"
+          label={fullName.label}
+          name={fullName.id}
           type="text"
           autoFocus={autoFocus}
         />
       }
 
-      {pronouns && 
+      {pronouns &&
         <Input
-          label="Pronouns (optional)"
-          name="pronouns"
+          label={pronouns.label}
+          name={pronouns.id}
           type="text"
           placeholder="e.g. they/them"
         />
@@ -30,24 +36,24 @@ export default function ContactInfoInputs({ values, showInputs = showInputDefaul
 
       {email &&
         <Input
-          label="Email"
-          name="email"
+          label={email.label}
+          name={email.id}
           type="email"
         />
       }
 
       {emailConfirmation &&
         <Input
-          label="Re-enter email"
-          name="emailConfirmation"
+          label={emailConfirmation.label}
+          name={emailConfirmation.id}
           type="email"
         />
       }
 
       {phone &&
         <Input
-          label="Phone"
-          name="phone"
+          label={phone.label}
+          name={phone.id}
           type="tel"
           pattern="###-###-####"
           placeholder="e.g. 555-555-5555"
