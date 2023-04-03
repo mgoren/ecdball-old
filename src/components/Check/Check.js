@@ -1,14 +1,11 @@
+import { useState, useEffect } from 'react';
+import Reaptcha from 'reaptcha';
 import { wait } from 'utils';
 import * as S from './Check-styles';
-import { useState, useEffect } from 'react';
 
 export default function Check({ saveOrderToFirebase, processing, setProcessing }) {
   const [initialized, setInitialized] = useState(false);
-
-  const handleRegister = async () => {
-    setProcessing(true);
-    saveOrderToFirebase('check');
-  }
+  const [verified, setVerified] = useState(false);
 
   useEffect(() => {
     wait(5000).then(() => {
@@ -16,8 +13,13 @@ export default function Check({ saveOrderToFirebase, processing, setProcessing }
     });
   }, [setInitialized]);
 
+  const handleRegister = async () => {
+    setProcessing(true);
+    saveOrderToFirebase('check');
+  }
+
   return (
-    <section className='Check text-center'>
+    <section className='Check text-center d-flex flex-column'>
 
       {!processing &&
         <>
@@ -25,11 +27,22 @@ export default function Check({ saveOrderToFirebase, processing, setProcessing }
 
           <S.Spacer />
 
-          {initialized ?
-            <button onClick={handleRegister} className='btn btn-warning'>Register and agree to send a check</button>
-            :
-            <button className='btn btn-warning' disabled>Please wait...</button>
+          {initialized &&
+            <>
+              <Reaptcha
+                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                onVerify={() => setVerified(true)}
+                onExpire={() => setVerified(false)}
+                className='mx-auto'
+              />
+            </>
           }
+          <S.Spacer />
+          <div>
+            <button disabled={!initialized || !verified} onClick={handleRegister} className='btn btn-warning'>
+              {initialized ? 'Register and agree to send a check' : 'Loading...'}
+            </button>
+          </div>
         </>
       }
 
