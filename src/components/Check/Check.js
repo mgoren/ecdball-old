@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Reaptcha from 'reaptcha';
 import { wait } from 'utils';
 import * as S from './Check-styles';
+import { CAPTCHA_KEY } from 'config';
 
 export default function Check({ saveOrderToFirebase, processing, setProcessing }) {
   const [initialized, setInitialized] = useState(false);
@@ -30,7 +31,7 @@ export default function Check({ saveOrderToFirebase, processing, setProcessing }
           {initialized &&
             <>
               <Reaptcha
-                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                sitekey={CAPTCHA_KEY}
                 onVerify={() => setVerified(true)}
                 onExpire={() => setVerified(false)}
                 className='mx-auto'
