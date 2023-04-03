@@ -1,6 +1,6 @@
 export const SANDBOX_MODE = true;
 
-export const PAYMENT_METHODS = ['paypal', 'check']; // options are paypal and/or check
+export const PAYMENT_METHODS = ['paypal', 'check']; // options are paypal and/or check (first is default)
 
 export const ADMISSION_COST_RANGE = [15, 30];
 export const ADMISSION_QUANTITY_RANGE = [1, 4];
@@ -25,17 +25,13 @@ export const PAYPAL_OPTIONS = {
 export const NAME_REGEX = "^[^<>&@]+$";
 export const PRONOUNS_REGEX = "^[^<>&@]+$";
 export const PHONE_REGEX = "^[0-9-() ]*$";
-
-export const DEFAULTS = { 
-  fullName: '', 
-  pronouns: '',
-  email: '', 
-  emailConfirmation: '', 
-  phone: '', 
-  admissionCost: ADMISSION_COST_RANGE[1], 
-  admissionQuantity: ADMISSION_QUANTITY_RANGE[0], 
-  donation: DONATION_RANGE[0], 
-  person2: '', 
-  person3: '', 
-  person4: ''
+  
+export const DEFAULTS = {
+  people: Array(ADMISSION_QUANTITY_RANGE[1]).fill(
+    { fullName: '', pronouns: '', email: '', phone: '' })
+    .map((person, index) => ({ ...person, index })),
+  emailConfirmation: '',
+  admissionCost: ADMISSION_COST_RANGE[1],
+  admissionQuantity: ADMISSION_QUANTITY_RANGE[0],
+  donation: DONATION_RANGE[0]
 }

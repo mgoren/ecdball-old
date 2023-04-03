@@ -6,7 +6,7 @@ import OrderSummary from 'components/OrderSummary';
 export default function Receipt({ order }) {
   return(
     <>
-      <p>Thanks, {order.fullName}!</p>
+      <p>Thanks, {order.people[0].fullName}!</p>
       {order.paypalEmail === 'check' ? <CheckReceipt order={order}/> : <PaypalReceipt order={order }/>}
     </>
   );

@@ -7,30 +7,29 @@ export default function OrderSummary({ order, orderComplete = false }) {
     <>
       <S.Subhead className='text-center'>Order summary</S.Subhead>
 
-      <p>
-        <strong>Contact info:</strong><br />
-        {order.fullName}<br />
-        {order.pronouns && <>{order.pronouns}<br /></>}
-        {order.email}<br />
-        {order.phone}
-      </p>
+      <p><strong>{order.admissionQuantity > 1 ? 'Admissions' : 'Contact info'}</strong><br /></p>
+
+      {order.people.slice(0, order.admissionQuantity).map((person, index) => (
+        <p key={index}>
+          {person.fullName}<br />
+          {person.pronouns && <>{person.pronouns}<br /></>}
+          {person.email}<br />
+          {person.phone}
+        </p>
+      ))}
+
+      <S.Spacer />
+
+      <p><strong>{orderComplete ? 'Amount paid' : 'Amount due'}</strong><br /></p>
 
       <p>
-        <strong>Admissions:</strong><br />
-        {order.fullName}<br />
-        {order.person2 && <>{order.person2}<br /></>}
-        {order.person3 && <>{order.person3}<br /></>}
-        {order.person4 && <>{order.person4}<br /></>}
-      </p>
-
-      <p>
-        <strong>
-          {!orderComplete && 'Amount due:'}
-          {orderComplete && 'Amount paid:'}
-        </strong><br />
-        Megaband admissions: {order.admissionQuantity} x ${order.admissionCost} = ${order.admissionQuantity * order.admissionCost}<br />
-        {order.donation > 0 && <>Additional donation: ${order.donation}<br /></>}
-        {order.donation > 0 && <>Total: ${total}</>}
+        Admissions: {order.admissionQuantity} x ${order.admissionCost} = ${order.admissionQuantity * order.admissionCost}<br />
+        {order.donation > 0 &&
+          <>
+            Additional donation: ${order.donation}<br />
+            Total: ${total}
+          </>
+        }
       </p>
     </>
   );

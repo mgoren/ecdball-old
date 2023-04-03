@@ -7,19 +7,27 @@ import { NumericInput, ButtonInput } from '../Input';
 import ContactInfoInputs from '../ContactInfoInputs';
 import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_OPTION, DONATION_RANGE } from "config";
 
-const person2Inputs = { fullName: {label: 'Name for second admission', id: 'person2'} };
-const person3Inputs = { fullName: {label: 'Name for third admission', id: 'person3'} };
-const person4Inputs = { fullName: {label: 'Name for fourth admission', id: 'person4'} };
+const person1Inputs = { fullName: {}, pronouns: {}, email: {}, emailConfirmation: {}, phone: {} };
+const person2Inputs = { fullName: {}, pronouns: {}, email: {} };
+const person3Inputs = { fullName: {}, pronouns: {}, email: {} };
+const person4Inputs = { fullName: {}, pronouns: {}, email: {} };
 
 export default function FormContents({ admissionQuantity, setAdmissionQuantity}) {
   const formik = useFormikContext();
   const { values } = formik;
   const [donate, setDonate] = useState(values.donation > 0);
 
+  // refactor to use ref instead of directly accessing DOM
   useEffect(() => {
     if (formik.isSubmitting && Object.keys(formik.errors).length > 0) {
-      // refactor to use refs instead of directly accessing DOM
-      document.getElementsByName(Object.keys(formik.errors)[0])[0].focus();
+      const firstInvalidFieldName = getFirstInvalidFieldName(formik.errors);
+      console.log('validation failed on', firstInvalidFieldName);
+      if (firstInvalidFieldName) {
+        const invalidFieldElement = document.getElementsByName(firstInvalidFieldName)[0];
+        if (invalidFieldElement) {
+          invalidFieldElement.focus();
+        }
+      }
     }
   }, [formik.isSubmitting, formik.errors]);
 
@@ -38,11 +46,12 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity})
     <Form>
       <section className='contact-section'>
         <S.Box className={isMobile ? 'mobile' : 'desktop'}>
-          <S.Title className='S.Title'>Contact information</S.Title>
+          <S.Title className='S.Title'>Your contact information</S.Title>
 
           <ContactInfoInputs
-            values={values}
-            autoFocus = {isMobile || values.fullName ? '' : 'autoFocus'}
+            index={0}
+            inputs = {person1Inputs}
+            autoFocus = {isMobile || values.people[0].fullName ? '' : 'autoFocus'}
           />
 
         </S.Box>
@@ -71,11 +80,37 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity})
 
           <S.Spacer />
 
-          { admissionQuantity >= 2 && <ContactInfoInputs inputs={person2Inputs} /> }
-          { admissionQuantity >= 3 && <ContactInfoInputs inputs={person3Inputs} /> }
-          { admissionQuantity >= 4 && <ContactInfoInputs inputs={person4Inputs} /> }
-
         </S.Box>
+
+        {admissionQuantity >= 2 &&
+          <S.Box className={isMobile ? 'mobile' : 'desktop'}>
+            <S.Title className='S.Title'>Second admission</S.Title>
+            <ContactInfoInputs
+              index={1}
+              inputs={person2Inputs} 
+            />
+          </S.Box>
+        }
+        {admissionQuantity >= 3 &&
+          <S.Box className={isMobile ? 'mobile' : 'desktop'}>
+            <S.Title className='S.Title'>Third admission</S.Title>
+            <ContactInfoInputs
+              index={2}
+              inputs={person3Inputs} 
+            />
+          </S.Box>
+        }
+        {admissionQuantity >= 4 &&
+          <S.Box className={isMobile ? 'mobile' : 'desktop'}>
+            <S.Title className='S.Title'>Fourth admission</S.Title>
+            <ContactInfoInputs
+              index={3}
+              inputs={person4Inputs} 
+            />
+          </S.Box>
+        }
+
+
       </section>
 
       {DONATION_OPTION &&
@@ -112,4 +147,32 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity})
       </section>
     </Form>
   )
+}
+
+// helpers for focusing on first invalid field; make generic and move to utils?
+
+const getFirstInvalidFieldName = (errors) => {
+  // brittle: relies on formik only generating errors on the people and emailConfirmation fields
+  // brittle: relies on the order fields appear in the form
+  if (emailConfirmationIsFirstInvalidFeld(errors)) {
+    return 'emailConfirmation';
+  }
+  if (errors.people) {
+    for (const i in errors.people) {
+      if (errors.people[i] !== null) {
+        for (const field in errors.people[i]) {
+          return `people[${i}].${field}`;
+        }
+      }
+    }
+  }
+  return null;
+};
+
+const emailConfirmationIsFirstInvalidFeld = (errors) => {
+  if (Object.keys(errors).includes('emailConfirmation')) {
+    if (!errors.people || !errors.people[0] || (!errors.people[0].fullName && !errors.people[0].pronouns && !errors.people[0].email)) {
+      return true;
+    }
+  }
 }
