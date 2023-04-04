@@ -1,9 +1,32 @@
+# Configuration
+
+**Development:**
+Set environment variables in `.env`
+
+**Production (with GitHub workflow and Firebase hosting):**
+Set environment variables as [secrets](https://github.com/mgoren/registration/settings/secrets/actions) on the repo and in the workflows in `.github`.
+
+```
+REACT_APP_PAYPAL_CLIENT_ID
+REACT_APP_FIREBASE_API_KEY
+REACT_APP_FIREBASE_AUTH_DOMAIN
+REACT_APP_FIREBASE_PROJECT_ID
+REACT_APP_FIREBASE_STORAGE_BUCKET
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID
+REACT_APP_FIREBASE_APP_ID
+REACT_APP_FIREBASE_DATABASE_URL
+REACT_APP_RECAPTCHA_SITE_KEY
+```
+
 # Deployment
+
+**Via GitHub workflow:**
+(See instructions above for configuring env variables as repo secrets.)
+
+**Or:**
 
 `npm run build`
 `firebase deploy --only hosting`
-
-Or set env variables as repo secrets for use by github actions.
 
 # Registration site
 
