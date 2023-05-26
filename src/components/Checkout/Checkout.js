@@ -14,6 +14,7 @@ import Check from "components/Check";
 import Loading from 'components/Loading';
 import Receipt from 'components/Receipt';
 import TogglePaymentMode from 'components/TogglePaymentMode';
+import { ButtonRow } from 'components/ButtonRow/index.js';
 
 export default function Checkout({ order, setOrder, setError }) {
   const navigate = useNavigate();
@@ -116,9 +117,7 @@ export default function Checkout({ order, setOrder, setError }) {
       </S.TopBox>
 
       {!paying && !processing &&
-        <S.Box className={isMobile ? 'mobile' : 'desktop'}>
-          <button onClick={() => handleClickBackButton() } className='btn btn-secondary'>Back</button>
-        </S.Box>
+        <ButtonRow backButtonProps = {{ onClick: handleClickBackButton }} />
       }
     </section>
   );

@@ -5,11 +5,12 @@ import { scrollToTop, sanitizeObject, clearCachedLastCompletedOrder, clearCached
 import Header from "./Header";
 import { useNavigate } from 'react-router-dom';
 import FormContents from "./FormContents";
-import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PRONOUNS_REGEX, PHONE_REGEX } from "config";
+import { ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE, NAME_REGEX, PRONOUNS_REGEX, PHONE_REGEX, SINGLE_PAGE } from "config";
 
 export default function MainForm({ order, setOrder }) {
   const navigate = useNavigate();
   const [admissionQuantity, setAdmissionQuantity] = useState(order.admissionQuantity);
+  const [currentPage, setCurrentPage] = useState(1);
 
   clearCachedOrder();
   clearCachedLastCompletedOrder();
@@ -34,47 +35,62 @@ export default function MainForm({ order, setOrder }) {
     });
   }
 
+  const page1ValidationSchema=Yup.object({
+    people: Yup.array().of(
+      Yup.lazy((value) => {
+        return value.index < admissionQuantity ? personValidationSchema(value.index) : Yup.mixed().notRequired();
+      })
+    ),
+    emailConfirmation: Yup.string()
+      .oneOf([Yup.ref('people[0].email'), null], 'Email addresses do not match.')
+      .required('Please confirm your email.'),
+    admissionQuantity: Yup.number()
+    .min(ADMISSION_QUANTITY_RANGE[0])
+    .max(ADMISSION_QUANTITY_RANGE[1])
+    .required()
+  });
+
+  const page2ValidationSchema=Yup.object({
+    admissionCost: Yup.number()
+      .min(ADMISSION_COST_RANGE[0])
+      .max(ADMISSION_COST_RANGE[1])
+      .required(),
+    donation: Yup.number()
+      .min(DONATION_RANGE[0])
+      .max(DONATION_RANGE[1])
+  });
+
+  const fullValidationSchema = Yup.object({
+    ...page1ValidationSchema.fields,
+    ...page2ValidationSchema.fields,
+  });
+
   return (
     <>
       <Header />
-
       <Formik
         initialValues={order}
-
-        validationSchema={Yup.object({
-          people: Yup.array().of(
-            Yup.lazy((value) => {
-              return value.index < admissionQuantity ? personValidationSchema(value.index) : Yup.mixed().notRequired();
-            })
-          ),
-          emailConfirmation: Yup.string()
-            .oneOf([Yup.ref('people[0].email'), null], 'Email addresses do not match.')
-            .required('Please confirm your email.'),
-          admissionCost: Yup.number()
-            .min(ADMISSION_COST_RANGE[0])
-            .max(ADMISSION_COST_RANGE[1])
-            .required(),
-          admissionQuantity: Yup.number()
-            .min(ADMISSION_QUANTITY_RANGE[0])
-            .max(ADMISSION_QUANTITY_RANGE[1])
-            .required(),
-          donation: Yup.number()
-            .min(DONATION_RANGE[0])
-            .max(DONATION_RANGE[1])
-        })}
-
-        onSubmit={(values) => {
-          const submittedOrder = Object.assign({}, values);
-          const trimmedOrder = removeExtraPeople(submittedOrder);
-          const sanitizedOrder = sanitizeObject(trimmedOrder);
-          console.log(sanitizedOrder);
-          setOrder(sanitizedOrder);
-          navigate('/checkout', { state: { fromForm: true } });
+        validationSchema={SINGLE_PAGE || currentPage === 2 ? fullValidationSchema : page1ValidationSchema}
+        onSubmit={(values, actions) => {
+          if (SINGLE_PAGE || currentPage === 2) {
+            const submittedOrder = Object.assign({}, values);
+            const trimmedOrder = removeExtraPeople(submittedOrder);
+            const sanitizedOrder = sanitizeObject(trimmedOrder);
+            console.log(sanitizedOrder);
+            setOrder(sanitizedOrder);
+            navigate('/checkout', { state: { fromForm: true } });
+          } else {
+            console.log('foo');
+            actions.setTouched({});
+            setCurrentPage(2);
+            return;
+          }
         }}
       >
-
-        <FormContents admissionQuantity={admissionQuantity} setAdmissionQuantity={setAdmissionQuantity} />
-
+        <FormContents
+          admissionQuantity={admissionQuantity} setAdmissionQuantity={setAdmissionQuantity}
+          currentPage={currentPage} setCurrentPage={setCurrentPage}
+        />
       </Formik>
     </>
   );

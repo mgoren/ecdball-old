@@ -1,5 +1,7 @@
 export const SANDBOX_MODE = true;
 
+export const SINGLE_PAGE = false;
+
 export const PAYMENT_METHODS = ['paypal', 'check']; // options are paypal and/or check (first is default)
 
 export const ADMISSION_COST_RANGE = [15, 30];
