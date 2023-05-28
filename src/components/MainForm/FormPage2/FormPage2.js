@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
 import { isMobile } from "react-device-detect";
+import { scrollToTop } from 'utils';
 import * as S from '../Form-styles';
 import { NumericInput, ButtonInput } from '../Input';
 import { ADMISSION_COST_RANGE, DONATION_OPTION, DONATION_RANGE } from "config";
 
 export default function FormPart2({ donate, setDonate, clampValue }) {
-
+  useEffect(() => { scrollToTop(); },[])
   return (
     <>
       <div className='page2'>

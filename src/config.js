@@ -1,6 +1,6 @@
 export const SANDBOX_MODE = true;
 
-export const SINGLE_PAGE = false;
+export const NUM_PAGES = 2;
 
 export const PAYMENT_METHODS = ['paypal', 'check']; // options are paypal and/or check (first is default)
 
@@ -39,3 +39,22 @@ export const DEFAULTS = {
   admissionQuantity: ADMISSION_QUANTITY_RANGE[0],
   donation: DONATION_RANGE[0]
 }
+
+export const PERSON_INPUTS = [
+  {
+    label: 'Your contact information',
+    inputs: { fullName: {}, pronouns: {}, email: {}, emailConfirmation: {}, phone: {} }
+  },
+  {
+    label: 'Second admission',
+    inputs: { fullName: {}, pronouns: {}, email: {} }
+  },
+  {
+    label: 'Third admission',
+    inputs: { fullName: {}, pronouns: {}, email: {} }
+  },
+  {
+    label: 'Fourth admission',
+    inputs: { fullName: {}, pronouns: {}, email: {} }
+  }
+];

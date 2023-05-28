@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Form, useFormikContext } from 'formik';
 import { clamp } from 'utils';
-import FormPart1 from '../FormPart1';
-import FormPart2 from '../FormPart2';
-import { SINGLE_PAGE } from 'config';
+import FormPage1 from '../FormPage1';
+import FormPage2 from '../FormPage2';
 import { ButtonRow } from 'components/ButtonRow';
+import { NUM_PAGES } from 'config';
 
 export default function FormContents({ admissionQuantity, setAdmissionQuantity, currentPage, setCurrentPage }) {
   const formik = useFormikContext();
@@ -36,36 +36,16 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
     formik.handleBlur(event); // bubble up to formik
   };
 
-  if (SINGLE_PAGE) {
-    return(
-      <Form>
-        <FormPart1 admissionQuantity={admissionQuantity} clampValue={clampValue} />
-        <FormPart2 donate={donate} setDonate={setDonate} clampValue={clampValue} />
-        <ButtonRow nextButtonProps = {{ type: 'submit', text: 'Checkout...'}} />
-      </Form>
-    )
-  } else {
-    return(
-      <Form>
-        {currentPage === 1 &&
-          <>
-            <FormPart1 admissionQuantity={admissionQuantity} clampValue={clampValue} />
-            <ButtonRow nextButtonProps = {{ type: 'submit' }} />
-          </>
-        }
-        {currentPage === 2 &&
-          <>
-            <FormPart2 donate={donate} setDonate={setDonate} clampValue={clampValue} />
-            <ButtonRow
-              backButtonProps = {{ onClick: () => setCurrentPage(1) }}
-              nextButtonProps = {{ type: 'submit', text: 'Checkout...'}}
-            />
-          </>
-        }
-      </Form>
-    )
-
-  }
+  return(
+    <Form>
+      {currentPage === 1 && <FormPage1 admissionQuantity={admissionQuantity} clampValue={clampValue} />}
+      {currentPage === 2 && <FormPage2 donate={donate} setDonate={setDonate} clampValue={clampValue} />}      
+      <ButtonRow
+        backButtonProps = {currentPage > 1 ? { onClick: () => setCurrentPage(currentPage - 1) } : undefined}
+        nextButtonProps = {{ type: 'submit', text: currentPage === NUM_PAGES ? 'Checkout...' : 'Next...'}}
+      />
+    </Form>
+  );
 }
 
 // helpers for focusing on first invalid field; make generic and move to utils?
