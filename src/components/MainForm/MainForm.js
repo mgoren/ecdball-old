@@ -1,19 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Formik } from 'formik';
-import { sanitizeObject, clearCachedLastCompletedOrder, clearCachedOrder } from 'utils';
+import { sanitizeObject, clearCache } from 'utils';
 import Header from "./Header";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import FormContents from "./FormContents";
 import { validationSchema } from './validationSchema';
 import { NUM_PAGES } from 'config';
 
-export default function MainForm({ order, setOrder }) {
+export default function MainForm({ order, setOrder, currentPage, setCurrentPage }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [admissionQuantity, setAdmissionQuantity] = useState(order.admissionQuantity);
-  const [currentPage, setCurrentPage] = useState(1);
 
-  clearCachedOrder();
-  clearCachedLastCompletedOrder();
+  // useEffect(() => {
+  //   if (location.pathname === '/') { 
+  //     console.log('currentPage', currentPage)
+  //     if (isNaN(currentPage)) {
+  //       clearCache();
+  //       setCurrentPage(1);
+  //     }
+  //   }
+  // }, [location]);
 
   function handleNextPage(values, actions) {
     actions.setTouched({});
@@ -30,7 +37,8 @@ export default function MainForm({ order, setOrder }) {
     const sanitizedOrder = sanitizeObject(trimmedOrder);
     console.log(sanitizedOrder);
     setOrder(sanitizedOrder);
-    navigate('/checkout', { state: { fromForm: true } });
+    setCurrentPage('checkout');
+    navigate('/checkout');
   }
 
   return (
