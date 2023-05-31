@@ -4,7 +4,7 @@ export const Container = styled.div`
   padding-left: 24px;
   padding-right: 24px;
 `;
-Container.displayName = 'SS.Container';
+Container.displayName = 'S.Container';
 
 // boxes
 
@@ -18,7 +18,7 @@ export const Box = styled.div`
     margin-top: 12px;
   }
 `;
-Box.displayName = 'SS.Box';
+Box.displayName = 'S.Box';
 
 export const TopBox = styled(Box)`
   padding: 0 24px 24px 24px;
@@ -27,7 +27,7 @@ export const TopBox = styled(Box)`
     border-top: 10px solid var(--color-darkpurple);
   }
 `;
-TopBox.displayName = 'SS.TopBox';
+TopBox.displayName = 'S.TopBox';
 
 
 // headings, text, links
@@ -35,12 +35,12 @@ TopBox.displayName = 'SS.TopBox';
 export const Subhead = styled.h4`
   padding-top: 22px;
 `;
-Subhead.displayName = 'SS.Subhead';
+Subhead.displayName = 'S.Subhead';
 
 export const Text = styled.div`
   padding: 10px 24px 1rem 24px;
 `;
-Text.displayName = 'SS.Text';
+Text.displayName = 'S.Text';
 
 export const Link = styled.a`
   color: var(--color-link);
@@ -56,4 +56,4 @@ export const Link = styled.a`
 export const Spacer = styled.div`
   height: 2rem;
 `;
-Spacer.displayName = 'SS.Spacer';
+Spacer.displayName = 'S.Spacer';

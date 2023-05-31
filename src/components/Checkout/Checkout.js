@@ -2,13 +2,11 @@ import { useState, useEffect } from "react";
 import { isMobile } from "react-device-detect";
 import { push, ref, serverTimestamp } from "firebase/database";
 import { renderToStaticMarkup } from 'react-dom/server';
-import { scrollToTop, cache, clearCache } from 'utils';
+import { scrollToTop, cache, clearCache, warnBeforeUserLeavesSite } from 'utils';
 import * as S from './Checkout-styles.js';
 import { PAYMENT_METHODS, EMAIL_CONTACT, NUM_PAGES } from 'config';
 import db from 'firebase.js';
 import PaypalCheckoutButton from 'components/PaypalCheckoutButton';
-import Title from 'components/Title';
-import OrderSummary from "components/OrderSummary";
 import Check from "components/Check";
 import Loading from 'components/Loading';
 import Receipt from 'components/Receipt';
@@ -22,6 +20,13 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
   const [paypalButtonsLoaded, setPaypalButtonsLoaded] = useState(false);
 
   useEffect(() => { scrollToTop() },[]);
+
+  useEffect(() => {
+    if (window.location.hostname !== 'localhost') {
+      window.addEventListener('beforeunload', warnBeforeUserLeavesSite);
+      return () => window.removeEventListener('beforeunload', warnBeforeUserLeavesSite);
+    }
+  }, []);
 
   const total = order.admissionCost * order.admissionQuantity + order.donation;
 
@@ -63,18 +68,12 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
 
   return (
     <section className='checkout'>
-      <S.TopBox className={isMobile ? 'mobile' : 'desktop'}>
+      <S.Box className={isMobile ? 'mobile' : 'desktop'}>
 
         {processing && <Loading text='Processing payment...' />}
 
         {!processing &&
           <>
-            <Title />
-            <S.Container>
-              <OrderSummary order={order} />
-            </S.Container>
-            <S.Spacer/>
-            <hr/>
             <S.Subhead className='text-center'>Amount due: ${total}</S.Subhead>
             <S.Spacer />
           </>
@@ -104,7 +103,7 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
         {!paying && !processing && (paymentMethod === 'check' || paypalButtonsLoaded) &&
           <TogglePaymentMode paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />
         }
-      </S.TopBox>
+      </S.Box>
 
       {!paying && !processing &&
         <ButtonRow backButtonProps = {{ onClick: handleClickBackButton }} />

@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Formik } from 'formik';
-import { sanitizeObject, cache } from 'utils';
-import Header from "./Header";
+import { sanitizeObject, warnBeforeUserLeavesSite } from 'utils';
 import FormContents from "./FormContents";
 import { validationSchema } from './validationSchema';
 import { NUM_PAGES } from 'config';
@@ -9,40 +8,34 @@ import { NUM_PAGES } from 'config';
 export default function MainForm({ order, setOrder, currentPage, setCurrentPage }) {
   const [admissionQuantity, setAdmissionQuantity] = useState(order.admissionQuantity);
 
+  useEffect(() => {
+    if (window.location.hostname !== 'localhost') {
+      window.addEventListener('beforeunload', warnBeforeUserLeavesSite);
+      return () => window.removeEventListener('beforeunload', warnBeforeUserLeavesSite);
+    }
+  }, []);
+
   function handleNextPage(values, actions) {
     actions.setTouched({});
-    if (currentPage === NUM_PAGES) {
-      submitForm(values);
-    } else {
-      const orderInProgress = Object.assign({}, values);
-      cache('order', orderInProgress);
-      setCurrentPage(currentPage + 1);
-    }
-  }
-
-  function submitForm(values) {
     const submittedOrder = Object.assign({}, values);
     const trimmedOrder = removeExtraPeople(submittedOrder);
     const sanitizedOrder = sanitizeObject(trimmedOrder);
     console.log(sanitizedOrder);
     setOrder(sanitizedOrder);
-    setCurrentPage('checkout');
+    setCurrentPage(currentPage === NUM_PAGES ? 'checkout' : currentPage + 1);
   }
 
   return (
-    <>
-      <Header />
-      <Formik
-        initialValues={order}
-        validationSchema={validationSchema({ currentPage, admissionQuantity })}
-        onSubmit={ (values, actions) => {handleNextPage(values, actions);} }
-      >
-        <FormContents
-          admissionQuantity={admissionQuantity} setAdmissionQuantity={setAdmissionQuantity}
-          currentPage={currentPage} setCurrentPage={setCurrentPage}
-        />
-      </Formik>
-    </>
+    <Formik
+      initialValues={order}
+      validationSchema={validationSchema({ currentPage, admissionQuantity })}
+      onSubmit={ (values, actions) => {handleNextPage(values, actions);} }
+    >
+      <FormContents
+        admissionQuantity={admissionQuantity} setAdmissionQuantity={setAdmissionQuantity}
+        currentPage={currentPage} setCurrentPage={setCurrentPage}
+      />
+    </Formik>
   );
 }
 

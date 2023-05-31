@@ -1,9 +1,12 @@
+import { useEffect } from 'react';
 import { EMAIL_CONTACT, DETAILS_URL, CONTACT_TRACING_URL, WAIVER_URL } from 'config';
-import { mailtoLink, websiteLink } from 'utils';
+import { mailtoLink, websiteLink, scrollToTop } from 'utils';
 import * as S from './Receipt-styles.js';
 import OrderSummary from 'components/OrderSummary';
 
 export default function Receipt({ order }) {
+  useEffect(() => { scrollToTop() },[]);
+
   return(
     <>
       <p>Thanks, {order.people[0].fullName}!</p>
@@ -36,7 +39,7 @@ function PaypalReceipt({ order }) {
         Your name will be on a list at the door. (You will not receive a physical ticket.)
       </p>
 
-      <OrderSummary order={order} orderComplete={true} />
+      <OrderSummary order={order} currentPage='confirmation' />
 
       <hr />
 

@@ -33,4 +33,4 @@ export const DonationButton = styled.button`
   padding-right: 16px;
 `;
 
-export { Box, Spacer } from 'components/SharedStyles';
+export { Box, Spacer, Text } from 'components/SharedStyles';

@@ -32,3 +32,8 @@ export const sanitizeObject = (obj) => {
   }
   return sanitizeValue(obj);
 };
+
+export const warnBeforeUserLeavesSite = event => {
+  event.preventDefault();
+  event.returnValue = '';
+};

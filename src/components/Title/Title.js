@@ -1,6 +1,7 @@
 import * as S from './Title-styles';
+import { TITLE } from 'config';
 
-export default function Title({ text = 'Test Registration Site', classes }) {
+export default function Title({ text = TITLE, classes }) {
   const classNames = 'S.Title ' + classes;
 
   return (

@@ -1,1 +1,1 @@
-export { Spacer, Subhead, Text } from 'components/SharedStyles';
+export { Spacer, Subhead } from 'components/SharedStyles';

@@ -1,5 +1,9 @@
 export const SANDBOX_MODE = true;
 
+export const TITLE = 'Test Registration Site'
+export const CONFIRMATION_PAYPAL_TITLE = 'Event Confirmation';
+export const CONFIRMATION_CHECK_TITLE = 'Event Registration';
+
 export const NUM_PAGES = 2;
 
 export const PAYMENT_METHODS = ['paypal', 'check']; // options are paypal and/or check (first is default)
