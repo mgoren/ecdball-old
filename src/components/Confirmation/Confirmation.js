@@ -1,36 +1,32 @@
 import { useEffect } from 'react';
 import { isMobile } from 'react-device-detect';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { isAllowedNavigation, cachedLastCompletedOrder, isEmptyOrder, scrollToTop } from 'utils';
+import { cached, clearCache, isEmptyOrder, scrollToTop } from 'utils';
 import * as S from './Confirmation-styles';
 import Receipt from 'components/Receipt';
 import Title from 'components/Title';
+import ButtonRow from 'components/ButtonRow';
+import { DEFAULTS } from 'config';
 
-export default function Confirmation({ order }) {
-  const navigate = useNavigate();
-  const location = useLocation();
+export default function Confirmation({ order, setOrder, setCurrentPage }) {
+  useEffect(() => { scrollToTop() },[]);
+  
+  order = isEmptyOrder(order) ? cached('lastCompletedOrder') : order;
 
-  useEffect(() => {
-    if (isAllowedNavigation(location, 'fromCheckout')) {
-      scrollToTop();
-    } else {
-      console.log('direct navigation disallowed');
-      navigate('/', { replace: true });
-    }
-  }, [navigate, location]);
-
-  if (cachedLastCompletedOrder() === null) {
-    window.location.replace('/');
+  function startOver() {
+    clearCache();
+    setOrder(DEFAULTS);
+    setCurrentPage(1);
   }
 
-  order = isEmptyOrder(order) ? cachedLastCompletedOrder() : order;
-
   return (
-    <S.TopBox className={isMobile ? 'mobile' : 'desktop'}>
-      <Title text={order.paypalEmail === 'check' ? 'Megaband Registration' : 'Megaband Confirmation'} />
-      <Receipt order={order} />
-      <hr />
-      <p><small>A receipt containing this information is being sent to {order.people[0].email}.</small></p>
-    </S.TopBox>
+    <section className='confirmation'>
+      <S.TopBox className={isMobile ? 'mobile' : 'desktop'}>
+        <Title text={order.paypalEmail === 'check' ? 'Megaband Registration' : 'Megaband Confirmation'} />
+        <Receipt order={order} />
+        <hr />
+        <p><small>A receipt containing this information is being sent to {order.people[0].email}.</small></p>
+      </S.TopBox>
+      <ButtonRow centerButtonProps = {{ onClick: startOver, text: 'Start another registration' }} />
+    </section>
   );
 }

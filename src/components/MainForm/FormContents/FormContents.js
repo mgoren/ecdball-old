@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Form, useFormikContext } from 'formik';
-import { clamp } from 'utils';
+import { clamp, cache } from 'utils';
 import FormPage1 from '../FormPage1';
 import FormPage2 from '../FormPage2';
-import { ButtonRow } from 'components/ButtonRow';
+import ButtonRow from 'components/ButtonRow';
 import { NUM_PAGES } from 'config';
 
 export default function FormContents({ admissionQuantity, setAdmissionQuantity, currentPage, setCurrentPage }) {
@@ -36,12 +36,18 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
     formik.handleBlur(event); // bubble up to formik
   };
 
+  function handleClickBackButton() {
+    const orderInProgress = Object.assign({}, values);
+    cache('order', orderInProgress);
+    setCurrentPage(currentPage - 1);
+  }
+
   return(
     <Form>
       {currentPage === 1 && <FormPage1 admissionQuantity={admissionQuantity} clampValue={clampValue} />}
       {currentPage === 2 && <FormPage2 donate={donate} setDonate={setDonate} clampValue={clampValue} />}      
       <ButtonRow
-        backButtonProps = {currentPage > 1 ? { onClick: () => setCurrentPage(currentPage - 1) } : undefined}
+        backButtonProps = {currentPage > 1 ? { onClick: handleClickBackButton } : undefined}
         nextButtonProps = {{ type: 'submit', text: currentPage === NUM_PAGES ? 'Checkout...' : 'Next...'}}
       />
     </Form>

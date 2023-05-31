@@ -17,7 +17,7 @@ function NextButton({ onClick, text, ...props }) {
   );
 }
 
-export function ButtonRow({ backButtonProps, nextButtonProps }) {
+export default function ButtonRow({ backButtonProps, nextButtonProps, centerButtonProps }) {
   return (
     <S.Box className={`${isMobile ? 'mobile' : 'desktop'}`}>
       <S.ButtonRow>
@@ -28,6 +28,17 @@ export function ButtonRow({ backButtonProps, nextButtonProps }) {
             text={backButtonProps.text || 'Back'}
             className={backButtonProps.className || 'btn btn-secondary'}
           /> : <div /> // empty div to keep spacing
+        }
+        {centerButtonProps &&
+          <>
+            <BackButton
+              type='button'
+              onClick={centerButtonProps.onClick}
+              text={centerButtonProps.text}
+              className={centerButtonProps.className || 'btn btn-secondary'}
+            />
+            <div />
+          </>
         }
         {nextButtonProps &&
           <NextButton

@@ -10,14 +10,11 @@ export const wait = (msec) => new Promise((resolve, _) => setTimeout(resolve, ms
 export const websiteLink = (link) => `https://${link}`;
 export const mailtoLink = (email) => `mailto:${email}`;
 
-export const cachedOrder = () => JSON.parse(sessionStorage.getItem('cachedOrder'));
-export const cacheOrder = (order) => sessionStorage.setItem('cachedOrder', JSON.stringify(order));
-export const clearCachedOrder = () => sessionStorage.removeItem('cachedOrder');
-export const cachedLastCompletedOrder = () => JSON.parse(sessionStorage.getItem('lastCompletedOrder'));
-export const cacheLastCompletedOrder = (order) => sessionStorage.setItem('lastCompletedOrder', JSON.stringify(order));
-export const clearCachedLastCompletedOrder = () => sessionStorage.removeItem('lastCompletedOrder');
+export const cache = (name, obj) => sessionStorage.setItem(name, JSON.stringify(obj));
+export const cached = (name) => JSON.parse(sessionStorage.getItem(name));
+export const clearCache = (name) => name ? sessionStorage.removeItem(name) : sessionStorage.clear();
+
 export const isEmptyOrder = ({ people: [{ email }] }) => email === '';
-export const isAllowedNavigation = (location, flag) => location.state && location.state[flag];
 
 const sanitizeValue = (value) => typeof value === 'string' ? DOMPurify.sanitize(value) : value;
 export const sanitizeObject = (obj) => {

@@ -1,1 +1,1 @@
-export { ButtonRow } from './ButtonRow.js';
+export { default } from './ButtonRow.js';
