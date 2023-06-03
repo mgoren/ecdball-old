@@ -12,19 +12,19 @@ const Input = ({ label, pattern, ...props }) => {
           <S.Label className='S.Label' htmlFor={name}>{label}</S.Label>
           {!pattern && 
             <Field name={name}>{({field, meta}) =>
-              <>
+              <S.Input>
                 <input className='form-control' {...field} {...props} />
-                <S.Warning className={`S.Warning ${meta.touched && meta.error ? 'visible' : ''}`}>{meta.error || '-'}</S.Warning>
-              </>
+                {meta.touched && meta.error && <S.Warning>{meta.error}</S.Warning>}
+              </S.Input>
             }
             </Field>
           }
           {pattern && (
             <Field name={name}>{({field, meta}) =>
-              <>
+              <S.Input>
                 <PatternFormat className='form-control' format={pattern} mask="_" {...field} {...props} />
-                <S.Warning className={`S.Warning ${meta.touched && meta.error ? 'visible' : ''}`}>{meta.error || '-'}</S.Warning>
-              </>
+                {meta.touched && meta.error && <S.Warning>{meta.error}</S.Warning>}
+              </S.Input>
             }
             </Field>
           )}

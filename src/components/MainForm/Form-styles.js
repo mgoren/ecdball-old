@@ -13,18 +13,15 @@ export const Label = styled.label`
   font-weight: 600;
   color: #79818a;
   text-transform: uppercase;
+`;
+
+export const Input = styled.div`
   margin-bottom: 1rem;
 `;
 
 export const Warning = styled.p`
-  visibility: hidden;
   color: red;
   font-weight: 500;
-  padding-top: .5rem;
-
-  &.visible {
-    visibility: visible;
-  }
 `;
 
 export const DonationButton = styled.button`

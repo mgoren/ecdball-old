@@ -44,13 +44,13 @@ export const PAYPAL_OPTIONS = {
 export const FIELD_CONFIG = {
   first: {
     label: 'First Name',
-    validation: NAME_VALIDATION.required('Please enter your first name.'),
+    validation: NAME_VALIDATION.required('Please enter first name.'),
     defaultValue: '',
     order: 1
   },
   last: {
     label: 'Last Name',
-    validation: NAME_VALIDATION.required('Please enter your last name.'),
+    validation: NAME_VALIDATION.required('Please enter last name.'),
     defaultValue: '',
     order: 2
   },
@@ -69,7 +69,7 @@ export const FIELD_CONFIG = {
   email: {
     label: 'Email',
     type: 'email',
-    validation: EMAIL_VALIDATION.required('Please enter your email address.'),
+    validation: EMAIL_VALIDATION.required('Please enter email address.'),
     defaultValue: '',
     order: 5
   },
@@ -86,25 +86,25 @@ export const FIELD_CONFIG = {
     type: 'tel',
     pattern: '###-###-####',
     placeholder: 'e.g. 555-555-5555',
-    validation: PHONE_VALIDATION.required('Please enter your phone number.'),
+    validation: PHONE_VALIDATION.required('Please enter phone number.'),
     defaultValue: '',
     order: 7
   },
   address: {
     label: 'Street Address',
-    validation: Yup.string().required('Please enter your street address.'),
+    validation: Yup.string().required('Please enter street address.'),
     defaultValue: '',
     order: 8
   },
   city: {
     label: 'City',
-    validation: Yup.string().required('Please enter your city.'),
+    validation: Yup.string().required('Please enter city.'),
     defaultValue: '',
     order: 9
   },
   state: {
     label: 'State or Province',
-    validation: Yup.string().required('Please enter your state or province.'),
+    validation: Yup.string().required('Please enter state or province.'),
     defaultValue: '',
     order: 10
   },
@@ -113,7 +113,7 @@ export const FIELD_CONFIG = {
     type: 'tel',
     pattern: '#####',
     placeholder: 'e.g. 21212',
-    validation: Yup.string().required('Please enter your zip code.'),
+    validation: Yup.string().required('Please enter zip code.'),
     defaultValue: '',
     order: 11
   },
