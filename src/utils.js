@@ -1,5 +1,6 @@
 import DOMPurify from 'dompurify';
 import preval from 'preval.macro'
+import { ORDER_DEFAULTS, PERSON_INPUTS } from 'config';
 
 export const clamp = (value, range) => Math.min(Math.max(value, range[0]), range[1]);
 
@@ -36,4 +37,40 @@ export const sanitizeObject = (obj) => {
 export const warnBeforeUserLeavesSite = event => {
   event.preventDefault();
   event.returnValue = '';
+};
+
+
+export const removeExtraPeople = (order) => {
+  return {
+    ...order,
+    people: order.people.map(
+      (person) => person.index < order.admissionQuantity
+        ? person
+        : ORDER_DEFAULTS.people[person.index]
+    )
+  };
+}
+
+// helpers for scrolling to first invalid field
+export const getFirstInvalidFieldName = (errors) => {
+  console.log('errors', errors);
+  // this relies on formik only generating errors on the people and emailConfirmation fields
+  if (errors.emailConfirmation && emailConfirmationIsFirstInvalidField(errors)) {
+    return 'emailConfirmation';
+  }
+  if (errors.people) {
+    for (const i in errors.people) {
+      if (errors.people[i] !== null) {
+        for (const field in errors.people[i]) {
+          return `people[${i}].${field}`;
+        }
+      }
+    }
+  }
+  return null;
+};
+const emailConfirmationIsFirstInvalidField = (errors) => {
+  const fields = PERSON_INPUTS[0].fields;
+  const fieldsBeforeEmailConfirmation = fields.slice(0, fields.indexOf('emailConfirmation'));
+  return !errors.people || !errors.people[0] || !fieldsBeforeEmailConfirmation.some(field => errors.people[0][field]);
 };

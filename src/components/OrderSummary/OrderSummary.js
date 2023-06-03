@@ -9,10 +9,13 @@ export default function OrderSummary({ order, currentPage }) {
       <p><strong>{order.admissionQuantity > 1 ? 'Admissions' : 'Contact info'}</strong><br /></p>
       {order.people.slice(0, order.admissionQuantity).map((person, index) => (
         <p key={index}>
-          {person.fullName}<br />
-          {person.pronouns && <>{person.pronouns}<br /></>}
+          {person.nametag && <>Nametag: {person.nametag}<br /></>}
+          {person.first} {person.last} {person.pronouns && <>({person.pronouns})</>}<br />
           {person.email}<br />
-          {person.phone}
+          {person.phone}<br />
+          {person.address}<br />
+          {person.city}, {person.state} {person.zip}<br />
+          {person.country && <>{person.country}</>}
         </p>
       ))}
 

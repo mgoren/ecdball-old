@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Formik } from 'formik';
-import { sanitizeObject, warnBeforeUserLeavesSite } from 'utils';
+import { removeExtraPeople, sanitizeObject, warnBeforeUserLeavesSite } from 'utils';
 import FormContents from "./FormContents";
 import { validationSchema } from './validationSchema';
 import { NUM_PAGES } from 'config';
@@ -15,8 +15,9 @@ export default function MainForm({ order, setOrder, currentPage, setCurrentPage 
     }
   }, []);
 
+  // it doesn't get here until all validations are passing
   function handleNextPage(values, actions) {
-    actions.setTouched({});
+    // actions.setTouched({});
     const submittedOrder = Object.assign({}, values);
     const trimmedOrder = removeExtraPeople(submittedOrder);
     const sanitizedOrder = sanitizeObject(trimmedOrder);
@@ -36,18 +37,5 @@ export default function MainForm({ order, setOrder, currentPage, setCurrentPage 
         currentPage={currentPage} setCurrentPage={setCurrentPage}
       />
     </Formik>
-  );
-}
-
-const removeExtraPeople = (order) => {
-  return Object.fromEntries(
-    Object.entries(order).map(([key, value]) => {
-      if (key === 'people') {
-        return [key, value.map(
-          person => person.index < order.admissionQuantity ? person : { ...person, fullName: '', pronouns: '', email: '', phone: '' }
-        )];
-      }
-      return [key, value];
-    })
   );
 }
