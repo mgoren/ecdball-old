@@ -11,6 +11,11 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
   const { values } = formik;
   const [donate, setDonate] = useState(values.donation > 0);
 
+  useEffect(() => {
+    setAdmissionQuantity(values.admissionQuantity);
+  }, [values.admissionQuantity, setAdmissionQuantity]);
+
+  // scroll to first invalid field
   // refactor to use ref instead of directly accessing DOM
   // https://stackoverflow.com/questions/65899623/scroll-to-first-invalid-field-with-formik-and-userefs-react
   useEffect(() => {
@@ -27,10 +32,6 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
       }
     }
   }, [formik.isSubmitting, formik.errors]);
-
-  useEffect(() => {
-    setAdmissionQuantity(values.admissionQuantity);
-  }, [values.admissionQuantity, setAdmissionQuantity]);
   
   function clampValue({ event, range }) {
     const [field, value] = [event.target.name, parseInt(event.target.value) || range[0]];

@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { FIELD_CONFIG, ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE } from "config";
+import { FIELD_CONFIG, PERSON_INPUTS, ADMISSION_COST_RANGE, ADMISSION_QUANTITY_RANGE, DONATION_RANGE } from "config";
 
 export function validationSchema({ currentPage, admissionQuantity }) {
 
@@ -35,16 +35,9 @@ export function validationSchema({ currentPage, admissionQuantity }) {
 }
 
 function personValidationSchema(index) {
-  return Yup.object({
-    first: FIELD_CONFIG.first.validation,
-    last: FIELD_CONFIG.last.validation,
-    nametag: FIELD_CONFIG.nametag.validation,
-    email: FIELD_CONFIG.email.validation,
-    phone: FIELD_CONFIG.phone.validation,
-    address: FIELD_CONFIG.address.validation,
-    city: FIELD_CONFIG.city.validation,
-    state: FIELD_CONFIG.state.validation,
-    zip: FIELD_CONFIG.zip.validation,
-    country: FIELD_CONFIG.country.validation
-  });
+  return Yup.object(Object.keys(FIELD_CONFIG).reduce((obj, field) => {
+    return PERSON_INPUTS[index].fields.includes(field) && field !== 'emailConfirmation' ?
+      { ...obj, [field]: FIELD_CONFIG[field].validation }
+      : obj;
+  }, {}));
 }

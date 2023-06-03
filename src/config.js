@@ -1,3 +1,5 @@
+// if change form fields may also need to update OrderSummary and validationSchema
+
 import * as Yup from 'yup';
 
 export const SANDBOX_MODE = true; // for testing only

@@ -54,7 +54,7 @@ export default function App() {
 
           {currentPage === 'confirmation' &&
             <Confirmation
-              order={order} setOrder={setOrder}
+              setOrder={setOrder}
               setCurrentPage={setCurrentPage}
             />
           }
