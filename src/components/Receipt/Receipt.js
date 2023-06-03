@@ -21,8 +21,12 @@ function CheckReceipt({ order }) {
         <strong>Your registration is not yet complete!</strong><br />
         Please send a check for ${order.total} to secure your spot.
       </p>
-
-      <p>Please send a check by carrier pigeon to... somewhere.</p>
+      <p>Make your check out to PCDC, write your name in the memo area, and mail to:</p>
+      <pre>
+        Portland ECD Ball<br />
+        3648 SW Beaverton Hillsdale Hwy #10<br />
+        Portland, OR 97221-3820
+      </pre>
       <p>
         Alternatively, you can pay via PayPal.Me <S.Link href={websiteLink(PAYPAL_ME_URL)} target="_blank">here</S.Link>. This requires you to have a PayPal account, but you can sign up for one on the spot. You can then pay by credit card, debit card, or your bank account. Please specify the registration amount and "Add a Note" to include your name.
       </p>
