@@ -30,7 +30,7 @@ const PaypalCheckoutButton = ({ paypalButtonsLoaded, setPaypalButtonsLoaded, tot
 		return actions.order.create({
 			purchase_units: [
 				{
-					description: 'Megaband 2023',
+					description: 'ECD Ball 2023',
 					amount: {
 						value: total.toString() // must be a string
 					}

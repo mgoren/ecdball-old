@@ -37,7 +37,7 @@ function PaypalReceipt({ order }) {
     <>
       <p>
         Your payment to PCDC for ${order.total} has been successfully processed.<br />
-        Thank you for registering in advance for the Portland Megaband dance.<br />
+        Thank you for registering for the 2023 ECD Ball.<br />
         Your name will be on a list at the door. (You will not receive a physical ticket.)
       </p>
 
