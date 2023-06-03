@@ -3,7 +3,7 @@ import { isMobile } from "react-device-detect";
 import { PatternFormat } from 'react-number-format';
 import * as S from '../Form-styles';
 
-const Input = ({ label, pattern, ...props }) => {
+export const Input = ({ label, type, pattern, ...props }) => {
   const { name } = props;
   return (
     <div className='form-group'>
@@ -13,7 +13,8 @@ const Input = ({ label, pattern, ...props }) => {
           {!pattern && 
             <Field name={name}>{({field, meta}) =>
               <S.Input>
-                <input className='form-control' {...field} {...props} />
+                {type === 'textarea' && <S.TextArea className='form-control' {...field} {...props} />}
+                {type !== 'textarea' && <input className='form-control' {...field} {...props} />}
                 {meta.touched && meta.error && <S.Warning>{meta.error}</S.Warning>}
               </S.Input>
             }
@@ -32,9 +33,9 @@ const Input = ({ label, pattern, ...props }) => {
       </div>
     </div>
   );
-};
+};  
 
-const NumericInput = ({ label, range, showDollarSign, ...props }) => {
+export const NumericInput = ({ label, range, showDollarSign, ...props }) => {
   const { name, onBlur } = props;
   return (
     <RightAlignedInput name={name} label={label} renderContent={() => {
@@ -59,7 +60,7 @@ const NumericInput = ({ label, range, showDollarSign, ...props }) => {
   );
 };
 
-const ButtonInput = ({ label, buttonText, ...props }) => {
+export const ButtonInput = ({ label, buttonText, ...props }) => {
   const { name, onClick } = props;
   return (
     <RightAlignedInput name={name} label={label} renderContent={() => {
@@ -76,6 +77,22 @@ const ButtonInput = ({ label, buttonText, ...props }) => {
   );
 }
 
+export const CheckboxInput = ({ label, options, ...props }) => {
+  const { name } = props;
+  return (
+    <div className='form-group'>
+      <div className='row'>
+        {label && <S.AboveCheckboxLabel className='S.Label' htmlFor={name}>{label}</S.AboveCheckboxLabel>}
+        {options.map(option => (
+          <div key={option.value}>
+            <Field type="checkbox" id={option.value} name={name} value={option.value} />
+            <S.CheckboxLabel htmlFor={option.value}>{option.label}</S.CheckboxLabel>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const RightAlignedInput = ({ name, label, renderContent }) => {
   return (
@@ -93,5 +110,3 @@ const RightAlignedInput = ({ name, label, renderContent }) => {
     </div>
   );
 };
-
-export { Input, NumericInput, ButtonInput };

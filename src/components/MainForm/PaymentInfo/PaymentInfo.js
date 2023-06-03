@@ -5,23 +5,37 @@ import * as S from '../Form-styles';
 import { NumericInput, ButtonInput } from '../Input';
 import { ADMISSION_COST_RANGE, DONATION_OPTION, DONATION_RANGE } from "config";
 
-export default function FormPart2({ donate, setDonate, clampValue }) {
+export default function PaymentInfo({ donate, setDonate, clampValue, admissionQuantity }) {
   useEffect(() => { scrollToTop(); },[])
   return (
-    <>
-      <div className='page2'>
+    <section className='PaymentInfo'>
+      <div className='admissions-section'>
         <section className='admissions-cost'>
           <S.Box className={isMobile ? 'mobile' : 'desktop'}>
-            <S.Title className='S.Title'>Sliding scale</S.Title>
 
-            <NumericInput 
-              label="How much are you able to pay per admission? ($15-30)"
-              name="admissionCost"
-              range={ADMISSION_COST_RANGE}
-              onBlur={(event) => clampValue({ event: event, range: ADMISSION_COST_RANGE})}
-              showDollarSign={true}
-            />
-            <S.Spacer />
+            {ADMISSION_COST_RANGE[0] < ADMISSION_COST_RANGE[1] ?
+              <>
+                <S.Title className='S.Title'>Sliding scale</S.Title>
+                <NumericInput 
+                  label="How much are you able to pay per admission? ($15-30)"
+                  name="admissionCost"
+                  range={ADMISSION_COST_RANGE}
+                  onBlur={(event) => clampValue({ event: event, range: ADMISSION_COST_RANGE})}
+                  showDollarSign={true}
+                />
+              </>
+            :
+              <>
+                <S.Title className='S.Title'>Admissions cost</S.Title>
+                <p>
+                  Number of admissions: {admissionQuantity}<br />
+                  Price per admission: ${ADMISSION_COST_RANGE[0]}
+                </p>
+                <p>
+                  Admissions total: ${admissionQuantity * ADMISSION_COST_RANGE[0]}
+                </p>
+              </>
+            }
 
           </S.Box>
         </section>
@@ -53,6 +67,6 @@ export default function FormPart2({ donate, setDonate, clampValue }) {
           </section>
         }
       </div>      
-    </>
+    </section>
   );
 }

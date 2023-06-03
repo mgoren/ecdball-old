@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Form, useFormikContext } from 'formik';
 import { clamp, cache, getFirstInvalidFieldName } from 'utils';
-import FormPage1 from '../FormPage1';
-import FormPage2 from '../FormPage2';
+import ContactInfo from '../ContactInfo';
+import MiscInfo from '../MiscInfo';
+import PaymentInfo from '../PaymentInfo';
 import ButtonRow from 'components/ButtonRow';
 import { NUM_PAGES } from 'config';
 
@@ -49,8 +50,9 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
 
   return(
     <Form>
-      {currentPage === 1 && <FormPage1 admissionQuantity={admissionQuantity} clampValue={clampValue} />}
-      {currentPage === 2 && <FormPage2 donate={donate} setDonate={setDonate} clampValue={clampValue} />}      
+      {currentPage === 1 && <ContactInfo admissionQuantity={admissionQuantity} clampValue={clampValue} />}
+      {currentPage === 2 && <MiscInfo />}
+      {currentPage === 3 && <PaymentInfo donate={donate} setDonate={setDonate} clampValue={clampValue} admissionQuantity={admissionQuantity} />}
       <ButtonRow
         backButtonProps = {currentPage > 1 ? { onClick: handleClickBackButton } : undefined}
         nextButtonProps = {{ type: 'submit', text: currentPage === NUM_PAGES ? 'Checkout...' : 'Next...'}}

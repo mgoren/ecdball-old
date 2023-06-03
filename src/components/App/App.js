@@ -33,6 +33,7 @@ export default function App() {
           <Header titleText={currentPage === 'confirmation' ? CONFIRMATION_TITLE : TITLE}>
             {currentPage === 1 && <IntroHeader />}
             {currentPage === 2 && <OrderSummary order={order} currentPage={currentPage} />}
+            {currentPage === 3 && <OrderSummary order={order} currentPage={currentPage} />}
             {currentPage === 'checkout' && <OrderSummary order={order} currentPage={currentPage} />}
             {currentPage === 'confirmation' && <Receipt order={order} />}
           </Header>

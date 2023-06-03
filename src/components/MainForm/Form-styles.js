@@ -15,8 +15,20 @@ export const Label = styled.label`
   text-transform: uppercase;
 `;
 
+export const CheckboxLabel = styled.label`
+  padding-left: .5em;
+`;
+
+export const AboveCheckboxLabel = styled.label`
+  padding-bottom: .5em;
+`;
+
 export const Input = styled.div`
   margin-bottom: 1rem;
+`;
+
+export const TextArea = styled.textarea`
+  height: 5em;
 `;
 
 export const Warning = styled.p`

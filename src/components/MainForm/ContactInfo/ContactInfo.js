@@ -6,11 +6,11 @@ import ContactInfoInputs from '../ContactInfoInputs';
 import { NumericInput } from '../Input';
 import { ADMISSION_QUANTITY_RANGE, PERSON_INPUTS } from "config";
 
-export default function FormPart1({ admissionQuantity, clampValue }) {
+export default function ContactInfo({ admissionQuantity, clampValue }) {
   useEffect(() => { scrollToTop(); },[])
 
   return (
-    <section className='page1'>
+    <section className='ContactInfo'>
       <section className='admissions-quantity'>
         <S.Box className={isMobile ? 'mobile' : 'desktop'}>
           <S.Title className='S.Title'>Number of admissions</S.Title>

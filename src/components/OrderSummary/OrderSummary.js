@@ -19,10 +19,21 @@ export default function OrderSummary({ order, currentPage }) {
         </p>
       ))}
 
+      {(isNaN(currentPage) || currentPage > 2) &&
+        <>
+          <p><strong>Miscellanea</strong><br /></p>
+          <p>
+            Volunteer: {order.volunteer.toString().length > 0 ? order.volunteer.toString() : ' not signed up'}<br />
+            Share my info with other organizers: {order.share.toString().length > 0 ? 'yes' : 'no'}<br />
+            {order.comments && <>Comments: {order.comments}<br /></>}
+          </p>
+        </>
+      }
+
       {isNaN(currentPage) &&
         <>
           <S.Spacer />
-          <p><strong>{currentPage === 'confirmation' ? 'Amount paid' : 'Amount due'}</strong><br /></p>
+          <p><strong>{currentPage === 'confirmation' && order.paypalEmail !== 'check' ? 'Amount paid' : 'Amount due'}</strong><br /></p>
           <p>
             Admissions: {order.admissionQuantity} x ${order.admissionCost} = ${order.admissionQuantity * order.admissionCost}<br />
             {order.donation > 0 &&

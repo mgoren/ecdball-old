@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 
 export const SANDBOX_MODE = true; // for testing only
 
-export const NUM_PAGES = 2;
+export const NUM_PAGES = 3;
 
 export const PAYMENT_METHODS = ['paypal', 'check']; // options are paypal and/or check (first is default)
 
@@ -147,5 +147,8 @@ export const ORDER_DEFAULTS = {
   emailConfirmation: '', // because we're overriding this field name so is not part of the people array
   admissionCost: ADMISSION_COST_RANGE[1],
   admissionQuantity: ADMISSION_QUANTITY_RANGE[0],
-  donation: DONATION_RANGE[0]
+  donation: DONATION_RANGE[0],
+  volunteer: [],
+  share: [],
+  comments: ''
 }

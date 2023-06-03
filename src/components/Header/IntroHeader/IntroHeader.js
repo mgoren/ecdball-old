@@ -2,7 +2,7 @@ import { COVID_POLICY_URL, EMAIL_CONTACT } from "config";
 import { mailtoLink, websiteLink } from "utils";
 import * as S from './IntroHeader-styles.js';
 
-export default function FormPage1Header() {
+export default function IntroHeader() {
   return (
     <>
       <S.Text>Here is some information about the dance.</S.Text>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { isMobile } from "react-device-detect";
 import { push, ref, serverTimestamp } from "firebase/database";
 import { renderToStaticMarkup } from 'react-dom/server';
-import { scrollToTop, cache, clearCache, warnBeforeUserLeavesSite } from 'utils';
+import { scrollToTop, warnBeforeUserLeavesSite } from 'utils';
 import * as S from './Checkout-styles.js';
 import { PAYMENT_METHODS, EMAIL_CONTACT, NUM_PAGES } from 'config';
 import db from 'firebase.js';
@@ -39,6 +39,8 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
     console.log(`paid via ${paymentMethod}`);
     const updatedOrder = {
       ...order,
+      volunteer: order.volunteer.join(', '),
+      share: order.share.join(', '),
       people: order.people.slice(0, order.admissionQuantity),
       total,
       deposit: paymentMethod === 'check' ? 0 : total,
@@ -51,8 +53,8 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
     setOrder(updatedOrderWithReceipt);
 		push(ref(db, 'orders/'), updatedOrderWithReceipt).then(() => {
 			console.log('order saved to firebase');
-      clearCache('order');
-      cache('lastCompletedOrder', updatedOrderWithReceipt);
+      // clearCache('order');
+      // cache('lastCompletedOrder', updatedOrderWithReceipt);
       setPaying(false);
       setProcessing(false);
       setCurrentPage('confirmation');

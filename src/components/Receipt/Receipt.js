@@ -6,7 +6,7 @@ import OrderSummary from 'components/OrderSummary';
 
 export default function Receipt({ order }) {
   useEffect(() => { scrollToTop() },[]);
-
+  console.log('order in receipt', order);
   return(
     <>
       <p>Thanks, {order.people[0].first}!</p>
@@ -25,7 +25,7 @@ function CheckReceipt({ order }) {
 
       <p>Please send a check by carrier pigeon to... somewhere.</p>
 
-      <OrderSummary order={order} orderComplete={false} />
+      <OrderSummary order={order} orderComplete={false} currentPage='confirmation' />
     </>
   );
 }
