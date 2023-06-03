@@ -1,63 +1,18 @@
 import { Input } from '../Input';
+import { FIELD_CONFIG } from 'config';
 
-const contactInfoDefaults = {
-  fullName: { label: 'Full Name' },
-  pronouns: { label: 'Pronouns (optional)' },
-  email: { label: 'Email' },
-  phone: { label: 'Phone' }
-}
-
-export default function ContactInfoInputs({ inputs = contactInfoDefaults, index, autoFocus = false }) {
-  Object.keys(inputs).forEach (key => {
-    inputs[key] = { ...contactInfoDefaults[key], ...inputs[key] };
-  });
-  const { fullName, pronouns, email, emailConfirmation, phone } = inputs;
-
+export default function ContactInfoInputs({ fields, index }) {
   return (
-    <>
-      {fullName &&
-        <Input
-          label={fullName.label}
-          name={`people[${index}].fullName`}
-          type="text"
-          autoFocus={autoFocus}
-        />
-      }
-
-      {pronouns &&
-        <Input
-          label={pronouns.label}
-          name={`people[${index}].pronouns`}
-          type="text"
-          placeholder="e.g. they/them"
-        />
-      }
-
-      {email &&
-        <Input
-          label={email.label}
-          name={`people[${index}].email`}
-          type="email"
-        />
-      }
-
-      {emailConfirmation &&
-        <Input
-          label='Re-enter email'
-          name='emailConfirmation'
-          type="email"
-        />
-      }
-
-      {phone &&
-        <Input
-          label={phone.label}
-          name={`people[${index}].phone`}
-          type="tel"
-          pattern="###-###-####"
-          placeholder="e.g. 555-555-5555"
-        />
-      }
-    </>
+    fields.sort((a, b) => FIELD_CONFIG[a].order - FIELD_CONFIG[b].order)
+    .map((field, i) => (
+      <Input
+        key={`${index}-${field}`}
+        label={FIELD_CONFIG[field].label}
+        name={FIELD_CONFIG[field].name || `people[${index}].${field}`}
+        type={FIELD_CONFIG[field].type || 'text'}
+        pattern={FIELD_CONFIG[field].pattern}
+        placeholder={FIELD_CONFIG[field].placeholder}
+      />
+    ))
   );
 }

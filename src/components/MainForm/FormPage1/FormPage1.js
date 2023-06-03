@@ -8,6 +8,7 @@ import { ADMISSION_QUANTITY_RANGE, PERSON_INPUTS } from "config";
 
 export default function FormPart1({ admissionQuantity, clampValue }) {
   useEffect(() => { scrollToTop(); },[])
+
   return (
     <section className='page1'>
       <section className='admissions-quantity'>
@@ -29,7 +30,7 @@ export default function FormPart1({ admissionQuantity, clampValue }) {
               <S.Title className='S.Title'>{PERSON_INPUTS[index].label}</S.Title>
               <ContactInfoInputs
                 index={index}
-                inputs={PERSON_INPUTS[index].inputs}
+                fields={PERSON_INPUTS[index].fields}
               />
             </S.Box>
           );

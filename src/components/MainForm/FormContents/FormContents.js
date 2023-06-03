@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Form, useFormikContext } from 'formik';
-import { clamp, cache } from 'utils';
+import { clamp, cache, getFirstInvalidFieldName } from 'utils';
 import FormPage1 from '../FormPage1';
 import FormPage2 from '../FormPage2';
 import ButtonRow from 'components/ButtonRow';
@@ -12,6 +12,7 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
   const [donate, setDonate] = useState(values.donation > 0);
 
   // refactor to use ref instead of directly accessing DOM
+  // https://stackoverflow.com/questions/65899623/scroll-to-first-invalid-field-with-formik-and-userefs-react
   useEffect(() => {
     if (formik.isSubmitting && Object.keys(formik.errors).length > 0) {
       const firstInvalidFieldName = getFirstInvalidFieldName(formik.errors);
@@ -19,7 +20,9 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
       if (firstInvalidFieldName) {
         const invalidFieldElement = document.getElementsByName(firstInvalidFieldName)[0];
         if (invalidFieldElement) {
-          invalidFieldElement.focus();
+          // console.log('scrolling to first invalid field', invalidFieldElement)
+          invalidFieldElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // invalidFieldElement.focus({ preventScroll: true }); // does weird things
         }
       }
     }
@@ -39,6 +42,7 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
   function handleClickBackButton() {
     const orderInProgress = Object.assign({}, values);
     cache('order', orderInProgress);
+    formik.setSubmitting(false);
     setCurrentPage(currentPage - 1);
   }
 
@@ -52,32 +56,4 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
       />
     </Form>
   );
-}
-
-// helpers for focusing on first invalid field; make generic and move to utils?
-
-const getFirstInvalidFieldName = (errors) => {
-  // brittle: relies on formik only generating errors on the people and emailConfirmation fields
-  // brittle: relies on the order fields appear in the form
-  if (emailConfirmationIsFirstInvalidFeld(errors)) {
-    return 'emailConfirmation';
-  }
-  if (errors.people) {
-    for (const i in errors.people) {
-      if (errors.people[i] !== null) {
-        for (const field in errors.people[i]) {
-          return `people[${i}].${field}`;
-        }
-      }
-    }
-  }
-  return null;
-};
-
-const emailConfirmationIsFirstInvalidFeld = (errors) => {
-  if (Object.keys(errors).includes('emailConfirmation')) {
-    if (!errors.people || !errors.people[0] || (!errors.people[0].fullName && !errors.people[0].pronouns && !errors.people[0].email)) {
-      return true;
-    }
-  }
 }

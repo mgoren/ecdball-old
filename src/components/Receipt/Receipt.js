@@ -9,7 +9,7 @@ export default function Receipt({ order }) {
 
   return(
     <>
-      <p>Thanks, {order.people[0].fullName}!</p>
+      <p>Thanks, {order.people[0].first}!</p>
       {order.paypalEmail === 'check' ? <CheckReceipt order={order}/> : <PaypalReceipt order={order }/>}
     </>
   );

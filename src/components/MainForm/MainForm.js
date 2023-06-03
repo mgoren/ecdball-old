@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { sanitizeObject, warnBeforeUserLeavesSite } from 'utils';
 import FormContents from "./FormContents";
 import { validationSchema } from './validationSchema';
-import { NUM_PAGES } from 'config';
+import { NUM_PAGES, ORDER_DEFAULTS } from 'config';
 
 export default function MainForm({ order, setOrder, currentPage, setCurrentPage }) {
   const [admissionQuantity, setAdmissionQuantity] = useState(order.admissionQuantity);
@@ -15,8 +15,12 @@ export default function MainForm({ order, setOrder, currentPage, setCurrentPage 
     }
   }, []);
 
+  // it doesn't actually get here until all validations are passing
   function handleNextPage(values, actions) {
-    actions.setTouched({});
+    // console.log('in handleNextPage function');
+    // console.log('values', values)
+    // console.log('actions', actions)
+    // actions.setTouched({});
     const submittedOrder = Object.assign({}, values);
     const trimmedOrder = removeExtraPeople(submittedOrder);
     const sanitizedOrder = sanitizeObject(trimmedOrder);
@@ -40,14 +44,12 @@ export default function MainForm({ order, setOrder, currentPage, setCurrentPage 
 }
 
 const removeExtraPeople = (order) => {
-  return Object.fromEntries(
-    Object.entries(order).map(([key, value]) => {
-      if (key === 'people') {
-        return [key, value.map(
-          person => person.index < order.admissionQuantity ? person : { ...person, fullName: '', pronouns: '', email: '', phone: '' }
-        )];
-      }
-      return [key, value];
-    })
-  );
+  return {
+    ...order,
+    people: order.people.map(
+      (person) => person.index < order.admissionQuantity
+        ? person
+        : ORDER_DEFAULTS.people[person.index]
+    )
+  };
 }

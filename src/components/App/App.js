@@ -7,14 +7,14 @@ import MainForm from "components/MainForm";
 import Checkout from "components/Checkout";
 import Confirmation from "components/Confirmation";
 import Error from "components/Error";
-import { PAYPAL_OPTIONS, DEFAULTS, TITLE, CONFIRMATION_CHECK_TITLE, CONFIRMATION_PAYPAL_TITLE } from "config";
+import { PAYPAL_OPTIONS, ORDER_DEFAULTS, TITLE, CONFIRMATION_CHECK_TITLE, CONFIRMATION_PAYPAL_TITLE } from "config";
 import Header from 'components/Header';
 import IntroHeader from 'components/Header/IntroHeader';
 import OrderSummary from "components/OrderSummary";
 import Receipt from "components/Receipt";
 
 export default function App() {
-  const [order, setOrder] = useState(cached('order') || DEFAULTS);
+  const [order, setOrder] = useState(cached('order') || ORDER_DEFAULTS);
   const [currentPage, setCurrentPage] = useState(cached('currentPage') || 1);
   const [error, setError] = useState(null);
   const CONFIRMATION_TITLE = order.paypalEmail === 'check' ? CONFIRMATION_CHECK_TITLE : CONFIRMATION_PAYPAL_TITLE;
