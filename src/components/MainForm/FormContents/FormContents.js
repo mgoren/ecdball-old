@@ -26,9 +26,7 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
       if (firstInvalidFieldName) {
         const invalidFieldElement = document.getElementsByName(firstInvalidFieldName)[0];
         if (invalidFieldElement) {
-          // console.log('scrolling to first invalid field', invalidFieldElement)
           invalidFieldElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          // invalidFieldElement.focus({ preventScroll: true }); // does weird things
         }
       }
     }

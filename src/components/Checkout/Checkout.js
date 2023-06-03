@@ -47,7 +47,7 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
       paypalEmail: paymentMethod === 'check' ? 'check' : paypalOrder.payer.email_address,
       timestamp: serverTimestamp()
     };
-    const receipt = renderToStaticMarkup(<Receipt order={updatedOrder}/>);
+    const receipt = renderToStaticMarkup(<Receipt order={updatedOrder} currentPage='confirmation' />);
     const updatedOrderWithReceipt = { ...updatedOrder, receipt };
     console.log('setting order', updatedOrderWithReceipt);
     setOrder(updatedOrderWithReceipt);

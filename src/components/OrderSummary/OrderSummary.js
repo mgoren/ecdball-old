@@ -21,6 +21,7 @@ export default function OrderSummary({ order, currentPage }) {
 
       {(isNaN(currentPage) || currentPage > 2) &&
         <>
+          <S.Spacer />
           <p><strong>Miscellanea</strong><br /></p>
           <p>
             Volunteer: {order.volunteer.toString().length > 0 ? order.volunteer.toString() : ' not signed up'}<br />

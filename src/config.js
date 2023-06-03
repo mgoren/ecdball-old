@@ -16,6 +16,7 @@ export const DETAILS_URL = 'portlandmegaband.com';
 export const COVID_POLICY_URL = 'pcdc.fun/covid19';
 export const CONTACT_TRACING_URL = 'pcdc.fun/contact-trace';
 export const WAIVER_URL = 'pcdc.fun/files/PCDC_Events_Waiver.pdf';
+export const PAYPAL_ME_URL = 'paypal.me/PortlandBall';
 
 export const ADMISSION_COST_RANGE = [50, 50];
 export const ADMISSION_QUANTITY_RANGE = [1, 2];
