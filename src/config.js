@@ -110,11 +110,8 @@ export const FIELD_CONFIG = {
     order: 10
   },
   zip: {
-    label: 'Zip',
-    type: 'tel',
-    pattern: '#####',
-    placeholder: 'e.g. 21212',
-    validation: Yup.string().required('Please enter zip code.'),
+    label: 'ZIP or Postal Code',
+    validation: Yup.string().required('Please enter zip/postal code.'),
     defaultValue: '',
     order: 11
   },

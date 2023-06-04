@@ -20,8 +20,4 @@ export const Container = styled.div`
 `;
 Container.displayName = 'S.Container';
 
-export const LocalhostBanner = styled.div`
-  color: red;
-  font-weight: bold;
-  text-align: center;
-`;
+export { Spacer } from 'components/SharedStyles';
