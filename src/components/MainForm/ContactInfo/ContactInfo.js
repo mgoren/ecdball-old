@@ -15,7 +15,7 @@ export default function ContactInfo({ admissionQuantity, clampValue }) {
         <S.Box className={isMobile ? 'mobile' : 'desktop'}>
           <S.Title className='S.Title'>Number of admissions</S.Title>
           <NumericInput
-            label="Select admissions quantity (1-4)"
+            label={`Select admissions quantity (${ADMISSION_QUANTITY_RANGE[0]}-${ADMISSION_QUANTITY_RANGE[1]})`}
             name="admissionQuantity"
             range={ADMISSION_QUANTITY_RANGE}
             onBlur={(event) => clampValue({ event: event, range: ADMISSION_QUANTITY_RANGE})}
