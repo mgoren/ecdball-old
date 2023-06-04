@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Box } from 'components/SharedStyles';
 
 export const ErrorBox = styled(Box)`
