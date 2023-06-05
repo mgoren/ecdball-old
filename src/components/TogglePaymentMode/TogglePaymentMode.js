@@ -1,4 +1,4 @@
-import * as S from './TogglePaymentMode-styles.js';
+import { Typography, Button } from '@mui/material';
 import { PAYMENT_METHODS } from 'config';
 
 const switchToCheckText = '(or view check payment options)';
@@ -11,9 +11,9 @@ export default function TogglePaymentMode({ paymentMethod, setPaymentMethod }) {
   return (
     <>
       {PAYMENT_METHODS.includes('check') && PAYMENT_METHODS.includes('paypal') &&
-        <S.Text className='text-center'>
-          <S.Link onClick={() => togglePaymentMethod()}>{text}</S.Link>
-        </S.Text>
+        <Typography align='center'>
+          <Button size='small' color='secondary' onClick={() => togglePaymentMethod()}>{text}</Button>
+        </Typography>
       }
     </>
   );

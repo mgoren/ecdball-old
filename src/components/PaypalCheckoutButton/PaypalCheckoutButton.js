@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import Loading from 'components/Loading';
 import { SANDBOX_MODE, EMAIL_CONTACT } from "config";
+import { Typography, Box } from "@mui/material";
 
 const PaypalCheckoutButton = ({ paypalButtonsLoaded, setPaypalButtonsLoaded, total, setError, setPaying, processing, setProcessing, saveOrderToFirebase }) => {
 	const [, isResolved] = usePayPalScriptReducer();
@@ -66,15 +67,15 @@ const PaypalCheckoutButton = ({ paypalButtonsLoaded, setPaypalButtonsLoaded, tot
 	return (
 		<section className='paypal-buttons-wrapper'>
 			{(!paypalButtonsLoaded) && 
-				<div className='text-center'>
+				<Box align='center'>
 					<Loading isHeading={false} text='Loading payment options...' />
 					<p>(If this takes more than a few seconds, please refresh the page.)</p>
-				</div>
+				</Box>
 			}
 			{isResolved && (
-				<>
+				<Box sx={ processing ? { display: 'none' } : {} }>
 					{SANDBOX_MODE && paypalButtonsLoaded && !processing &&
-						<p className='text-center text-danger'>Test card: 4012000077777777</p>
+						<Typography sx={{ mb: 1, color: 'red' }}>Test card: 4012000077777777</Typography>
 					}
 					<PayPalButtons className={processing ? 'd-none' : ''}
 						style={{ height: 48, tagline: false, shape: "pill" }}
@@ -84,7 +85,7 @@ const PaypalCheckoutButton = ({ paypalButtonsLoaded, setPaypalButtonsLoaded, tot
 						onError={(err) => onError(err)}
 						onCancel={onCancel} 
 					/>
-				</>
+				</Box>
 			)}
 		</section>
 	);

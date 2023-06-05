@@ -1,32 +1,33 @@
 import { useEffect } from 'react';
-import { isMobile } from "react-device-detect";
 import { scrollToTop } from 'utils';
-import * as S from '../Form-styles';
-import { NumericInput, ButtonInput } from '../Input';
+import { RightAlignedInput } from '../Input';
 import { ADMISSION_COST_RANGE, DONATION_OPTION, DONATION_RANGE } from "config";
+import { StyledPaper, Title } from 'components/Layout/SharedStyles';
+import { InputAdornment } from '@mui/material';
 
 export default function PaymentInfo({ donate, setDonate, clampValue, admissionQuantity }) {
   useEffect(() => { scrollToTop(); },[])
+  
   return (
     <section className='PaymentInfo'>
       <div className='admissions-section'>
-        <section className='admissions-cost'>
-          <S.Box className={isMobile ? 'mobile' : 'desktop'}>
-
+        <StyledPaper className='admissions-cost'>
             {ADMISSION_COST_RANGE[0] < ADMISSION_COST_RANGE[1] ?
               <>
-                <S.Title className='S.Title'>Sliding scale</S.Title>
-                <NumericInput 
-                  label="How much are you able to pay per admission? ($15-30)"
+              <Title variant="h6" gutterBottom={true}>Sliding scale</Title>
+                <RightAlignedInput
+                  sx={{ maxWidth: '5rem' }}
+                  label={`How much are you able to pay per admission? ($${ADMISSION_COST_RANGE[0]}-${ADMISSION_COST_RANGE[1]})`}
                   name="admissionCost"
+                  pattern='##'
                   range={ADMISSION_COST_RANGE}
                   onBlur={(event) => clampValue({ event: event, range: ADMISSION_COST_RANGE})}
-                  showDollarSign={true}
+                  InputProps={{ startAdornment: <InputAdornment position='start'>$</InputAdornment> }}
                 />
               </>
             :
               <>
-                <S.Title className='S.Title'>Admissions cost</S.Title>
+              <Title variant="h6" gutterBottom={true}>Admission cost</Title>
                 <p>
                   Number of admissions: {admissionQuantity}<br />
                   Price per admission: ${ADMISSION_COST_RANGE[0]}
@@ -36,35 +37,34 @@ export default function PaymentInfo({ donate, setDonate, clampValue, admissionQu
                 </p>
               </>
             }
-
-          </S.Box>
-        </section>
+        </StyledPaper>
 
         {DONATION_OPTION &&
-          <section className='donation-section'>
-            <S.Box className={isMobile ? 'mobile' : 'desktop'}>
-              <S.Title className="S.Title">Additional donation (tax deductible)</S.Title>
+          <StyledPaper className='donation-section'>
+            <Title variant="h6" gutterBottom={true}>Additional donation (tax deductible)</Title>
+            {!donate && 
+              <RightAlignedInput
+                label="Would you like to make an additional donation to PCDC?"
+                name="donate"
+                buttonText="Yes"
+                onClick={() => setDonate(true)}
+              />
+            }
 
-              {!donate && 
-                <ButtonInput 
-                  label="Would you like to make an additional donation to PCDC?"
-                  name="donate"
-                  buttonText="Yes"
-                  onClick={() => setDonate(true)}
-                />
-              }
-
-              {donate && 
-                <NumericInput 
-                  label="How much would you like to donate to PCDC?"
-                  name="donation" 
-                  range={DONATION_RANGE}
-                  onBlur={(event) => clampValue({ event: event, range: DONATION_RANGE})}
-                  showDollarSign={true}
-                />
-              }
-            </S.Box>
-          </section>
+            {donate && 
+              <RightAlignedInput
+                sx={{ minWidth: '6rem', maxWidth: '6rem' }}
+                label="How much would you like to donate to PCDC?"
+                name="donation" 
+                pattern='###'
+                range={DONATION_RANGE}
+                onBlur={(event) => clampValue({ event: event, range: DONATION_RANGE})}
+                InputProps={{ startAdornment: <InputAdornment position='start'>$</InputAdornment> }}
+                autoFocus={true}
+                // onFocus={(e) => e.target.select()}
+              />
+            }
+          </StyledPaper>
         }
       </div>      
     </section>

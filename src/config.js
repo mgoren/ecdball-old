@@ -23,7 +23,6 @@ export const ADMISSION_QUANTITY_RANGE = [1, 2];
 export const DONATION_OPTION = true;
 export const DONATION_RANGE = [0, 999];
 
-
 const NAME_REGEX = "^[^<>&@]+$";
 const PRONOUNS_REGEX = "^[^<>&@]+$";
 const PHONE_REGEX = "^[0-9-() ]*$";
@@ -44,82 +43,94 @@ export const PAYPAL_OPTIONS = {
 // this can include config for fields not used in this particular registration instance
 export const FIELD_CONFIG = {
   first: {
-    label: 'First Name',
+    label: 'FIRST NAME',
     validation: NAME_VALIDATION.required('Please enter first name.'),
     defaultValue: '',
-    order: 1
+    order: 1,
+    width: 6
   },
   last: {
-    label: 'Last Name',
+    label: 'LAST NAME',
     validation: NAME_VALIDATION.required('Please enter last name.'),
     defaultValue: '',
-    order: 2
+    order: 2,
+    width: 6
   },
   pronouns: {
-    label: 'Pronouns',
+    label: 'PRONOUNS',
     validation: PRONOUNS_VALIDATION,
     defaultValue: '',
-    order: 3
+    order: 3,
+    width: 12
   },
   nametag: {
-    label: 'Nametag (if different from full name)',
+    label: 'NAMETAG',
     validation: NAME_VALIDATION,
     defaultValue: '',
-    order: 4
+    order: 4,
+    width: 12
   },
   email: {
-    label: 'Email',
+    label: 'EMAIL',
     type: 'email',
     validation: EMAIL_VALIDATION.required('Please enter email address.'),
     defaultValue: '',
-    order: 5
+    order: 5,
+    width: 12
   },
   emailConfirmation: {
-    label: 'Re-enter email',
+    label: 'RE-ENTER EMAIL',
     name: 'emailConfirmation',
     type: 'email',
     validation: EMAIL_VALIDATION.required('Please re-enter your email address.').oneOf([Yup.ref('people[0].email'), null], 'Email addresses must match.'),
     defaultValue: '',
-    order: 6
+    order: 6,
+    width: 6
   },
   phone: {
-    label: 'Phone',
+    label: 'PHONE',
     type: 'tel',
     pattern: '###-###-####',
     placeholder: 'e.g. 555-555-5555',
     validation: PHONE_VALIDATION.required('Please enter phone number.'),
     defaultValue: '',
-    order: 7
+    order: 7,
+    width: 12
   },
   address: {
-    label: 'Street Address',
+    label: 'STREET ADDRESS',
     validation: Yup.string().required('Please enter street address.'),
     defaultValue: '',
-    order: 8
+    order: 8,
+    width: 12
   },
   city: {
-    label: 'City',
+    label: 'CITY',
     validation: Yup.string().required('Please enter city.'),
     defaultValue: '',
-    order: 9
+    order: 9,
+    width: 6
   },
   state: {
-    label: 'State or Province',
+    label: 'STATE / PROVINCE',
     validation: Yup.string().required('Please enter state or province.'),
     defaultValue: '',
-    order: 10
+    order: 10,
+    width: 6
   },
   zip: {
-    label: 'ZIP or Postal Code',
+    label: 'ZIP / POSTAL CODE',
     validation: Yup.string().required('Please enter zip/postal code.'),
     defaultValue: '',
-    order: 11
+    order: 11,
+    width: 6
   },
   country: {
-    label: 'Country (if not USA)',
+    label: 'COUNTRY',
     validation: Yup.string(),
     defaultValue: '',
-    order: 12
+    order: 12,
+    width: 6
   },
 }
 

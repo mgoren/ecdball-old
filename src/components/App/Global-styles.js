@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+// not currently using this
 import { css, Global } from '@emotion/react';
 
 export const GlobalStyle = () => (
@@ -15,15 +15,3 @@ export const GlobalStyle = () => (
     `}
   />
 )
-
-
-export const Container = styled.div`
-  &.desktop {
-    max-width: 650px;
-    margin: auto;
-    padding: 15px;
-  }
-`;
-Container.displayName = 'S.Container';
-
-export { Spacer } from 'components/SharedStyles';

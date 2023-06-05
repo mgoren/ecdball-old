@@ -1,13 +1,13 @@
-import * as S from './Title-styles';
 import { TITLE } from 'config';
+import { Typography, Divider } from "@mui/material";
 
 export default function Title({ text = TITLE, classes }) {
-  const classNames = 'S.Title ' + classes;
-
   return (
     <>
-      <S.Title className={classNames}>{text}</S.Title>
-      <hr />
+      <Typography variant="h4" component="h1" align="center" gutterBottom>
+        {text}
+      </Typography>
+      <Divider component="hr" sx={{borderBottomWidth: 1, mb: 2 }}/>
     </>
   );
 }

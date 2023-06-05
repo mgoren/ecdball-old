@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { EMAIL_CONTACT, DETAILS_URL, CONTACT_TRACING_URL, WAIVER_URL, PAYPAL_ME_URL } from 'config';
 import { mailtoLink, websiteLink, scrollToTop } from 'utils';
-import * as S from './Receipt-styles.js';
 import OrderSummary from 'components/OrderSummary';
+import { StyledLink, Title } from 'components/Layout/SharedStyles';
+import { Divider, Typography } from '@mui/material';
 
 export default function Receipt({ order }) {
   useEffect(() => { scrollToTop() },[]);
@@ -17,10 +18,10 @@ export default function Receipt({ order }) {
 function CheckReceipt({ order }) {
   return (
     <>
-      <p className='text-danger'>
+      <Typography color='error' component='p'>
         <strong>Your registration is not yet complete!</strong><br />
         Please send a check for ${order.total} to secure your spot.
-      </p>
+      </Typography>
       <p>Make your check out to PCDC, write your name in the memo area, and mail to:</p>
       <pre>
         Portland ECD Ball<br />
@@ -28,7 +29,7 @@ function CheckReceipt({ order }) {
         Portland, OR 97221-3820
       </pre>
       <p>
-        Alternatively, you can pay via PayPal.Me <S.Link href={websiteLink(PAYPAL_ME_URL)} target="_blank">here</S.Link>. This requires you to have a PayPal account, but you can sign up for one on the spot. You can then pay by credit card, debit card, or your bank account. Please specify the registration amount and "Add a Note" to include your name.
+        Alternatively, you can pay via PayPal.Me <StyledLink to={websiteLink(PAYPAL_ME_URL)} target="_blank">here</StyledLink>. This requires you to have a PayPal account, but you can sign up for one on the spot. You can then pay by credit card, debit card, or your bank account. Please specify the registration amount and "Add a Note" to include your name.
       </p>
 
       <OrderSummary order={order} currentPage='confirmation' />
@@ -47,28 +48,28 @@ function PaypalReceipt({ order }) {
 
       <OrderSummary order={order} currentPage='confirmation' />
 
-      <hr />
+      <Divider component="hr" sx={{borderBottomWidth: 4, mt: 4, mb: 4}}/>
 
-      <S.Subhead className='text-center'>Important Info</S.Subhead>
+      <Title variant="h6" gutterBottom={true}>Important info</Title>
 
       <p>If you have not already done so, you can expedite the entry process by doing these ahead of time:</p>
 
       <p>
-        &#8674; Fill out the <S.Link href={websiteLink(CONTACT_TRACING_URL)} target="_blank" rel="noreferrer">PCDC Contact Tracing form</S.Link> online.<br />
-        &#8674; Print and bring with you a signed copy of the <S.Link href={websiteLink(WAIVER_URL)} target="_blank" rel="noreferrer">PCDC event waiver</S.Link>.
+        &#8674; Fill out the <StyledLink to={websiteLink(CONTACT_TRACING_URL)} target="_blank" rel="noreferrer">PCDC Contact Tracing form</StyledLink> online.<br />
+        &#8674; Print and bring with you a signed copy of the <StyledLink to={websiteLink(WAIVER_URL)} target="_blank" rel="noreferrer">PCDC event waiver</StyledLink>.
       </p>
 
-      <hr />
+      <Divider component="hr" sx={{borderBottomWidth: 4, mt: 4, mb: 4}}/>
 
-      <S.Subhead className='text-center'>Event Details</S.Subhead>
+      <Title variant="h6" gutterBottom={true}>Event details</Title>
 
       <p>
         Event info here<br />
       </p>
-      <p><strong>Covid policy:</strong> Everyone must be vaccinated, including at least one booster if eligible. A well-fitted mask covering nose and mouth is required for attendees. PCDC's full Covid policy is available <S.Link href="https://pcdc.fun/covid19" target="_blank" rel="noreferrer">here</S.Link>.</p>
+      <p><strong>Covid policy:</strong> Everyone must be vaccinated, including at least one booster if eligible. A well-fitted mask covering nose and mouth is required for attendees. PCDC's full Covid policy is available <StyledLink to="https://pcdc.fun/covid19" target="_blank" rel="noreferrer">here</StyledLink>.</p>
       <p>
-        See <S.Link href={websiteLink(DETAILS_URL)} target="_blank" rel="noreferrer">{DETAILS_URL}</S.Link> for further details.<br />
-        Email <S.Link href={mailtoLink(EMAIL_CONTACT)}>{EMAIL_CONTACT}</S.Link> if you have any questions.
+        See <StyledLink to={websiteLink(DETAILS_URL)} target="_blank" rel="noreferrer">{DETAILS_URL}</StyledLink> for further details.<br />
+        Email <StyledLink to={mailtoLink(EMAIL_CONTACT)}>{EMAIL_CONTACT}</StyledLink> if you have any questions.
       </p>
     </>
   );

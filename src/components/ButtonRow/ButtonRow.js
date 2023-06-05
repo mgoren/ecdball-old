@@ -1,33 +1,33 @@
-import { isMobile } from "react-device-detect";
-import * as S from './ButtonRow-styles.js';
+import { StyledPaper } from 'components/Layout/SharedStyles.js';
+import { Box, Button } from '@mui/material';
+import { StyledGreyButton } from "components/Layout/SharedStyles.js";
 
 function BackButton({ onClick, text, ...props }) {
   return (
-    <button onClick={onClick} {...props}>
+    <StyledGreyButton variant='outlined' onClick={onClick} {...props}>
       {text}
-    </button>
+    </StyledGreyButton>
   );
 }
 
 function NextButton({ onClick, text, ...props }) {
   return (
-    <S.NextButton onClick={onClick} {...props}>
+    <Button variant='contained' color='secondary' onClick={onClick} {...props}>
       {text}
-    </S.NextButton>
+    </Button>
   );
 }
 
 export default function ButtonRow({ backButtonProps, nextButtonProps, centerButtonProps }) {
   return (
-    <S.Box className={`${isMobile ? 'mobile' : 'desktop'}`}>
-      <S.ButtonRow>
+    <StyledPaper>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         {backButtonProps ?
           <BackButton
             type='button'
             onClick={backButtonProps.onClick}
             text={backButtonProps.text || 'Back'}
-            className={backButtonProps.className || 'btn btn-secondary'}
-          /> : <div /> // empty div to keep spacing
+          /> : <div />
         }
         {centerButtonProps &&
           <>
@@ -35,7 +35,6 @@ export default function ButtonRow({ backButtonProps, nextButtonProps, centerButt
               type='button'
               onClick={centerButtonProps.onClick}
               text={centerButtonProps.text}
-              className={centerButtonProps.className || 'btn btn-secondary'}
             />
             <div />
           </>
@@ -45,10 +44,10 @@ export default function ButtonRow({ backButtonProps, nextButtonProps, centerButt
             type={nextButtonProps.type === 'submit' ? 'submit' : 'button'}
             onClick={nextButtonProps.type === 'submit' ? undefined : nextButtonProps.onClick}
             text={nextButtonProps.text || 'Next'}
-            className={nextButtonProps.className || 'btn btn-primary'}
+            sx={{ justifyContent: "flex-end" }}
           />
         }
-      </S.ButtonRow>
-    </S.Box>
+      </Box>
+    </StyledPaper>
   );
 }

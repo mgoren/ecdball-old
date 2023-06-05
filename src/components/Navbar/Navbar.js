@@ -1,51 +1,87 @@
-import { NavLink } from 'react-router-dom';
-import * as S from './Navbar-styles.js';
+import { useState } from 'react';
+import { AppBar, Toolbar, Typography, Box, IconButton, Container, Menu, Link, ListItem } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Link as RouterLink } from 'react-router-dom';
+import ColorModeToggle from 'components/ColorModeToggle';
 
-export default function Navbar() {
+const pages = [
+  { title: 'Home', path: '/' },
+  { title: 'Welcome', path: '/welcome' },
+  { title: 'Band & Caller', path: '/staff' },
+  { title: 'Workshops', path: '/workshops' },
+  { title: 'Schedule', path: '/schedule' },
+  { title: 'Dances', path: '/dances' },
+  { title: 'Fragrance-Free', path: '/fragrance' },
+  { title: 'Contact Us', path: '/contact' },
+  { title: 'Registration', path: '/registration' }
+];
+
+export default function Navbar({ toggleColorMode }) {
+  const [anchorElNav, setAnchorElNav] = useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
 
   return (
-    <>
-      <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarText">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <NavLink className="nav-link" activeclassname="active" aria-current="page" to="/">Home</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" activeclassname="active" to="/welcome">Welcome</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" activeclassname="active" to="/staff">Caller & Band</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" activeclassname="active" to="/workshops">Workshops</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" activeclassname="active" to="/schedule">Schedule</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" activeclassname="active" to="/dances">Dances</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" activeclassname="active" to="/fragrance">Fragrance-Free</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" activeclassname="active" to="/contact">Contact Us</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" activeclassname="active" to="/registration">Registration</NavLink>
-              </li>
-              <span className="navbar-text">
-                {window.location.hostname === 'localhost' && <S.LocalhostBanner>[ LOCALHOST ]</S.LocalhostBanner>}
-              </span>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </>
+    <AppBar position="relative" color="default">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton size="large" onClick={handleOpenNavMenu} color="inherit" aria-label="navigation menu" aria-controls="menu-appbar" aria-haspopup="true">
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+              keepMounted
+              transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{ display: { xs: 'block', md: 'none' } }}
+            >
+              {pages.map((page) => (
+                <Link
+                  component={RouterLink}
+                  to={page.path}
+                  key={page.title}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                  onClick={handleCloseNavMenu}
+                >
+                  <ListItem>
+                    <Typography textAlign="center">{page.title}</Typography>
+                  </ListItem>
+                </Link>
+              ))}
+            </Menu>
+            {/* <ListItem sx={{ my: 2, color: 'inherit', display: 'block' }}>
+              <Typography textAlign="center">ECD Ball 2023</Typography>
+            </ListItem> */}
+          </Box>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Link
+                component={RouterLink}
+                to={page.path}
+                key={page.title}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+                onClick={handleCloseNavMenu}
+              >
+                <ListItem sx={{ my: 2, color: 'inherit', display: 'block', pt: 0, pb: 0 }}>
+                  {page.title}
+                </ListItem>
+              </Link>
+            ))}
+          </Box>
+          {/* {window.location.hostname === 'localhost' && <Typography sx={{ color: 'red', fontWeight: 'bold' }}>[ LOCALHOST ]</Typography>} */}
+          <ColorModeToggle toggleColorMode={toggleColorMode} />
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 }

@@ -1,1 +1,0 @@
-export { Box, Subhead, Spacer, Text, Link, Container } from 'components/SharedStyles';

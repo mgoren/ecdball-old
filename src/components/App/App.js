@@ -1,7 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { isMobile } from "react-device-detect";
-import Navbar from 'components/Navbar/Navbar.js';
-import * as S from './App-styles';
 import Home from 'components/Static/Home';
 import Welcome from 'components/Static/Welcome';
 import Staff from 'components/Static/Staff';
@@ -11,16 +8,15 @@ import Dances from 'components/Static/Dances';
 import Fragrance from 'components/Static/Fragrance';
 import Contact from 'components/Static/Contact';
 import Registration from 'components/Registration';
+import MaterialLayout from 'components/Layout/';
+// import * as S from './Global-styles';
 
 export default function App() {
   return (
     <>
-      <S.GlobalStyle />
-      <S.Container className={isMobile ? 'mobile' : 'desktop'}>
-        <Router>
-          <Navbar />
-          <S.Spacer />
-          <S.Spacer />
+      {/* <S.GlobalStyle /> */}
+      <Router>
+        <MaterialLayout>
           <Routes>
             <Route exact path="/" element=<Home /> />
             <Route exact path="/welcome" element=<Welcome /> />
@@ -32,8 +28,8 @@ export default function App() {
             <Route exact path="/contact" element=<Contact /> />
             <Route exact path="/registration" element=<Registration /> />
           </Routes>
-        </Router>
-      </S.Container>
+        </MaterialLayout>
+      </Router>
     </>
   );
 }

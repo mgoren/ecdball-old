@@ -1,13 +1,12 @@
-import { isMobile } from "react-device-detect";
-import * as S from './Header-styles';
 import Title from 'components/Title';
 import { TITLE } from 'config';
+import { StyledPaper } from 'components/Layout/SharedStyles';
 
 export default function Header({ titleText = TITLE, children }) {
   return (
-    <S.TopBox className={isMobile ? 'mobile' : 'desktop'}>
+    <StyledPaper>
       <Title text={titleText} />
       {children}
-    </S.TopBox>
+    </StyledPaper>
   );
 }
