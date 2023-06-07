@@ -14,6 +14,7 @@ export default function ContactInfoInputs({ fields, index }) {
             type={FIELD_CONFIG[field].type || 'text'}
             pattern={FIELD_CONFIG[field].pattern}
             placeholder={FIELD_CONFIG[field].placeholder}
+            autoComplete={FIELD_CONFIG[field].autoComplete}
             fullWidth
             mask='_'
           />

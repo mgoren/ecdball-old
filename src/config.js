@@ -47,14 +47,16 @@ export const FIELD_CONFIG = {
     validation: NAME_VALIDATION.required('Please enter first name.'),
     defaultValue: '',
     order: 1,
-    width: 6
+    width: 6,
+    autoComplete: 'given-name'
   },
   last: {
     label: 'LAST NAME',
     validation: NAME_VALIDATION.required('Please enter last name.'),
     defaultValue: '',
     order: 2,
-    width: 6
+    width: 6,
+    autoComplete: 'family-name'
   },
   pronouns: {
     label: 'PRONOUNS',
@@ -76,7 +78,8 @@ export const FIELD_CONFIG = {
     validation: EMAIL_VALIDATION.required('Please enter email address.'),
     defaultValue: '',
     order: 5,
-    width: 12
+    width: 12,
+    autoComplete: 'email'
   },
   emailConfirmation: {
     label: 'RE-ENTER EMAIL',
@@ -85,7 +88,8 @@ export const FIELD_CONFIG = {
     validation: EMAIL_VALIDATION.required('Please re-enter your email address.').oneOf([Yup.ref('people[0].email'), null], 'Email addresses must match.'),
     defaultValue: '',
     order: 6,
-    width: 6
+    width: 6,
+    autoComplete: 'email'
   },
   phone: {
     label: 'PHONE',
@@ -95,42 +99,48 @@ export const FIELD_CONFIG = {
     validation: PHONE_VALIDATION.required('Please enter phone number.'),
     defaultValue: '',
     order: 7,
-    width: 12
+    width: 12,
+    autoComplete: 'tel'
   },
   address: {
     label: 'STREET ADDRESS',
     validation: Yup.string().required('Please enter street address.'),
     defaultValue: '',
     order: 8,
-    width: 12
+    width: 12,
+    autoComplete: 'street-address'
   },
   city: {
     label: 'CITY',
     validation: Yup.string().required('Please enter city.'),
     defaultValue: '',
     order: 9,
-    width: 6
+    width: 6,
+    autoComplete: 'city'
   },
   state: {
     label: 'STATE / PROVINCE',
     validation: Yup.string().required('Please enter state or province.'),
     defaultValue: '',
     order: 10,
-    width: 6
+    width: 6,
+    autoComplete: 'state'
   },
   zip: {
     label: 'ZIP / POSTAL CODE',
     validation: Yup.string().required('Please enter zip/postal code.'),
     defaultValue: '',
     order: 11,
-    width: 6
+    width: 6,
+    autoComplete: 'postal-code'
   },
   country: {
     label: 'COUNTRY',
     validation: Yup.string(),
     defaultValue: '',
     order: 12,
-    width: 6
+    width: 6,
+    autoComplete: 'country'
   },
 }
 
