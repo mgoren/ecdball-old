@@ -55,7 +55,10 @@ const RealRegistration = () => {
     <PayPalScriptProvider options={PAYPAL_OPTIONS}>
       {error && <Error error={error} />}
 
-      <Header titleText={currentPage === 'confirmation' ? CONFIRMATION_TITLE : TITLE}>
+      <Header
+        titleText={currentPage === 'confirmation' ? CONFIRMATION_TITLE : TITLE}
+        currentPage={currentPage}
+      >
         {currentPage === 1 && <IntroHeader />}
         {currentPage === 2 && <OrderSummary order={order} currentPage={currentPage} />}
         {currentPage === 3 && <OrderSummary order={order} currentPage={currentPage} />}
