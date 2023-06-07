@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { EMAIL_CONTACT, DETAILS_URL, CONTACT_TRACING_URL, WAIVER_URL, PAYPAL_ME_URL } from 'config';
 import { mailtoLink, websiteLink, scrollToTop } from 'utils';
 import OrderSummary from 'components/OrderSummary';
-import { StyledLink, Title } from 'components/Layout/SharedStyles';
+import { StyledLink } from 'components/Layout/SharedStyles';
 import { Divider, Typography } from '@mui/material';
 
 export default function Receipt({ order }) {
@@ -50,7 +50,7 @@ function PaypalReceipt({ order }) {
 
       <Divider component="hr" sx={{borderBottomWidth: 4, mt: 4, mb: 4}}/>
 
-      <Title variant="h6" gutterBottom={true}>Important info</Title>
+      <Typography component='h6' variant="h6" gutterBottom={true}>Important info</Typography>
 
       <p>If you have not already done so, you can expedite the entry process by doing these ahead of time:</p>
 
@@ -61,7 +61,7 @@ function PaypalReceipt({ order }) {
 
       <Divider component="hr" sx={{borderBottomWidth: 4, mt: 4, mb: 4}}/>
 
-      <Title variant="h6" gutterBottom={true}>Event details</Title>
+      <Typography component='h6' variant="h6" gutterBottom={true}>Event details</Typography>
 
       <p>
         Event info here<br />
