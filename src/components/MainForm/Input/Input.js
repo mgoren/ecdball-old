@@ -8,7 +8,7 @@ export const Input = ({ pattern, buttonText, onClick, ...props }) => {
   if (buttonText) {
     return <ButtonInput buttonText={buttonText} onClick={onClick} {...props} />;
   } else if (pattern) {
-    return <NumberInput pattern={pattern} {...props} />;
+    return <NumericInput pattern={pattern} {...props} />;
   } else if (props.type === 'textarea') {
     return <TextArea {...props} />;
   } else {
@@ -57,10 +57,13 @@ const TextInput = ({ label, name, type, ...props }) => {
         return (
           <Box >
             <TextField
-              // sx={{ marginBottom: '.2rem', '& .MuiFormHelperText-root': { fontSize: '.9rem' } }}
+              sx={{
+                marginBottom: '.3rem',
+                // '& .MuiFormHelperText-root': { fontSize: '.9rem' }
+              }}
               type={type}
               label={label}
-              variant='outlined'
+              variant='standard'
               error={Boolean(isTouched && fieldError)}
               helperText={isTouched && fieldError}
               {...field}
@@ -74,11 +77,13 @@ const TextInput = ({ label, name, type, ...props }) => {
   );
 };
 
-const NumberInput = ({ label, name, type, pattern, range, ...props }) => {
-  const { setFieldValue } = useFormikContext();
+const NumericInput = ({ variant, label, name, type, pattern, range, ...props }) => {
+  const { touched, errors, setFieldValue } = useFormikContext();
   return (
     <Field name={name}>
       {({ field }) => {
+        const fieldError = name.includes('phone') && getIn(errors, name);
+        const isTouched = name.includes('phone') && getIn(touched, name);
         return (
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <PatternFormat
@@ -88,7 +93,9 @@ const NumberInput = ({ label, name, type, pattern, range, ...props }) => {
               format={pattern}
               onValueChange={({value}) => setFieldValue(name, value)}
               inputMode='numeric'
-              variant='outlined'
+              variant={variant || 'outlined'}
+              error={Boolean(isTouched && fieldError)}
+              helperText={isTouched && fieldError}
               {...field}
               {...props}
             />

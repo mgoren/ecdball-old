@@ -29,7 +29,7 @@ const PHONE_REGEX = "^[0-9-() ]*$";
 const NAME_VALIDATION = Yup.string().matches(NAME_REGEX, 'Invalid characters :(');
 const PRONOUNS_VALIDATION = Yup.string().matches(PRONOUNS_REGEX, 'Invalid characters :(');
 const EMAIL_VALIDATION = Yup.string().email('Invalid email address');
-const PHONE_VALIDATION = Yup.string().matches(PHONE_REGEX, 'Invalid characters :(');
+const PHONE_VALIDATION = Yup.string().matches(PHONE_REGEX, 'Please enter phone number in format ###-###-####.');
 export const CAPTCHA_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 export const PAYPAL_OPTIONS = {
   "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,
@@ -43,7 +43,7 @@ export const PAYPAL_OPTIONS = {
 // this can include config for fields not used in this particular registration instance
 export const FIELD_CONFIG = {
   first: {
-    label: 'FIRST NAME',
+    label: 'First name',
     validation: NAME_VALIDATION.required('Please enter first name.'),
     defaultValue: '',
     order: 1,
@@ -51,7 +51,7 @@ export const FIELD_CONFIG = {
     autoComplete: 'given-name'
   },
   last: {
-    label: 'LAST NAME',
+    label: 'Last name',
     validation: NAME_VALIDATION.required('Please enter last name.'),
     defaultValue: '',
     order: 2,
@@ -59,21 +59,21 @@ export const FIELD_CONFIG = {
     autoComplete: 'family-name'
   },
   pronouns: {
-    label: 'PRONOUNS',
+    label: 'pronouns',
     validation: PRONOUNS_VALIDATION,
     defaultValue: '',
     order: 3,
     width: 12
   },
   nametag: {
-    label: 'NAMETAG',
+    label: 'Nametag',
     validation: NAME_VALIDATION,
     defaultValue: '',
     order: 4,
     width: 12
   },
   email: {
-    label: 'EMAIL',
+    label: 'Email',
     type: 'email',
     validation: EMAIL_VALIDATION.required('Please enter email address.'),
     defaultValue: '',
@@ -82,7 +82,7 @@ export const FIELD_CONFIG = {
     autoComplete: 'email'
   },
   emailConfirmation: {
-    label: 'RE-ENTER EMAIL',
+    label: 'Re-enter email',
     name: 'emailConfirmation',
     type: 'email',
     validation: EMAIL_VALIDATION.required('Please re-enter your email address.').oneOf([Yup.ref('people[0].email'), null], 'Email addresses must match.'),
@@ -92,7 +92,7 @@ export const FIELD_CONFIG = {
     autoComplete: 'email'
   },
   phone: {
-    label: 'PHONE',
+    label: 'Phone',
     type: 'tel',
     pattern: '###-###-####',
     placeholder: 'e.g. 555-555-5555',
@@ -103,7 +103,7 @@ export const FIELD_CONFIG = {
     autoComplete: 'tel'
   },
   address: {
-    label: 'STREET ADDRESS',
+    label: 'Street address',
     validation: Yup.string().required('Please enter street address.'),
     defaultValue: '',
     order: 8,
@@ -111,7 +111,7 @@ export const FIELD_CONFIG = {
     autoComplete: 'street-address'
   },
   city: {
-    label: 'CITY',
+    label: 'City',
     validation: Yup.string().required('Please enter city.'),
     defaultValue: '',
     order: 9,
@@ -119,7 +119,7 @@ export const FIELD_CONFIG = {
     autoComplete: 'city'
   },
   state: {
-    label: 'STATE / PROVINCE',
+    label: 'State / Province',
     validation: Yup.string().required('Please enter state or province.'),
     defaultValue: '',
     order: 10,
@@ -127,7 +127,7 @@ export const FIELD_CONFIG = {
     autoComplete: 'state'
   },
   zip: {
-    label: 'ZIP / POSTAL CODE',
+    label: 'Zip / Postal code',
     validation: Yup.string().required('Please enter zip/postal code.'),
     defaultValue: '',
     order: 11,
@@ -135,7 +135,7 @@ export const FIELD_CONFIG = {
     autoComplete: 'postal-code'
   },
   country: {
-    label: 'COUNTRY',
+    label: 'Country',
     validation: Yup.string(),
     defaultValue: '',
     order: 12,

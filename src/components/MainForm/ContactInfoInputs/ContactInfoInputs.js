@@ -17,6 +17,7 @@ export default function ContactInfoInputs({ fields, index }) {
             autoComplete={FIELD_CONFIG[field].autoComplete}
             fullWidth
             mask='_'
+            variant='standard'
           />
         </Grid>
       ))}
