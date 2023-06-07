@@ -1,112 +1,142 @@
-import { Field } from 'formik';
-import { isMobile } from "react-device-detect";
+import { Field, useFormikContext, getIn } from 'formik';
 import { PatternFormat } from 'react-number-format';
-import * as S from '../Form-styles';
+import { Box, Typography, TextField, Button, Checkbox, FormControlLabel } from '@mui/material';
+import { TextareaAutosize } from '@mui/base';
 
-export const Input = ({ label, type, pattern, ...props }) => {
-  const { name } = props;
-  return (
-    <div className='form-group'>
-      <div className='row'>
-        <div className="form-group col-sm-8">
-          <S.Label className='S.Label' htmlFor={name}>{label}</S.Label>
-          {!pattern && 
-            <Field name={name}>{({field, meta}) =>
-              <S.Input>
-                {type === 'textarea' && <S.TextArea className='form-control' {...field} {...props} />}
-                {type !== 'textarea' && <input className='form-control' {...field} {...props} />}
-                {meta.touched && meta.error && <S.Warning>{meta.error}</S.Warning>}
-              </S.Input>
-            }
-            </Field>
-          }
-          {pattern && (
-            <Field name={name}>{({field, meta}) =>
-              <S.Input>
-                <PatternFormat className='form-control' format={pattern} mask="_" {...field} {...props} />
-                {meta.touched && meta.error && <S.Warning>{meta.error}</S.Warning>}
-              </S.Input>
-            }
-            </Field>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};  
+export const Input = ({ type, pattern, buttonText, onClick, ...props }) => {
+  if (buttonText) {
+    return <ButtonInput buttonText={buttonText} onClick={onClick} {...props} />;
+  } else if (pattern) {
+    return <NumberInput pattern={pattern} {...props} />;
+  } else if (type === 'textarea') {
+    return <TextArea {...props} />;
+  } else {
+    return <TextInput {...props} />;
+  }
+};
 
-export const NumericInput = ({ label, range, showDollarSign, ...props }) => {
-  const { name, onBlur } = props;
+export const RightAlignedInput = ({ label, ...props }) => {
   return (
-    <RightAlignedInput name={name} label={label} renderContent={() => {
-      return (
-        <>
-          {showDollarSign && 
-            <div className="input-group-prepend">
-              <span className="input-group-text" style={{padding: 6}}>$</span>
-            </div>
-          }
-          <Field 
-            type={isMobile ? 'tel' : 'number'} 
-            className={`numericInput ${isMobile ? "form-control" : "text-center"}`} 
-            name={name} 
-            id={name} 
-            onBlur={onBlur}
-            min={range[0]} max={range[1]} step="1" 
-          />
-        </>
-      );
-    }} />
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <Typography variant='body1' sx={{ marginRight: '.5rem' }}>{label}</Typography>
+      <Input {...props} />
+    </Box>
   );
 };
 
-export const ButtonInput = ({ label, buttonText, ...props }) => {
-  const { name, onClick } = props;
+const ButtonInput = ({ buttonText, onClick, ...props }) => {
   return (
-    <RightAlignedInput name={name} label={label} renderContent={() => {
-      return (
-        <S.DonationButton 
-          type='button' 
-          className='btn btn-sm btn-secondary' 
-          onClick={onClick} 
-        >
-          {buttonText}
-        </S.DonationButton>
-      );
-    }}/>
-  );
-}
-
-export const CheckboxInput = ({ label, options, ...props }) => {
-  const { name } = props;
-  return (
-    <div className='form-group'>
-      <div className='row'>
-        {label && <S.AboveCheckboxLabel className='S.Label' htmlFor={name}>{label}</S.AboveCheckboxLabel>}
-        {options.map(option => (
-          <div key={option.value}>
-            <Field type="checkbox" id={option.value} name={name} value={option.value} />
-            <S.CheckboxLabel htmlFor={option.value}>{option.label}</S.CheckboxLabel>
-          </div>
-        ))}
-      </div>
-    </div>
+    <Button variant='contained' size='large' color='info' onClick={onClick}>
+      <Typography variant='body1' sx={{ marginRight: '.5rem' }}>{buttonText}</Typography>
+    </Button>
   );
 };
 
-const RightAlignedInput = ({ name, label, renderContent }) => {
+const TextInput = ({ label, name, type, ...props }) => {
+  const { touched, errors, values, setFieldValue, handleBlur } = useFormikContext();
+
+  const handleBlurAndSetNametag = (e) => {
+    handleBlur(e);  // bubble up to default Formik onBlur handler
+    if (name.includes('first') || name.includes('last')) {
+      const personIndex = name.split('[')[1].split(']')[0];
+      const first = getIn(values, `people[${personIndex}].first`);
+      const last = getIn(values, `people[${personIndex}].last`);
+      const existingNametag = getIn(values, `people[${personIndex}].nametag`);
+      if (first && last && !existingNametag) {
+        setFieldValue(`people[${personIndex}].nametag`, `${first} ${last}`);
+      }
+    }
+  };
+
   return (
-    <div className='form-group'>
-      <div className={isMobile ? '' : 'row'}>
-        <div className="col-sm-9">
-          <S.Label className='S.Label' htmlFor={name}>{label}</S.Label>
+    <Field name={name}>
+      {({ field }) => {
+        const fieldError = getIn(errors, name);
+        const isTouched = getIn(touched, name);
+        return (
+          <Box >
+            <TextField
+              // sx={{ marginBottom: '.2rem', '& .MuiFormHelperText-root': { fontSize: '.9rem' } }}
+              type={type}
+              label={label}
+              variant='outlined'
+              error={Boolean(isTouched && fieldError)}
+              helperText={isTouched && fieldError}
+              {...field}
+              onBlur={handleBlurAndSetNametag}
+              {...props}
+            />
+          </Box>
+        )
+      }}
+    </Field>
+  );
+};
+
+const NumberInput = ({ label, name, type, pattern, range, ...props }) => {
+  const { setFieldValue } = useFormikContext();
+  return (
+    <Field name={name}>
+      {({ field }) => {
+        return (
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <PatternFormat
+              customInput={TextField}
+              label={label}
+              format={pattern}
+              onValueChange={({value}) => setFieldValue(name, value)}
+              inputMode='numeric'
+              variant='outlined'
+              {...field}
+              {...props}
+            />
+          </Box>
+        )
+      }}
+    </Field>
+  );
+};
+
+export const CheckboxInput = ({ name, label, options, ...props }) => {
+  return (
+    <>
+      {label && <Typography gutterBottom={true} htmlFor={name}>{label}</Typography>}
+      {options.map(option => (
+        <div key={option.value}>
+          <Field name={name}>
+            {({ field }) => (
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    id={option.value}
+                    checked={field.value.includes(option.value)}
+                    {...field}
+                    value={option.value}
+                    color="secondary"
+                  />
+                }
+                label={option.label}
+              />
+            )}
+          </Field>
         </div>
-        <div className="col-sm-3">
-          <div className={`input-group mb-3 ${isMobile ? '' : 'justify-content-end'}`}>
-            { renderContent() }
-          </div>
-        </div>
-      </div>
-    </div>
+      ))}
+    </>
+  );
+};
+
+export const TextArea = ({ label, name, ...props }) => {
+  return (
+    <>
+      <Typography gutterBottom={true} sx={{ marginBottom: '1rem' }} htmlFor={name}>
+        {label}
+      </Typography>
+      <Field
+        name={name}
+        as={TextareaAutosize}
+        minRows={5}
+        style={{ width: '100%' }}
+      />
+    </>
   );
 };

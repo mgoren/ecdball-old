@@ -10,7 +10,8 @@ import OrderSummary from "components/OrderSummary";
 import Receipt from "components/Receipt";
 import { logBuildDate, cache, cached } from 'utils';
 import { PAYPAL_OPTIONS, ORDER_DEFAULTS, TITLE, CONFIRMATION_CHECK_TITLE, CONFIRMATION_PAYPAL_TITLE } from "config";
-import * as S from './Registration-styles';
+import { Checkbox } from '@mui/material';
+import { StyledPaper } from 'components/Layout/SharedStyles';
 
 export default function Registration() {
   const [registering, setRegistering] = useState(false);
@@ -21,7 +22,7 @@ export default function Registration() {
 
 const PreRegistration = ({ setRegistering }) => {
   return(
-    <S.Box className='preregistration'> 
+    <StyledPaper>
       <p>I acknowledge that I will follow the ECD Ball COVID Safety Policy in effect on October 28/29, 2022.</p>
 
       <p>If I have not attended a PCDC dance event in 2022, I will...</p>
@@ -33,10 +34,10 @@ const PreRegistration = ({ setRegistering }) => {
       <p>I acknowledge that today's mask requirements are that everyone must wear a mask while in hall, except while eating, drinking, or performing on stage.  If PCDC rules change to allow optional masking, the Ball will be mask optional.</p>
 
       <p>
-        I check this box to indicate that I understand and agree to these requirements: 
-        &nbsp; <input type='checkbox' onChange={() => setRegistering(true)} />
+        I understand and agree to these requirements:
+        <Checkbox onChange={() => setRegistering(true)} />
       </p>
-  </S.Box>
+    </StyledPaper>
   );
 }
 

@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-import { isMobile } from "react-device-detect";
 import { push, ref, serverTimestamp } from "firebase/database";
 import { renderToStaticMarkup } from 'react-dom/server';
 import { scrollToTop, warnBeforeUserLeavesSite } from 'utils';
-import * as S from './Checkout-styles.js';
 import { PAYMENT_METHODS, EMAIL_CONTACT, NUM_PAGES } from 'config';
 import db from 'firebase.js';
 import PaypalCheckoutButton from 'components/PaypalCheckoutButton';
@@ -12,6 +10,7 @@ import Loading from 'components/Loading';
 import Receipt from 'components/Receipt';
 import TogglePaymentMode from 'components/TogglePaymentMode';
 import ButtonRow from 'components/ButtonRow/index.js';
+import { StyledPaper, Title } from 'components/Layout/SharedStyles';
 
 export default function Checkout({ order, setOrder, setError, setCurrentPage }) {
   const [paying, setPaying] = useState(null);
@@ -69,16 +68,13 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
 	}
 
   return (
-    <section className='checkout'>
-      <S.Box className={isMobile ? 'mobile' : 'desktop'}>
+    <section>
+      <StyledPaper align='center'>
 
         {processing && <Loading text='Processing payment...' />}
 
         {!processing &&
-          <>
-            <S.Subhead className='text-center'>Amount due: ${total}</S.Subhead>
-            <S.Spacer />
-          </>
+          <Title variant="h6" gutterBottom={true}>Amount due: ${total}</Title>
         }
 
         {paymentMethod === 'paypal' &&
@@ -98,14 +94,13 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
               processing={processing} setProcessing={setProcessing}
               saveOrderToFirebase={saveOrderToFirebase}
             />
-            <S.Spacer />
           </>
         }
 
         {!paying && !processing && (paymentMethod === 'check' || paypalButtonsLoaded) &&
           <TogglePaymentMode paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />
         }
-      </S.Box>
+      </StyledPaper>
 
       {!paying && !processing &&
         <ButtonRow backButtonProps = {{ onClick: handleClickBackButton }} />
