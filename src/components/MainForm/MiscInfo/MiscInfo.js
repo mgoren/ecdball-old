@@ -10,7 +10,7 @@ export default function MiscInfo() {
     <StyledPaper className='MiscInfo'>
       
       <Box sx={{ mb: 6 }}>
-        <Title variant="h6" gutterBottom={true}>Volunteering</Title>
+        <Title>Volunteering</Title>
           <CheckboxInput
             label='I would like to volunteer to help! I am available for:'
             name='volunteer'
@@ -24,7 +24,7 @@ export default function MiscInfo() {
         </Box>
 
         <Box sx={{ mb: 6 }}>
-          <Title variant="h6" gutterBottom={true}>Contact information sharing</Title>
+          <Title>Contact information sharing</Title>
           <CheckboxInput
             name='share'
             options={[
@@ -33,7 +33,7 @@ export default function MiscInfo() {
           />
         </Box>
 
-        <Title variant="h6" gutterBottom={true}>Final comments</Title>
+        <Title>Final comments</Title>
         <Input
           type='textarea'
           name='comments'

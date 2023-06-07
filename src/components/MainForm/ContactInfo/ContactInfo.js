@@ -11,7 +11,7 @@ export default function ContactInfo({ admissionQuantity, clampValue }) {
   return (
     <section>
       <StyledPaper className='admissions-quantity'>
-        <Title variant="h6" gutterBottom={true}>Number of admissions</Title>
+        <Title>Number of admissions</Title>
         <RightAlignedInput
           sx={{ maxWidth: '4rem' }}
           label={`Select admissions quantity (${ADMISSION_QUANTITY_RANGE[0]}-${ADMISSION_QUANTITY_RANGE[1]})`}
@@ -26,7 +26,7 @@ export default function ContactInfo({ admissionQuantity, clampValue }) {
         {Array(admissionQuantity).fill().map((_, index) => {
           return (
             <StyledPaper key={index}>
-              <Title variant="h6" gutterBottom={true}>{PERSON_INPUTS[index].label}</Title>
+              <Title>{PERSON_INPUTS[index].label}</Title>
               <ContactInfoInputs
                 index={index}
                 fields={PERSON_INPUTS[index].fields}

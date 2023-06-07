@@ -14,7 +14,7 @@ export default function PaymentInfo({ donate, setDonate, clampValue, admissionQu
         <StyledPaper className='admissions-cost'>
             {ADMISSION_COST_RANGE[0] < ADMISSION_COST_RANGE[1] ?
               <>
-              <Title variant="h6" gutterBottom={true}>Sliding scale</Title>
+              <Title>Sliding scale</Title>
                 <RightAlignedInput
                   sx={{ maxWidth: '5rem' }}
                   label={`How much are you able to pay per admission? ($${ADMISSION_COST_RANGE[0]}-${ADMISSION_COST_RANGE[1]})`}
@@ -27,7 +27,7 @@ export default function PaymentInfo({ donate, setDonate, clampValue, admissionQu
               </>
             :
               <>
-              <Title variant="h6" gutterBottom={true}>Admission cost</Title>
+              <Title>Admission cost</Title>
                 <p>
                   Number of admissions: {admissionQuantity}<br />
                   Price per admission: ${ADMISSION_COST_RANGE[0]}
@@ -41,7 +41,7 @@ export default function PaymentInfo({ donate, setDonate, clampValue, admissionQu
 
         {DONATION_OPTION &&
           <StyledPaper className='donation-section'>
-            <Title variant="h6" gutterBottom={true}>Additional donation (tax deductible)</Title>
+            <Title>Additional donation (tax deductible)</Title>
             {!donate && 
               <RightAlignedInput
                 label="Would you like to make an additional donation to PCDC?"

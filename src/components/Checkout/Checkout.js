@@ -74,7 +74,7 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
         {processing && <Loading text='Processing payment...' />}
 
         {!processing &&
-          <Title variant="h6" gutterBottom={true}>Amount due: ${total}</Title>
+          <Title>Amount due: ${total}</Title>
         }
 
         {paymentMethod === 'paypal' &&

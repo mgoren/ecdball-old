@@ -34,6 +34,10 @@ export const StyledLink = ({ children, to, ...props }) => {
   );
 }
 
-export const Title = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-}));
+export const Title = ({ children, ...props }) => {
+  return (
+    <Typography variant="h6" gutterBottom sx={{ mb: 2 }} {...props}>
+      {children}
+    </Typography>
+  );
+};
