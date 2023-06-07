@@ -1,14 +1,15 @@
+import { isMobile } from "react-device-detect";
 import { Field, useFormikContext, getIn } from 'formik';
 import { PatternFormat } from 'react-number-format';
 import { Box, Typography, TextField, Button, Checkbox, FormControlLabel } from '@mui/material';
 import { TextareaAutosize } from '@mui/base';
 
-export const Input = ({ type, pattern, buttonText, onClick, ...props }) => {
+export const Input = ({ pattern, buttonText, onClick, ...props }) => {
   if (buttonText) {
     return <ButtonInput buttonText={buttonText} onClick={onClick} {...props} />;
   } else if (pattern) {
     return <NumberInput pattern={pattern} {...props} />;
-  } else if (type === 'textarea') {
+  } else if (props.type === 'textarea') {
     return <TextArea {...props} />;
   } else {
     return <TextInput {...props} />;
@@ -81,6 +82,7 @@ const NumberInput = ({ label, name, type, pattern, range, ...props }) => {
         return (
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <PatternFormat
+              type={isMobile ? 'tel' : 'text'}
               customInput={TextField}
               label={label}
               format={pattern}
