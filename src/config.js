@@ -154,8 +154,8 @@ const OTHER_PERSON_FIELDS = ['first', 'last', 'nametag', 'email', 'phone', 'addr
 export const PERSON_INPUTS = [
   { label: 'Your contact information', fields: FIRST_PERSON_FIELDS },
   { label: 'Second admission', fields: OTHER_PERSON_FIELDS },
-  // { label: 'Third admission', fields: OTHER_PERSON_FIELDS },
-  // { label: 'Fourth admission', fields: OTHER_PERSON_FIELDS },
+  { label: 'Third admission', fields: OTHER_PERSON_FIELDS },
+  { label: 'Fourth admission', fields: OTHER_PERSON_FIELDS },
 ];
 
 export const ORDER_DEFAULTS = {

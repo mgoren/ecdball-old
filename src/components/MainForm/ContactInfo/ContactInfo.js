@@ -13,12 +13,13 @@ export default function ContactInfo({ admissionQuantity, clampValue }) {
       <StyledPaper className='admissions-quantity'>
         <Title>Number of admissions</Title>
         <RightAlignedInput
-          sx={{ maxWidth: '4rem' }}
-          label={`Select admissions quantity (${ADMISSION_QUANTITY_RANGE[0]}-${ADMISSION_QUANTITY_RANGE[1]})`}
+          type='radio'
           name='admissionQuantity'
-          range={ADMISSION_QUANTITY_RANGE}
-          pattern='#'
-          onBlur={(event) => clampValue({ event: event, range: ADMISSION_QUANTITY_RANGE})}
+          label={'Select admissions quantity'}
+          options={Array(ADMISSION_QUANTITY_RANGE[1])
+            .fill()
+            .map((_, index) => ({ label: index + 1, value: index + 1 }))
+          }
         />
       </StyledPaper>
 

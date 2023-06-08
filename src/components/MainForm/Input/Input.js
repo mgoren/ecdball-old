@@ -1,12 +1,14 @@
 import { isMobile } from "react-device-detect";
 import { Field, useFormikContext, getIn } from 'formik';
 import { PatternFormat } from 'react-number-format';
-import { Box, Typography, TextField, Button, Checkbox, FormControlLabel } from '@mui/material';
+import { Box, Typography, TextField, Button, Checkbox, FormControlLabel, FormControl, FormLabel, RadioGroup, Radio } from '@mui/material';
 import { TextareaAutosize } from '@mui/base';
 
 export const Input = ({ pattern, buttonText, onClick, ...props }) => {
   if (buttonText) {
     return <ButtonInput buttonText={buttonText} onClick={onClick} {...props} />;
+  } else if (props.type === 'radio') {
+    return <RadioButtons {...props} />;
   } else if (pattern) {
     return <NumericInput pattern={pattern} {...props} />;
   } else if (props.type === 'textarea') {
@@ -147,5 +149,32 @@ export const TextArea = ({ label, name, ...props }) => {
         style={{ width: '100%' }}
       />
     </>
+  );
+};
+
+export const RadioButtons = ({ name, label, options, ...props }) => {
+  const { values, setFieldValue } = useFormikContext();
+
+  return (
+    <FormControl>
+      <FormLabel htmlFor={name}>{label}</FormLabel>
+      <RadioGroup
+        row
+        name={name}
+        value={values[name]}
+        onChange={ (e) => { setFieldValue(name, parseInt(e.currentTarget.value)) } }>
+
+        {options.map((option) => (
+          <FormControlLabel
+            sx={{ mr: 1 }}
+            key={option.value}
+            label={option.label}
+            value={option.value.toString()}
+            labelPlacement="start"
+            control={<Radio />}
+          />
+        ))}
+      </RadioGroup>
+    </FormControl>
   );
 };
