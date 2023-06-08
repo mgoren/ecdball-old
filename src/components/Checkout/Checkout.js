@@ -11,6 +11,8 @@ import Receipt from 'components/Receipt';
 import TogglePaymentMode from 'components/TogglePaymentMode';
 import ButtonRow from 'components/ButtonRow/index.js';
 import { StyledPaper, Title } from 'components/Layout/SharedStyles';
+import { Hidden } from '@mui/material';
+import { MyMobileStepper } from 'components/MyStepper';
 
 export default function Checkout({ order, setOrder, setError, setCurrentPage }) {
   const [paying, setPaying] = useState(null);
@@ -103,7 +105,15 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
       </StyledPaper>
 
       {!paying && !processing &&
-        <ButtonRow backButtonProps = {{ onClick: handleClickBackButton }} />
+        <>
+          <Hidden mdDown>
+            <ButtonRow backButtonProps = {{ onClick: handleClickBackButton }} />
+          </Hidden>
+
+          <Hidden mdUp>
+            <MyMobileStepper currentPage={'checkout'} onClickBack={handleClickBackButton} />
+          </Hidden>
+        </>
       }
     </section>
   );

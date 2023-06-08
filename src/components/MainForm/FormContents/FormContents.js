@@ -6,6 +6,8 @@ import MiscInfo from '../MiscInfo';
 import PaymentInfo from '../PaymentInfo';
 import ButtonRow from 'components/ButtonRow';
 import { NUM_PAGES } from 'config';
+import { Hidden } from '@mui/material';
+import { MyMobileStepper } from 'components/MyStepper';
 
 export default function FormContents({ admissionQuantity, setAdmissionQuantity, currentPage, setCurrentPage }) {
   const formik = useFormikContext();
@@ -51,10 +53,17 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
       {currentPage === 1 && <ContactInfo admissionQuantity={admissionQuantity} clampValue={clampValue} />}
       {currentPage === 2 && <MiscInfo />}
       {currentPage === 3 && <PaymentInfo donate={donate} setDonate={setDonate} clampValue={clampValue} admissionQuantity={admissionQuantity} />}
-      <ButtonRow
-        backButtonProps = {currentPage > 1 ? { onClick: handleClickBackButton } : undefined}
-        nextButtonProps = {{ type: 'submit', text: currentPage === NUM_PAGES ? 'Checkout...' : 'Next...'}}
-      />
+
+      <Hidden smDown>
+        <ButtonRow
+          backButtonProps = {currentPage > 1 ? { onClick: handleClickBackButton } : undefined}
+          nextButtonProps = {{ type: 'submit', text: currentPage === NUM_PAGES ? 'Checkout...' : 'Next...'}}
+        />
+      </Hidden>
+
+      <Hidden mdUp>
+        <MyMobileStepper currentPage={currentPage} onClickBack={handleClickBackButton} />
+      </Hidden>
     </Form>
   );
 }

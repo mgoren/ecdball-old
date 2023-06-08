@@ -5,6 +5,12 @@ import * as Yup from 'yup';
 export const SANDBOX_MODE = true; // for testing only
 
 export const NUM_PAGES = 3;
+export const STEPS = [
+  {key: 1, label: 'Contact'},
+  {key: 2, label: 'Misc'},
+  {key: 3, label: 'Payment'},
+  {key: 'checkout', label: 'Checkout'}
+];
 
 export const PAYMENT_METHODS = ['paypal', 'check']; // options are paypal and/or check (first is default)
 
