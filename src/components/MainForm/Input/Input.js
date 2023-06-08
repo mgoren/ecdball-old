@@ -2,7 +2,6 @@ import { isMobile } from "react-device-detect";
 import { Field, useFormikContext, getIn } from 'formik';
 import { PatternFormat } from 'react-number-format';
 import { Box, Typography, TextField, Button, Checkbox, FormControlLabel, FormControl, FormLabel, RadioGroup, Radio } from '@mui/material';
-import { TextareaAutosize } from '@mui/base';
 
 export const Input = ({ pattern, buttonText, onClick, ...props }) => {
   if (buttonText) {
@@ -143,10 +142,11 @@ export const TextArea = ({ label, name, ...props }) => {
         {label}
       </Typography>
       <Field
+        as={TextField}
         name={name}
-        as={TextareaAutosize}
-        minRows={5}
-        style={{ width: '100%' }}
+        multiline
+        rows={5}
+        sx={{ width: '100%' }}
       />
     </>
   );
