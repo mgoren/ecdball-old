@@ -28,7 +28,7 @@ export default function OrderSummary({ order, currentPage }) {
             Miscellanea
           </Typography>
           <p>
-            Volunteer: {order.volunteer.toString().length > 0 ? order.volunteer.toString() : ' not signed up'}<br />
+            Volunteer: {order.volunteer.toString().length > 0 ? order.volunteer.toString().split(',').join(', ') : ' not signed up'}<br />
             Share my info with other organizers: {order.share.toString().length > 0 ? 'yes' : 'no'}<br />
             {order.comments && <>Comments: {order.comments}<br /></>}
           </p>
