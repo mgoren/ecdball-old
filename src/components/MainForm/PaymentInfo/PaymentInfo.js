@@ -4,8 +4,11 @@ import { RightAlignedInput } from '../Input';
 import { ADMISSION_COST_RANGE, DONATION_OPTION, DONATION_RANGE } from "config";
 import { StyledPaper, Title } from 'components/Layout/SharedStyles';
 import { InputAdornment } from '@mui/material';
+import { useFormikContext } from 'formik';
 
 export default function PaymentInfo({ donate, setDonate, clampValue, admissionQuantity }) {
+  const { values } = useFormikContext();
+
   useEffect(() => { scrollToTop(); },[])
   
   return (
@@ -60,7 +63,7 @@ export default function PaymentInfo({ donate, setDonate, clampValue, admissionQu
                 range={DONATION_RANGE}
                 onBlur={(event) => clampValue({ event: event, range: DONATION_RANGE})}
                 InputProps={{ startAdornment: <InputAdornment position='start'>$</InputAdornment> }}
-                autoFocus={true}
+                autoFocus={values['donation'] === 0}
                 // onFocus={(e) => e.target.select()}
               />
             }
