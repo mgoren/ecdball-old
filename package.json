@@ -25,6 +25,7 @@
     "react-bootstrap": "^2.7.2",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
+    "react-google-autocomplete": "^2.7.3",
     "react-input-mask": "^2.0.4",
     "react-loading-icons": "^1.1.0",
     "react-number-format": "^5.1.4",

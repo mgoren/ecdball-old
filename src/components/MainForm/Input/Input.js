@@ -1,7 +1,10 @@
+import { useEffect } from 'react';
 import { isMobile } from "react-device-detect";
 import { Field, useFormikContext, getIn } from 'formik';
 import { PatternFormat } from 'react-number-format';
 import { Box, Typography, TextField, Button, Checkbox, FormControlLabel, FormControl, FormLabel, RadioGroup, Radio } from '@mui/material';
+import { usePlacesWidget } from "react-google-autocomplete";
+import { useField } from 'formik';
 
 export const Input = ({ pattern, buttonText, onClick, ...props }) => {
   if (buttonText) {
@@ -12,6 +15,8 @@ export const Input = ({ pattern, buttonText, onClick, ...props }) => {
     return <NumericInput pattern={pattern} {...props} />;
   } else if (props.type === 'textarea') {
     return <TextArea {...props} />;
+  } else if (props.name.includes('address')) {
+    return <AddressAutocompleteInput {...props} />;
   } else {
     return <TextInput {...props} />;
   }
@@ -176,5 +181,72 @@ export const RadioButtons = ({ name, label, options, ...props }) => {
         ))}
       </RadioGroup>
     </FormControl>
+  );
+};
+
+const AddressAutocompleteInput = ({ label, ...props }) => {
+  const { setFieldValue, validateField } = useFormikContext();
+  const [field, meta] = useField(props);
+  const { ref } = usePlacesWidget({
+    apiKey: process.env.REACT_APP_GOOGLE_PLACES_API_KEY,
+    onPlaceSelected: (place) => {
+      if (!place?.address_components) return;
+
+      console.log('place', place)
+      const addressComponents = place.address_components;
+      console.log(addressComponents);
+
+      const fieldToComponentMapping = {
+        address: ['street_number', 'route'],
+        city: ['locality', 'sublocality_level_1'],
+        state: ['administrative_area_level_1'],
+        zip: ['postal_code'],
+        country: ['country'],
+      };
+
+      const fieldValues = Object.keys(fieldToComponentMapping).reduce((acc, field) => {
+        const values = fieldToComponentMapping[field].map(componentType => {
+          const component = addressComponents.find(c => c.types.includes(componentType));
+          return component?.long_name;
+        });
+        return {
+          ...acc,
+          [field]: values.join(' ').trim(),
+        };
+      }, {});
+
+      console.log(fieldValues);
+
+      const personIndex = field.name.split('[')[1].split(']')[0];
+      Object.keys(fieldValues).forEach(async(key) => {
+        const fieldName = `people[${personIndex}][${key}]`;
+        await setFieldValue(fieldName, fieldValues[key]);
+        validateField(fieldName);
+      });
+    },
+    options: {
+      types: ['address'],
+      fields: ['address_components'],
+      componentRestrictions: { country: ['us', 'ca'] },
+    },
+  });
+
+  useEffect(() => {
+    const listener = (e) => {
+      if (e.key === "Enter") e.preventDefault();
+    };
+    document.addEventListener("keydown", listener);
+    return () => document.removeEventListener("keydown", listener);
+  }, []);
+
+  return (
+    <TextField
+      label={label}
+      {...field}
+      {...props}
+      inputRef={ref}
+      error={Boolean(meta.touched && meta.error)}
+      helperText={meta.touched && meta.error ? meta.error : ''}
+    />
   );
 };

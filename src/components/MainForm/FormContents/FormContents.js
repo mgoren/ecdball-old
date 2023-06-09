@@ -49,7 +49,7 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
   }
 
   return(
-    <Form>
+    <Form spellCheck='false'>
       {currentPage === 1 && <ContactInfo admissionQuantity={admissionQuantity} clampValue={clampValue} />}
       {currentPage === 2 && <MiscInfo />}
       {currentPage === 3 && <PaymentInfo donate={donate} setDonate={setDonate} clampValue={clampValue} admissionQuantity={admissionQuantity} />}
