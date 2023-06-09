@@ -31,11 +31,11 @@ export const DONATION_RANGE = [0, 999];
 
 const NAME_REGEX = "^[^<>&@]+$";
 const PRONOUNS_REGEX = "^[^<>&@]+$";
-const PHONE_REGEX = "^[0-9-() ]*$";
+const PHONE_REGEX = "^[2-9][0-9-() ]*$";
 const NAME_VALIDATION = Yup.string().matches(NAME_REGEX, 'Invalid characters :(');
 const PRONOUNS_VALIDATION = Yup.string().matches(PRONOUNS_REGEX, 'Invalid characters :(');
 const EMAIL_VALIDATION = Yup.string().email('Invalid email address');
-const PHONE_VALIDATION = Yup.string().matches(PHONE_REGEX, 'Please enter phone number in format ###-###-####.');
+const PHONE_VALIDATION = Yup.string().matches(PHONE_REGEX, 'Please enter a valid phone number.');
 export const CAPTCHA_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 export const PAYPAL_OPTIONS = {
   "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,
@@ -113,15 +113,15 @@ export const FIELD_CONFIG = {
     validation: Yup.string().required('Please enter street address.'),
     defaultValue: '',
     order: 8,
-    width: 9,
+    width: 6,
     autoComplete: 'street-address'
   },
   apartment: {
-    label: 'Apartment, etc.',
+    label: 'Apartment, Suite, etc.',
     validation: Yup.string(),
     defaultValue: '',
     order: 9,
-    width: 3,
+    width: 6,
     autoComplete: 'address-line2'
   },
   city: {
