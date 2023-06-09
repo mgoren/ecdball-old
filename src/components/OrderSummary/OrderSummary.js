@@ -26,7 +26,7 @@ export default function OrderSummary({ order, currentPage }) {
             {person.first} {person.last} {person.pronouns && <>({person.pronouns})</>}<br />
             {person.email}<br />
             {person.phone}<br />
-            {person.apartment ? `${person.address} ${person.apartment}` : person.address}<br />
+            {displayAddress(person.address, person.apartment)}<br />
             {person.city}, {person.state} {person.zip}<br />
             {person.country && <>{person.country}</>}
           </p>
@@ -64,4 +64,9 @@ export default function OrderSummary({ order, currentPage }) {
       }
     </>
   );
+}
+
+function displayAddress(address, apartment) {
+  const displayApartment = apartment?.length > 0 && isFinite(apartment.slice(0,1)) ? `#${apartment}` : apartment;
+  return apartment ? `${address} ${displayApartment}` : address;
 }

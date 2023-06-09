@@ -38,11 +38,12 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
 
 	const saveOrderToFirebase = (paypalOrder) => {
     console.log(`paid via ${paymentMethod}`);
+
     const updatedOrder = {
       ...order,
       volunteer: order.volunteer,
       share: order.share,
-      people: order.people.slice(0, order.admissionQuantity),
+      people: order.people.slice(0, order.admissionQuantity).map(updateApartment),
       total,
       deposit: paymentMethod === 'check' ? 0 : total,
       paypalEmail: paymentMethod === 'check' ? 'check' : paypalOrder.payer.email_address,
@@ -118,4 +119,8 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
       }
     </section>
   );
+}
+
+function updateApartment(person) {
+  return (person.apartment && /^\d/.test(person.apartment)) ? { ...person, apartment: `#${person.apartment}` } : person;
 }
