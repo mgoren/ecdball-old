@@ -113,14 +113,22 @@ export const FIELD_CONFIG = {
     validation: Yup.string().required('Please enter street address.'),
     defaultValue: '',
     order: 8,
-    width: 12,
+    width: 9,
     autoComplete: 'street-address'
+  },
+  apartment: {
+    label: 'Apartment, etc.',
+    validation: Yup.string(),
+    defaultValue: '',
+    order: 9,
+    width: 3,
+    autoComplete: 'address-line2'
   },
   city: {
     label: 'City',
     validation: Yup.string().required('Please enter city.'),
     defaultValue: '',
-    order: 9,
+    order: 10,
     width: 6,
     autoComplete: 'city'
   },
@@ -128,7 +136,7 @@ export const FIELD_CONFIG = {
     label: 'State / Province',
     validation: Yup.string().required('Please enter state or province.'),
     defaultValue: '',
-    order: 10,
+    order: 11,
     width: 6,
     autoComplete: 'state'
   },
@@ -136,7 +144,7 @@ export const FIELD_CONFIG = {
     label: 'Zip / Postal code',
     validation: Yup.string().required('Please enter zip/postal code.'),
     defaultValue: '',
-    order: 11,
+    order: 12,
     width: 6,
     autoComplete: 'postal-code'
   },
@@ -144,7 +152,7 @@ export const FIELD_CONFIG = {
     label: 'Country',
     validation: Yup.string(),
     defaultValue: '',
-    order: 12,
+    order: 13,
     width: 6,
     autoComplete: 'country'
   },
@@ -154,8 +162,8 @@ export const FIELD_CONFIG = {
 // below is config for this particular registration instance
 
 // order of FIRST_PERSON_FIELDS is used in emailConfirmationIsFirstInvalidField
-const FIRST_PERSON_FIELDS = ['first', 'last', 'nametag', 'email', 'emailConfirmation', 'phone', 'address', 'city', 'state', 'zip', 'country'];
-const OTHER_PERSON_FIELDS = ['first', 'last', 'nametag', 'email', 'phone', 'address', 'city', 'state', 'zip', 'country'];
+const FIRST_PERSON_FIELDS = ['first', 'last', 'nametag', 'email', 'emailConfirmation', 'phone', 'address', 'apartment', 'city', 'state', 'zip', 'country'];
+const OTHER_PERSON_FIELDS = ['first', 'last', 'nametag', 'email', 'phone', 'address', 'apartment', 'city', 'state', 'zip', 'country'];
 
 export const PERSON_INPUTS = [
   { label: 'Your contact information', fields: FIRST_PERSON_FIELDS },

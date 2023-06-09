@@ -4,9 +4,14 @@ import { VOLUNTEER_OPTIONS } from 'config';
 export default function OrderSummary({ order, currentPage }) {
   const total = order.admissionCost * order.admissionQuantity + order.donation;
 
-  const volunteerTitles = order.volunteer.map(volunteer => {
+  let volunteerTitles = order.volunteer.map(volunteer => {
     const volunteerOption = VOLUNTEER_OPTIONS.find(option => option.value === volunteer);
     return volunteerOption ? volunteerOption.label : volunteer;
+  });
+  volunteerTitles.sort((a, b) => {
+    const aIndex = VOLUNTEER_OPTIONS.findIndex(option => option.label === a);
+    const bIndex = VOLUNTEER_OPTIONS.findIndex(option => option.label === b);
+    return aIndex - bIndex;
   });
 
   return (
@@ -21,7 +26,7 @@ export default function OrderSummary({ order, currentPage }) {
             {person.first} {person.last} {person.pronouns && <>({person.pronouns})</>}<br />
             {person.email}<br />
             {person.phone}<br />
-            {person.address}<br />
+            {person.apartment ? `${person.address} ${person.apartment}` : person.address}<br />
             {person.city}, {person.state} {person.zip}<br />
             {person.country && <>{person.country}</>}
           </p>
@@ -34,7 +39,7 @@ export default function OrderSummary({ order, currentPage }) {
             Miscellanea
           </Typography>
           <p>
-            Volunteer: {order.volunteer.length > 1 ? volunteerTitles.join(', ') : ' not signed up'}<br />
+            Volunteer: {!!order.volunteer.length ? volunteerTitles.join(', ') : ' not signed up'}<br />
             Share my info with other organizers: {order.share.toString().length > 0 ? 'yes' : 'no'}<br />
             {order.comments && <>Comments: {order.comments}<br /></>}
           </p>
