@@ -198,10 +198,11 @@ const AddressAutocompleteInput = ({ label, ...props }) => {
 
       const fieldToComponentMapping = {
         address: ['street_number', 'route'],
+        apartment: ['apartment', 'subpremise'],
         city: ['locality', 'sublocality_level_1'],
         state: ['administrative_area_level_1'],
         zip: ['postal_code'],
-        country: ['country'],
+        // country: ['country'],
       };
 
       const fieldValues = Object.keys(fieldToComponentMapping).reduce((acc, field) => {

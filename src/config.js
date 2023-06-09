@@ -113,15 +113,15 @@ export const FIELD_CONFIG = {
     validation: Yup.string().required('Please enter street address.'),
     defaultValue: '',
     order: 8,
-    width: 6,
+    width: 9,
     autoComplete: 'street-address'
   },
   apartment: {
-    label: 'Apartment, Suite, etc.',
+    label: 'Apt, Suite, etc.',
     validation: Yup.string(),
     defaultValue: '',
     order: 9,
-    width: 6,
+    width: 3,
     autoComplete: 'address-line2'
   },
   city: {
@@ -137,7 +137,7 @@ export const FIELD_CONFIG = {
     validation: Yup.string().required('Please enter state or province.'),
     defaultValue: '',
     order: 11,
-    width: 6,
+    width: 3,
     autoComplete: 'state'
   },
   zip: {
@@ -145,7 +145,7 @@ export const FIELD_CONFIG = {
     validation: Yup.string().required('Please enter zip/postal code.'),
     defaultValue: '',
     order: 12,
-    width: 6,
+    width: 3,
     autoComplete: 'postal-code'
   },
   country: {
@@ -153,7 +153,7 @@ export const FIELD_CONFIG = {
     validation: Yup.string(),
     defaultValue: '',
     order: 13,
-    width: 6,
+    width: 12,
     autoComplete: 'country'
   },
 }
@@ -162,8 +162,8 @@ export const FIELD_CONFIG = {
 // below is config for this particular registration instance
 
 // order of FIRST_PERSON_FIELDS is used in emailConfirmationIsFirstInvalidField
-const FIRST_PERSON_FIELDS = ['first', 'last', 'nametag', 'email', 'emailConfirmation', 'phone', 'address', 'apartment', 'city', 'state', 'zip', 'country'];
-const OTHER_PERSON_FIELDS = ['first', 'last', 'nametag', 'email', 'phone', 'address', 'apartment', 'city', 'state', 'zip', 'country'];
+const FIRST_PERSON_FIELDS = ['first', 'last', 'nametag', 'email', 'emailConfirmation', 'phone', 'address', 'apartment', 'city', 'state', 'zip'];
+const OTHER_PERSON_FIELDS = ['first', 'last', 'nametag', 'email', 'phone', 'address', 'apartment', 'city', 'state', 'zip'];
 
 export const PERSON_INPUTS = [
   { label: 'Your contact information', fields: FIRST_PERSON_FIELDS },
