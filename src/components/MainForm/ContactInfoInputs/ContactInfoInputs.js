@@ -18,6 +18,7 @@ export default function ContactInfoInputs({ fields, index }) {
             fullWidth
             mask='_'
             variant='standard'
+            hidden={FIELD_CONFIG[field].hidden}
           />
         </Grid>
       ))}

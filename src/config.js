@@ -154,7 +154,8 @@ export const FIELD_CONFIG = {
     defaultValue: '',
     order: 13,
     width: 12,
-    autoComplete: 'country'
+    autoComplete: 'country',
+    hidden: true
   },
 }
 
@@ -162,8 +163,8 @@ export const FIELD_CONFIG = {
 // below is config for this particular registration instance
 
 // order of FIRST_PERSON_FIELDS is used in emailConfirmationIsFirstInvalidField
-const FIRST_PERSON_FIELDS = ['first', 'last', 'nametag', 'email', 'emailConfirmation', 'phone', 'address', 'apartment', 'city', 'state', 'zip'];
-const OTHER_PERSON_FIELDS = ['first', 'last', 'nametag', 'email', 'phone', 'address', 'apartment', 'city', 'state', 'zip'];
+const FIRST_PERSON_FIELDS = ['first', 'last', 'nametag', 'email', 'emailConfirmation', 'phone', 'address', 'apartment', 'city', 'state', 'zip', 'country'];
+const OTHER_PERSON_FIELDS = ['first', 'last', 'nametag', 'email', 'phone', 'address', 'apartment', 'city', 'state', 'zip', 'country'];
 
 export const PERSON_INPUTS = [
   { label: 'Your contact information', fields: FIRST_PERSON_FIELDS },

@@ -39,7 +39,7 @@ const ButtonInput = ({ buttonText, onClick, ...props }) => {
   );
 };
 
-const TextInput = ({ label, name, type, ...props }) => {
+const TextInput = ({ label, name, type, hidden, ...props }) => {
   const { touched, errors, values, setFieldValue, handleBlur } = useFormikContext();
 
   const handleBlurAndSetNametag = (e) => {
@@ -65,6 +65,7 @@ const TextInput = ({ label, name, type, ...props }) => {
             <TextField
               sx={{
                 marginBottom: '.3rem',
+                display: hidden ? 'none' : 'block',
                 // '& .MuiFormHelperText-root': { fontSize: '.9rem' }
               }}
               type={type}
@@ -202,7 +203,7 @@ const AddressAutocompleteInput = ({ label, ...props }) => {
         city: ['locality', 'sublocality_level_1'],
         state: ['administrative_area_level_1'],
         zip: ['postal_code'],
-        // country: ['country'],
+        country: ['country'],
       };
 
       const fieldValues = Object.keys(fieldToComponentMapping).reduce((acc, field) => {
