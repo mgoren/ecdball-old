@@ -1,4 +1,5 @@
-import { Typography, Link, Box, Container, Divider } from '@mui/material';
+import { Typography, Box, Container, Divider } from '@mui/material';
+import { StyledLink } from 'components/Layout/SharedStyles';
 
 export default function Home() {
 
@@ -16,18 +17,20 @@ export default function Home() {
       </Box>
 
       <Typography variant="h5" gutterBottom>
-        <p>Dances led by<br/><Link href="/staff#BruceHamilton">Bruce Hamilton</Link></p>
+        <p>Dances led by<br/><StyledLink to="/staff#BruceHamilton">Bruce Hamilton</StyledLink></p>
         <p>
-          Music by <em><Link href="/staff#FineCompanions">Fine Companions</Link></em><br />
-          (<Link href="/staff#BetsyBranch">Betsy Branch</Link>,&nbsp;
-          <Link href="/staff#LisaScott">Lisa Scott</Link><br/>
-          <Link href="/staff#BillTomczak">Bill Tomczak</Link>,&nbsp;
-          <Link href="/staff#ErikWeberg">Erik Weberg</Link>)
+          Music by <em><StyledLink to="/staff#FineCompanions">Fine Companions</StyledLink></em><br />
+          (
+            <StyledLink to="/staff#BetsyBranch">Betsy Branch</StyledLink>,&nbsp;
+            <StyledLink to="/staff#LisaScott">Lisa Scott</StyledLink><br/>
+            <StyledLink to="/staff#BillTomczak">Bill Tomczak</StyledLink>,&nbsp;
+            <StyledLink to="/staff#ErikWeberg">Erik Weberg</StyledLink>
+          )
           </p>
       </Typography>
 
       <Typography variant="h5" gutterBottom>
-        <p>Sound provided by <Link href="/staff#JohnOorthuys">John Oorthuys</Link></p>
+        <p>Sound provided by <StyledLink to="/staff#JohnOorthuys">John Oorthuys</StyledLink></p>
       </Typography>
 
       <Typography variant="h5">
@@ -51,11 +54,11 @@ export default function Home() {
       <Divider component="hr" sx={{borderBottomWidth: 4, mt: 4, mb: 4}}/>
 
       <Typography variant="h5" gutterBottom>
-        Pre-ball <Link href="workshops.htm">workshops</Link>:
+        Pre-ball <StyledLink to="workshops.htm">workshops</StyledLink>:
       </Typography>
       <Typography variant="h6" gutterBottom>
         Oct 2, Oct 9, Oct 23 from 3-5pm<br/>
-        <Link href="http://www.renpdx.org/" target="_blank" rel="noreferrer">A Renaissance School</Link><br />
+        <StyledLink to="http://www.renpdx.org/" target="_blank" rel="noreferrer">A Renaissance School</StyledLink><br />
         234 S Bancroft St, Portland, OR 97239
       </Typography>
 
