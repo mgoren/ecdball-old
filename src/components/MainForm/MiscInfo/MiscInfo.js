@@ -3,6 +3,7 @@ import { scrollToTop } from 'utils.js';
 import { Input, CheckboxInput } from '../Input';
 import { StyledPaper, Title } from 'components/Layout/SharedStyles';
 import { Box } from '@mui/material';
+import { VOLUNTEER_OPTIONS } from 'config';
 
 export default function MiscInfo() {
   useEffect(() => { scrollToTop(); },[])
@@ -14,12 +15,7 @@ export default function MiscInfo() {
           <CheckboxInput
             label='I would like to volunteer to help! I am available for:'
             name='volunteer'
-            options={[
-              { label: 'Airport pick-up/drop-off', value: 'airport' },
-              { label: 'Friday pre-ball dance', value: 'friday' },
-              { label: 'Saturday pre-workshop decorating', value: 'saturday-pre' },
-              { label: 'Saturday evening post-ball', value: 'saturday-post' },
-            ]}
+            options={VOLUNTEER_OPTIONS}
           />
         </Box>
 

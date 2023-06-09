@@ -177,3 +177,10 @@ export const ORDER_DEFAULTS = {
   share: [],
   comments: ''
 }
+
+export const VOLUNTEER_OPTIONS = [
+  { label: 'Airport pick-up/drop-off', value: 'airport' },
+  { label: 'Friday pre-ball dance', value: 'friday' },
+  { label: 'Saturday pre-workshop decorating', value: 'saturday-pre' },
+  { label: 'Saturday evening post-ball', value: 'saturday-post' },
+];

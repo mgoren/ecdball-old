@@ -1,7 +1,13 @@
 import { Box, Typography } from '@mui/material';
+import { VOLUNTEER_OPTIONS } from 'config';
 
 export default function OrderSummary({ order, currentPage }) {
   const total = order.admissionCost * order.admissionQuantity + order.donation;
+
+  const volunteerTitles = order.volunteer.map(volunteer => {
+    const volunteerOption = VOLUNTEER_OPTIONS.find(option => option.value === volunteer);
+    return volunteerOption ? volunteerOption.label : volunteer;
+  });
 
   return (
     <>
@@ -28,7 +34,7 @@ export default function OrderSummary({ order, currentPage }) {
             Miscellanea
           </Typography>
           <p>
-            Volunteer: {order.volunteer.toString().length > 0 ? order.volunteer.toString().split(',').join(', ') : ' not signed up'}<br />
+            Volunteer: {order.volunteer.length > 1 ? volunteerTitles.join(', ') : ' not signed up'}<br />
             Share my info with other organizers: {order.share.toString().length > 0 ? 'yes' : 'no'}<br />
             {order.comments && <>Comments: {order.comments}<br /></>}
           </p>

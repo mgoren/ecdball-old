@@ -40,8 +40,8 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
     console.log(`paid via ${paymentMethod}`);
     const updatedOrder = {
       ...order,
-      volunteer: order.volunteer.join(', '),
-      share: order.share.join(', '),
+      volunteer: order.volunteer,
+      share: order.share,
       people: order.people.slice(0, order.admissionQuantity),
       total,
       deposit: paymentMethod === 'check' ? 0 : total,
