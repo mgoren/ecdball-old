@@ -74,3 +74,38 @@ function PaypalReceipt({ order }) {
     </>
   );
 }
+
+export function AdditionalPersonReceipt({ order }) {
+  return (
+    <>
+      <p>
+        You have been registered for the 2023 ECD Ball.<br />
+        Your name will be on a list at the door. (You will not receive a physical ticket.)
+      </p>
+
+      <Divider component="hr" sx={{borderBottomWidth: 4, mt: 4, mb: 4}}/>
+
+      <Typography component='h6' variant="h6" gutterBottom={true}>Important info</Typography>
+
+      <p>If you have not already done so, you can expedite the entry process by doing these ahead of time:</p>
+
+      <p>
+        &#8674; Fill out the <StyledLink to={websiteLink(CONTACT_TRACING_URL)} target="_blank" rel="noreferrer">PCDC Contact Tracing form</StyledLink> online.<br />
+        &#8674; Print and bring with you a signed copy of the <StyledLink to={websiteLink(WAIVER_URL)} target="_blank" rel="noreferrer">PCDC event waiver</StyledLink>.
+      </p>
+
+      <Divider component="hr" sx={{borderBottomWidth: 4, mt: 4, mb: 4}}/>
+
+      <Typography component='h6' variant="h6" gutterBottom={true}>Event details</Typography>
+
+      <p>
+        Event info here<br />
+      </p>
+      <p><strong>Covid policy:</strong> Everyone must be vaccinated, including at least one booster if eligible. A well-fitted mask covering nose and mouth is required for attendees. PCDC's full Covid policy is available <StyledLink to="https://pcdc.fun/covid19" target="_blank" rel="noreferrer">here</StyledLink>.</p>
+      <p>
+        See <StyledLink to={websiteLink(DETAILS_URL)} target="_blank" rel="noreferrer">{DETAILS_URL}</StyledLink> for further details.<br />
+        Email <StyledLink to={mailtoLink(EMAIL_CONTACT)}>{EMAIL_CONTACT}</StyledLink> if you have any questions.
+      </p>
+    </>
+  )
+}

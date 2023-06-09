@@ -7,7 +7,7 @@ import db from 'firebase.js';
 import PaypalCheckoutButton from 'components/PaypalCheckoutButton';
 import Check from "components/Check";
 import Loading from 'components/Loading';
-import Receipt from 'components/Receipt';
+import Receipt, { AdditionalPersonReceipt } from 'components/Receipt';
 import TogglePaymentMode from 'components/TogglePaymentMode';
 import ButtonRow from 'components/ButtonRow/index.js';
 import { StyledPaper, Title } from 'components/Layout/SharedStyles';
@@ -49,7 +49,8 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
       timestamp: serverTimestamp()
     };
     const receipt = renderToStaticMarkup(<Receipt order={updatedOrder} currentPage='confirmation' />);
-    const updatedOrderWithReceipt = { ...updatedOrder, receipt };
+    const additionalPersonReceipt = renderToStaticMarkup(<AdditionalPersonReceipt order={updatedOrder} />);
+    const updatedOrderWithReceipt = { ...updatedOrder, receipt, additionalPersonReceipt };
     console.log('setting order', updatedOrderWithReceipt);
     setOrder(updatedOrderWithReceipt);
 		push(ref(db, 'orders/'), updatedOrderWithReceipt).then(() => {
