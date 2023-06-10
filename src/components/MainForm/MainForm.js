@@ -4,6 +4,7 @@ import { removeExtraPeople, sanitizeObject, warnBeforeUserLeavesSite } from 'uti
 import FormContents from "./FormContents";
 import { validationSchema } from './validationSchema';
 import { NUM_PAGES } from 'config';
+import countryMapping from 'countryMapping';
 
 export default function MainForm({ order, setOrder, currentPage, setCurrentPage }) {
   const [admissionQuantity, setAdmissionQuantity] = useState(order.admissionQuantity);
@@ -17,12 +18,12 @@ export default function MainForm({ order, setOrder, currentPage, setCurrentPage 
 
   // it doesn't get here until all validations are passing
   function handleNextPage(values, actions) {
-    // actions.setTouched({});
     const submittedOrder = Object.assign({}, values);
     const trimmedOrder = removeExtraPeople(submittedOrder);
     const sanitizedOrder = sanitizeObject(trimmedOrder);
-    console.log(sanitizedOrder);
-    setOrder(sanitizedOrder);
+    const orderWithCountry = { ...sanitizedOrder, people: sanitizedOrder.people.map(updateCountry) };
+    console.log(orderWithCountry);
+    setOrder(orderWithCountry);
     setCurrentPage(currentPage === NUM_PAGES ? 'checkout' : currentPage + 1);
   }
 
@@ -38,4 +39,10 @@ export default function MainForm({ order, setOrder, currentPage, setCurrentPage 
       />
     </Formik>
   );
+}
+
+function updateCountry(person) {
+  const region = person.state.toLowerCase().replace(/\s/g, '').trim();
+  const country = countryMapping[region] || person.country;
+  return { ...person, country };
 }
