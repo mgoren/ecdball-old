@@ -3,9 +3,9 @@ import { useTheme } from '@mui/system';
 import { Button, Paper, Link, Typography } from '@mui/material';
 import { paperStyle } from './LayoutStyles';
 
-export const StyledPaper = (props) => {
+export const StyledPaper = ({ extraStyles = {}, ...props }) => {
   const theme = useTheme();
-  return <Paper sx={paperStyle(theme)} {...props} />;
+  return <Paper sx={paperStyle(theme, extraStyles)} {...props} />;
 };
 
 export const StyledGreyButton = styled(Button)(({ theme }) => ({

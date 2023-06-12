@@ -55,24 +55,23 @@ const rootStyle = (theme) => ({
   },
 });
 
-const paperStyle = (theme) => ({
-  maxWidth: 650,
-  margin: 'auto',
-  marginTop: theme.spacing(1),
-  marginBottom: theme.spacing(1),
-  padding: theme.spacing(2),
-  backgroundColor: theme.palette.background.paper,
-  [theme.breakpoints.up(600)]: {
-    padding: theme.spacing(3),
+const paperStyle = (theme, extraStyles) => ({
+  ...{
+    maxWidth: 650,
+    margin: 'auto',
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    padding: theme.spacing(2),
+    backgroundColor: theme.palette.background.paper,
+    [theme.breakpoints.up(600)]: {
+      padding: theme.spacing(3),
+    },
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6),
+    },
   },
-  [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-    marginTop: theme.spacing(6),
-    marginBottom: theme.spacing(6),
-  },
-  // [theme.breakpoints.down('sm')]: {
-  //   marginTop: 1,
-  //   marginBottom: 1,
-  // },
+  ...extraStyles
 });
 
 export { darkTheme, lightTheme, rootStyle, paperStyle };

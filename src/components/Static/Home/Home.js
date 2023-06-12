@@ -1,10 +1,10 @@
-import { Typography, Box, Container, Divider } from '@mui/material';
-import { StyledLink } from 'components/Layout/SharedStyles';
+import { Typography, Box, Divider } from '@mui/material';
+import { StyledLink, StyledPaper } from 'components/Layout/SharedStyles';
 
 export default function Home() {
 
   return (
-    <Container align="center">
+    <StyledPaper extraStyles={{ maxWidth: 750 }} align="center">
       <Typography variant="h4" gutterBottom>
         <p>
           Portland English Country Dance Ball<br />
@@ -67,6 +67,6 @@ export default function Home() {
       <Typography variant="h4" fontStyle="italic" gutterBottom>
         Registration opening soon
       </Typography>
-    </Container>
+    </StyledPaper>
   );
 }
