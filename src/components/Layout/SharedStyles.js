@@ -45,7 +45,7 @@ export const Title = ({ children, ...props }) => {
 export const PageTitle = ({ children, ...props }) => {
   return (
     <>
-      <Typography variant="h4" {...props}>
+      <Typography variant="h4" align='center' {...props}>
         {children}
       </Typography>
       <Divider component="hr" sx={{borderBottomWidth: 4, my: 4}}/>
@@ -63,7 +63,7 @@ export const Header = ({ children, ...props }) => {
 
 export const Paragraph = ({ children, ...props }) => {
   return (
-    <Typography variant="body1" sx={{ my: 2 }} {...props}>
+    <Typography variant="body1" sx={{ mb: 2 }} {...props}>
       {children}
     </Typography>
   )
