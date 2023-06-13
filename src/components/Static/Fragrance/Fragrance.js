@@ -20,7 +20,7 @@ export default function Fragrance() {
           A Healthy Environment for All
         </Typography>
 
-        <Box gutterBottom>
+        <Box>
         To provide a safe, healthy and pleasurable evening of dance for all, 
         we ask you not to wear scented products to any of the dance events 
         during the weekend. If you are chemically sensitive, please understand 
@@ -31,7 +31,7 @@ export default function Fragrance() {
           Why Fragrance-Free?
         </Typography>
 
-        <Box gutterBottom>
+        <Box>
         Chemical sensitivity is a health issue for some members of the dance 
         community, not a personal preference.  Some people simply cannot 
         tolerate even small amounts of chemicals in perfumes, after shave 
@@ -52,7 +52,7 @@ export default function Fragrance() {
           How to be Fragrance-Free?
         </Typography>
 
-        <Box gutterBottom>
+        <Box>
           The ball provides a special challenge as many of us are used to 
           "sprucing up" with colognes, perfumes, hair spray, and after shave. 
           Fancy clothes come out of storage smelling of mothballs or perfume. 
@@ -78,7 +78,7 @@ export default function Fragrance() {
         A list of fragrance-free personal products
         </Typography>
 
-        <Box gutterBottom>
+        <Box>
         Please consider bringing other fragrance-free personal products to use 
         for the weekend.  This will really make a difference. They can easily 
         be found at any natural food store or specialty stores like Trader 
