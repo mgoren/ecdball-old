@@ -4,7 +4,7 @@
 Set environment variables in `.env`
 
 **Production (with GitHub workflow and Firebase hosting):**
-Set environment variables as [secrets](https://github.com/mgoren/registration/settings/secrets/actions) on the repo and in the workflows in `.github`.
+Set environment variables as [secrets](https://github.com/mgoren/registration/settings/secrets/actions) on the repo and update `.github/workflows/firebase-hosting-merge.yml`.
 
 ```
 REACT_APP_PAYPAL_CLIENT_ID
@@ -16,6 +16,7 @@ REACT_APP_FIREBASE_MESSAGING_SENDER_ID
 REACT_APP_FIREBASE_APP_ID
 REACT_APP_FIREBASE_DATABASE_URL
 REACT_APP_RECAPTCHA_SITE_KEY
+REACT_APP_GOOGLE_PLACES_API_KEY
 ```
 
 # Deployment
@@ -25,8 +26,10 @@ REACT_APP_RECAPTCHA_SITE_KEY
 
 **Or:**
 
-`npm run build`
-`firebase deploy --only hosting`
+```sh
+npm run build
+firebase deploy --only hosting
+```
 
 # Registration site
 
