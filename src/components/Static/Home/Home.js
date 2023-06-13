@@ -1,18 +1,16 @@
-import { Typography, Box, Divider } from '@mui/material';
-import { StyledLink, StyledPaper } from 'components/Layout/SharedStyles';
+import { Typography, Box, } from '@mui/material';
+import { StyledLink, StyledPaper, PageTitle, SectionDivider } from 'components/Layout/SharedStyles';
 
 export default function Home() {
 
   return (
     <StyledPaper extraStyles={{ maxWidth: 750 }} align="center">
-      <Typography variant="h4" gutterBottom>
-        <p>
-          Portland English Country Dance Ball<br />
-          October 28-29, 2022
-        </p>
-      </Typography>
+      <PageTitle>
+        Portland English Country Dance Ball<br />
+        October 28-29, 2022
+      </PageTitle>
 
-      <Box my={2}>
+      <Box mt={-5} mb={2}>
         <img src={process.env.PUBLIC_URL + '/ecdball/ecdball-logo.jpg'} alt="ball logo" style={{ width: "100%", height: "auto" }} />
       </Box>
 
@@ -51,7 +49,7 @@ export default function Home() {
         social gathering for Ball attendees
       </Box>
 
-      <Divider component="hr" sx={{borderBottomWidth: 4, mt: 4, mb: 4}}/>
+      <SectionDivider/>
 
       <Typography variant="h5" gutterBottom>
         Pre-ball <StyledLink to="workshops.htm">workshops</StyledLink>:
@@ -62,7 +60,7 @@ export default function Home() {
         234 S Bancroft St, Portland, OR 97239
       </Typography>
 
-      <Divider component="hr" sx={{borderBottomWidth: 4, mt: 4, mb: 4}}/>
+      <SectionDivider/>
 
       <Typography variant="h4" fontStyle="italic" gutterBottom>
         Registration opening soon
