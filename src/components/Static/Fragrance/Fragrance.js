@@ -1,133 +1,127 @@
-import { Typography, Box, Divider } from '@mui/material';
-import { StyledPaper } from 'components/Layout/SharedStyles';
+import { StyledPaper, Paragraph, Header, PageTitle } from 'components/Layout/SharedStyles';
 
 export default function Fragrance() {
-
   return (
-    <StyledPaper extraStyles={{ maxWidth: 750 }} align="center">
-      <Typography variant="h4">
+    <StyledPaper extraStyles={{ maxWidth: 750 }}>
+      <PageTitle align='center'>
         Portland English Country Dance Ball<br />
         A Fragrance-Free Event
-      </Typography>
+      </PageTitle>
 
-      <Divider component="hr" sx={{borderBottomWidth: 4, my: 4}}/>
+      <Header>
+        A Healthy Environment for All
+      </Header>
 
-      <Box align="left">
-        <Typography variant="h6" gutterBottom>
-          A Healthy Environment for All
-        </Typography>
+      <Paragraph>
+        To provide a safe, healthy and pleasurable evening of dance for all, 
+        we ask you not to wear scented products to any of the dance events 
+        during the weekend. If you are chemically sensitive, please understand 
+        that we strive to facilitate a fragrance-free event.
+      </Paragraph>
 
-        <Typography variant='body1'>
-          To provide a safe, healthy and pleasurable evening of dance for all, 
-          we ask you not to wear scented products to any of the dance events 
-          during the weekend. If you are chemically sensitive, please understand 
-          that we strive to facilitate a fragrance-free event.
-        </Typography>
+      <Header>
+        Why Fragrance-Free?
+      </Header>
 
-        <Typography variant="h6" mt={3} gutterBottom>
-          Why Fragrance-Free?
-        </Typography>
+      <Paragraph>
+        Chemical sensitivity is a health issue for some members of the dance 
+        community, not a personal preference.  Some people simply cannot 
+        tolerate even small amounts of chemicals in perfumes, after shave 
+        lotion, fabric softeners, hand lotions, dry cleaning fluids and many 
+        other personal products such as dandruff shampoo, hair spray, and 
+        other products containing fragrances or various petrochemical products. 
+        These chemicals can act as respiratory irritants, as cardiac stimulants 
+        (skyrocketing blood pressure, palpitations), and as neurotoxins 
+        (blurred vision, loss of equilibrium). The effects can be cumulative 
+        and each exposure can lower the sensitivity threshold so that people 
+        react to more substances at lower doses and with more severe symptoms. 
+        Exposure to even small amounts can cause these symptoms and it can be 
+        especially dangerous while dancing if dancers collapse or become 
+        unconscious.
+      </Paragraph>
 
-        <Typography variant='body1'>
-          Chemical sensitivity is a health issue for some members of the dance 
-          community, not a personal preference.  Some people simply cannot 
-          tolerate even small amounts of chemicals in perfumes, after shave 
-          lotion, fabric softeners, hand lotions, dry cleaning fluids and many 
-          other personal products such as dandruff shampoo, hair spray, and 
-          other products containing fragrances or various petrochemical products. 
-          These chemicals can act as respiratory irritants, as cardiac stimulants 
-          (skyrocketing blood pressure, palpitations), and as neurotoxins 
-          (blurred vision, loss of equilibrium). The effects can be cumulative 
-          and each exposure can lower the sensitivity threshold so that people 
-          react to more substances at lower doses and with more severe symptoms. 
-          Exposure to even small amounts can cause these symptoms and it can be 
-          especially dangerous while dancing if dancers collapse or become 
-          unconscious.
-        </Typography>
+      <Header>
+        How to be Fragrance-Free?
+      </Header>
 
-        <Typography variant="h6" mt={3} gutterBottom>
-          How to be Fragrance-Free?
-        </Typography>
+      <Paragraph>
+        The ball provides a special challenge as many of us are used to 
+        "sprucing up" with colognes, perfumes, hair spray, and after shave. 
+        Fancy clothes come out of storage smelling of mothballs or perfume. 
+        Ball costumes are sent to the dry cleaners.  Please be aware of the 
+        issue and check your products for fragrance.  Please do your best 
+        to be Fragrance-Free. If you suffer from chemical sensitivity, 
+        please come prepared to protect yourself against exposure.
+      </Paragraph>
 
-        <Typography variant='body1'>
-          The ball provides a special challenge as many of us are used to 
-          "sprucing up" with colognes, perfumes, hair spray, and after shave. 
-          Fancy clothes come out of storage smelling of mothballs or perfume. 
-          Ball costumes are sent to the dry cleaners.  Please be aware of the 
-          issue and check your products for fragrance.  Please do your best 
-          to be Fragrance-Free. If you suffer from chemical sensitivity, 
-          please come prepared to protect yourself against exposure.
-        </Typography>
+      <Paragraph>
+        For the ball weekend, please:
+      </Paragraph>
 
-        <Typography variant='body1' sx={{ my: 2 }}>
-          For the ball weekend, please:
-        </Typography>
+      <ul>
+        <li>Save perfumes, colognes and aftershave for another occasion</li>
+        <li>Forego using dandruff shampoo or hair spray - even unscented varieties</li>
+        <li>Plan ahead so that you can thoroughly air any clothing that has been 
+          stored in mothballs, that has recently returned from the dry cleaners, 
+          or that has been worn previously with perfume</li>
+      </ul>
 
-        <ul>
-          <li>Save perfumes, colognes and aftershave for another occasion</li>
-          <li>Forego using dandruff shampoo or hair spray - even unscented varieties</li>
-          <li>Plan ahead so that you can thoroughly air any clothing that has been 
-            stored in mothballs, that has recently returned from the dry cleaners, 
-            or that has been worn previously with perfume</li>
-        </ul>
+      <Header>
+        A list of fragrance-free personal products
+      </Header>
 
-        <Typography variant="h6" mt={3} gutterBottom>
-          A list of fragrance-free personal products
-        </Typography>
+      <Paragraph>
+        Please consider bringing other fragrance-free personal products to use 
+        for the weekend.  This will really make a difference. They can easily 
+        be found at any natural food store or specialty stores like Trader 
+        Joe's or New Seasons, as well as local stores like Fred Meyer.
+      </Paragraph>
 
-        <Typography variant='body1'>
-          Please consider bringing other fragrance-free personal products to use 
-          for the weekend.  This will really make a difference. They can easily 
-          be found at any natural food store or specialty stores like Trader 
-          Joe's or New Seasons, as well as local stores like Fred Meyer.
-        </Typography>
+      <Paragraph>
+        Here are some sample brands and products we've used:
+      </Paragraph>
 
-        <Typography variant='body1' sx={{ my: 2 }}>
-          Here are some sample brands and products we've used:
-        </Typography>
+      <ul>
+        <li>
+          <strong>Deodorant:</strong> Tom's of Maine Unscented, 
+          The Crystal, Le Stick, Liken, Almay Fragrance-Free, Arm & Hammer 
+          Unscented
+        </li>
+        <li>
+          <strong>Shampoo and Conditioner:</strong> Pure Essentials, 
+          Organic Essence, KMS Fragrance-Free
+        </li>
+        <li>
+          <strong>Hair Gel:</strong> KMS, Aloe Vera 80
+        </li>
+        <li>
+          <strong>Shaving Cream:</strong> Noxzema Fragrance-Free, 
+          Kiss My Face, English Leather Fragrance-Free
+        </li>
+        <li>
+          <strong>Bar Soap:</strong> Pure & Natural Unscented Glycerin Soap
+        </li>
+        <li>
+          <strong>Laundry Soap:</strong> Arm & Hammer Fragrance-Free, All 
+          Free & Clear, Country Save, Ecover
+        </li>
+        <li>
+          <strong>Lip Balm:</strong> Look for beeswax-based (non-petroleum), 
+          unscented varieties
+        </li>
+        <li>
+          <strong>Body Powder:</strong> Use baking soda &/or cornstarch
+        </li>
+        <li>
+          <strong>Insect Repellent:</strong> Look for DEET-free products, 
+          such as Shoo! or Bite Blocker
+        </li>
+      </ul>
 
-        <ul>
-          <li>
-            <strong>Deodorant:</strong> Tom's of Maine Unscented, 
-            The Crystal, Le Stick, Liken, Almay Fragrance-Free, Arm & Hammer 
-            Unscented
-          </li>
-          <li>
-            <strong>Shampoo and Conditioner:</strong> Pure Essentials, 
-            Organic Essence, KMS Fragrance-Free
-          </li>
-          <li>
-            <strong>Hair Gel:</strong> KMS, Aloe Vera 80
-          </li>
-          <li>
-            <strong>Shaving Cream:</strong> Noxzema Fragrance-Free, 
-            Kiss My Face, English Leather Fragrance-Free
-          </li>
-          <li>
-            <strong>Bar Soap:</strong> Pure & Natural Unscented Glycerin Soap
-          </li>
-          <li>
-            <strong>Laundry Soap:</strong> Arm & Hammer Fragrance-Free, All 
-            Free & Clear, Country Save, Ecover
-          </li>
-          <li>
-            <strong>Lip Balm:</strong> Look for beeswax-based (non-petroleum), 
-            unscented varieties
-          </li>
-          <li>
-            <strong>Body Powder:</strong> Use baking soda &/or cornstarch
-          </li>
-          <li>
-            <strong>Insect Repellent:</strong> Look for DEET-free products, 
-            such as Shoo! or Bite Blocker
-          </li>
-        </ul>
-
-        <Typography variant='body1'>
-          Thanks for your continuing efforts to make our Portland ball weekend 
-          safe, healthy and great fun for all.
-        </Typography>
-      </Box>
+      <Paragraph>
+        Thanks for your continuing efforts to make our Portland ball weekend 
+        safe, healthy and great fun for all.
+      </Paragraph>
     </StyledPaper>
   );
 }

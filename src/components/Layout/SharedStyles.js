@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { useTheme } from '@mui/system';
-import { Button, Paper, Link, Typography } from '@mui/material';
+import { Button, Paper, Link, Typography, Divider } from '@mui/material';
 import { paperStyle } from './LayoutStyles';
 
 export const StyledPaper = ({ extraStyles = {}, ...props }) => {
@@ -41,3 +41,30 @@ export const Title = ({ children, ...props }) => {
     </Typography>
   );
 };
+
+export const PageTitle = ({ children, ...props }) => {
+  return (
+    <>
+      <Typography variant="h4" {...props}>
+        {children}
+      </Typography>
+      <Divider component="hr" sx={{borderBottomWidth: 4, my: 4}}/>
+    </>
+  );
+};
+
+export const Header = ({ children, ...props }) => {
+  return (
+    <Typography variant="h6" gutterBottom sx={{ mt: 3 }} {...props}>
+      {children}
+    </Typography>
+  );
+};
+
+export const Paragraph = ({ children, ...props }) => {
+  return (
+    <Typography variant="body1" sx={{ my: 2 }} {...props}>
+      {children}
+    </Typography>
+  )
+}
