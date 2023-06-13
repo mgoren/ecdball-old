@@ -3,7 +3,7 @@ import { StyledPaper, Paragraph, Header, PageTitle } from 'components/Layout/Sha
 export default function Fragrance() {
   return (
     <StyledPaper extraStyles={{ maxWidth: 750 }}>
-      <PageTitle align='center'>
+      <PageTitle>
         Portland English Country Dance Ball<br />
         A Fragrance-Free Event
       </PageTitle>
