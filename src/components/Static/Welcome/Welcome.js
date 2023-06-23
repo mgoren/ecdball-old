@@ -65,7 +65,7 @@ export default function Welcome() {
         At the Ball, dances will be walked through to remind dancers of the figures, and all dances 
         will be prompted.  We encourage you to familiarize yourself with 
         the <StyledLink internal={true} to="/dances">dances on the program</StyledLink> and check out 
-        the instructions and videos in our <StyledLink to="/ecdball/callerspacket_v1.5.pdf">caller's packet</StyledLink>.
+        the information in our <StyledLink to="/ecdball/2023PortlandBall_DanceInstructions.pdf">Dance Instructions packet</StyledLink>.
       </Paragraph>
 
       <Header>
