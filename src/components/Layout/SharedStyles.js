@@ -26,9 +26,15 @@ export const StyledGreyButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const StyledLink = ({ children, to, ...props }) => {
+export const StyledLink = ({ children, internal=false, to, ...props }) => {
   return (
-    <Link color="secondary" target="_blank" rel="noreferrer" href={to} {...props}>
+    <Link
+      href={to}
+      color='secondary'
+      target={internal ? '' : '_blank'}
+      rel={internal ? '' : 'noreferrer'}
+      {...props}
+    >
       {children}
     </Link>
   );
@@ -48,7 +54,7 @@ export const PageTitle = ({ children, ...props }) => {
       <Typography variant="h4" align='center' {...props}>
         {children}
       </Typography>
-      <Divider component="hr" sx={{borderBottomWidth: 4, my: 4}}/>
+      <SectionDivider/>
     </>
   );
 };
@@ -63,8 +69,14 @@ export const Header = ({ children, ...props }) => {
 
 export const Paragraph = ({ children, ...props }) => {
   return (
-    <Typography variant="body1" sx={{ mb: 2 }} {...props}>
+    <Typography variant="body1" sx={{ my: 2 }} {...props}>
       {children}
     </Typography>
+  )
+}
+
+export const SectionDivider = ({ children, ...props }) => {
+  return (
+    <Divider component="hr" sx={{borderBottomWidth: 4, mt: 4, mb: 4}}/>
   )
 }

@@ -1,43 +1,48 @@
-import { Typography, Box, Divider } from '@mui/material';
-import { StyledLink, StyledPaper } from 'components/Layout/SharedStyles';
+import { Typography, Box, } from '@mui/material';
+import { StyledLink, StyledPaper, PageTitle, SectionDivider, Paragraph } from 'components/Layout/SharedStyles';
 
 export default function Home() {
 
   return (
     <StyledPaper extraStyles={{ maxWidth: 750 }} align="center">
-      <Typography variant="h4" gutterBottom>
-        <p>
-          Portland English Country Dance Ball<br />
-          October 28-29, 2022
-        </p>
-      </Typography>
+      <PageTitle>
+        Portland English Country Dance Ball<br />
+        November 3-4-5, 2023
+      </PageTitle>
 
-      <Box my={2}>
+      <Box mt={-5} mb={2}>
         <img src={process.env.PUBLIC_URL + '/ecdball/ecdball-logo.jpg'} alt="ball logo" style={{ width: "100%", height: "auto" }} />
       </Box>
 
-      <Typography variant="h5" gutterBottom>
-        <p>Dances led by<br/><StyledLink to="/staff#BruceHamilton">Bruce Hamilton</StyledLink></p>
+      <Typography variant="h5">
+        <p>Dances led by<br/><StyledLink internal={true} to="/staff#ErikWeberg1">Erik Weberg</StyledLink></p>
         <p>
-          Music by <em><StyledLink to="/staff#FineCompanions">Fine Companions</StyledLink></em><br />
-          (
-            <StyledLink to="/staff#BetsyBranch">Betsy Branch</StyledLink>,&nbsp;
-            <StyledLink to="/staff#LisaScott">Lisa Scott</StyledLink><br/>
-            <StyledLink to="/staff#BillTomczak">Bill Tomczak</StyledLink>,&nbsp;
-            <StyledLink to="/staff#ErikWeberg">Erik Weberg</StyledLink>
-          )
-          </p>
+          Music by <em><StyledLink internal={true} to="/staff#FineCompanions">Fine Companions</StyledLink></em></p>
       </Typography>
 
+      <Paragraph sx={{ mt: -2 }}>
+          (
+            <StyledLink internal={true} to="/staff#BetsyBranch">Betsy Branch</StyledLink>,&nbsp;
+            <StyledLink internal={true} to="/staff#LisaScott">Lisa Scott</StyledLink><br/>
+            <StyledLink internal={true} to="/staff#BillTomczak">Bill Tomczak</StyledLink>,&nbsp;
+            <StyledLink internal={true} to="/staff#ErikWeberg2">Erik Weberg</StyledLink>
+          )
+      </Paragraph>
+
       <Typography variant="h5" gutterBottom>
-        <p>Sound provided by <StyledLink to="/staff#JohnOorthuys">John Oorthuys</StyledLink></p>
+        <p>Sound provided by <StyledLink internal={true} to="/staff#JohnOorthuys">John Oorthuys</StyledLink></p>
       </Typography>
+
+      <Paragraph sx={{ my: 6, mx: { sm: 6 } }}>
+        This year's Ball is mask optional. Proof of vaccination plus at least one booster is required.  
+        See the Welcome page for more information.
+      </Paragraph>
 
       <Typography variant="h5">
         All Ball weekend events at:
       </Typography>
       <Typography variant="h6">
-          Oaks Park Dance Pavilion<br/>
+          <StyledLink to="https://www.oakspark.com/dance-pavilion">Oaks Park Dance Pavilion</StyledLink><br/>
           7805 SE Oaks Park Way<br/>
           Portland, Oregon 97202
         </Typography>
@@ -46,26 +51,23 @@ export default function Home() {
         <p>$50/person</p>
       </Typography>
 
-      <Box fontStyle="italic" my={2}>
-        On Sunday, October 30, Ric Goldman hosts an après ball<br/>
-        social gathering for Ball attendees
-      </Box>
-
-      <Divider component="hr" sx={{borderBottomWidth: 4, mt: 4, mb: 4}}/>
+      <SectionDivider/>
 
       <Typography variant="h5" gutterBottom>
-        Pre-ball <StyledLink to="workshops.htm">workshops</StyledLink>:
+        Pre-ball <StyledLink internal={true} to="/workshops">workshops</StyledLink>:
       </Typography>
+
       <Typography variant="h6" gutterBottom>
-        Oct 2, Oct 9, Oct 23 from 3-5pm<br/>
-        <StyledLink to="http://www.renpdx.org/" target="_blank" rel="noreferrer">A Renaissance School</StyledLink><br />
+        September 24, October 15 and 29th<br />
+        3-5pm<br/>
+        <StyledLink to="https://www.renpdx.org/">A Renaissance School</StyledLink><br />
         234 S Bancroft St, Portland, OR 97239
       </Typography>
 
-      <Divider component="hr" sx={{borderBottomWidth: 4, mt: 4, mb: 4}}/>
+      <SectionDivider/>
 
       <Typography variant="h4" fontStyle="italic" gutterBottom>
-        Registration opening soon
+        Registration Open
       </Typography>
     </StyledPaper>
   );
