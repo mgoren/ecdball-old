@@ -40,7 +40,7 @@ export const CAPTCHA_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 export const PAYPAL_OPTIONS = {
   "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,
   "disable-funding": "paylater,credit",
-  "enable-funding": "venmo",
+  // "enable-funding": "venmo",
   "currency": "USD",
   "locale": "en_US"
 };
@@ -183,6 +183,7 @@ export const ORDER_DEFAULTS = {
   admissionQuantity: ADMISSION_QUANTITY_RANGE[0],
   donation: DONATION_RANGE[0],
   volunteer: [],
+  hospitality: [],
   share: [],
   comments: ''
 }
@@ -192,4 +193,10 @@ export const VOLUNTEER_OPTIONS = [
   { label: 'Friday pre-ball dance', value: 'friday' },
   { label: 'Saturday pre-workshop decorating', value: 'saturday-pre' },
   { label: 'Saturday evening post-ball', value: 'saturday-post' },
+  { label: 'Sunday Brunch setup and/or cleanup', value: 'sunday' },
+];
+
+export const HOSPITALITY_OPTIONS = [
+  { label: 'I am requesting hospitality', value: 'requesting' },
+  { label: 'I am offering hospitality', value: 'offering' },
 ];
