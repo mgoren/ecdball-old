@@ -11,7 +11,6 @@ export default function Dances() {
     <StyledPaper extraStyles={{ maxWidth: 750 }} align="center">
 
       <PageTitle>
-        Portland English Country Dance Ball<br />
         List of Dances
       </PageTitle>
 

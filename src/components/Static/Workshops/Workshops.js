@@ -7,7 +7,6 @@ export default function Workshops() {
     <StyledPaper extraStyles={{ maxWidth: 750 }}>
 
       <PageTitle>
-        Portland English Country Dance Ball<br />
         Workshops
       </PageTitle>
 

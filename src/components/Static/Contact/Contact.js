@@ -6,7 +6,6 @@ export default function Contact() {
   return (
     <StyledPaper extraStyles={{ maxWidth: 750 }}>
       <PageTitle>
-          Portland English Country Dance Ball<br />
           Contact Us
         </PageTitle>
 

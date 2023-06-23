@@ -4,7 +4,6 @@ export default function Fragrance() {
   return (
     <StyledPaper extraStyles={{ maxWidth: 750 }}>
       <PageTitle>
-        Portland English Country Dance Ball<br />
         A Fragrance-Free Event
       </PageTitle>
 

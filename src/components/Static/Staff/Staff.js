@@ -13,7 +13,6 @@ export default function Staff() {
   return (
     <StyledPaper extraStyles={{ maxWidth: 750 }}>
       <PageTitle>
-        Portland English Country Dance Ball<br />
         Our Wonderful Performers
       </PageTitle>
 

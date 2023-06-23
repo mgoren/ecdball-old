@@ -6,7 +6,6 @@ export default function Welcome() {
     <StyledPaper extraStyles={{ maxWidth: 750 }}>
 
       <PageTitle>
-        Portland English Country Dance Ball<br />
         Welcome!
       </PageTitle>
 
