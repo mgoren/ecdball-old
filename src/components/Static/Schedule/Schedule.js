@@ -39,7 +39,7 @@ export default function Schedule() {
           </Paragraph>
 
           <Paragraph>
-            <StyledLink to="http://oaksparkdancepavilion.com/">Oaks Park Dance Pavilion</StyledLink><br />
+            <StyledLink to="https://www.oakspark.com/dance-pavilion">Oaks Park Dance Pavilion</StyledLink><br />
             7805 Oaks Park Way<br />
             Portland, OR 97202<br />
             There is a $3 daily parking charge at Oaks Park
@@ -54,9 +54,9 @@ export default function Schedule() {
         <Box>
           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d358132.1996215507!2d-122.662034!3d45.471661!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54950ae61a3f21f5%3A0x8e96e1b9b9ac2b5c!2s7805%20SE%20Oaks%20Park%20Way%2C%20Portland%2C%20OR%2097202!5e0!3m2!1sen!2sus!4v1686634645346!5m2!1sen!2sus" 
           title="Google map embed for Oaks Park Dance Pavilion"  
-          style={{border: 0}} allowfullscreen="" loading="lazy" 
+          style={{border: 0}} allowFullScreen="" loading="lazy" 
           width={230} height={230}
-          referrerpolicy="no-referrer-when-downgrade" />
+          referrerPolicy="no-referrer-when-downgrade" />
         </Box>
       </Box>
 
@@ -92,11 +92,11 @@ export default function Schedule() {
           <Paragraph>
             <strong>The Ball</strong><br />
             Waltzing at 7:00pm<br />
-            Dancing 7:30pm – 11:00pm
+            Dancing 7:30pm - 11:00pm
           </Paragraph>
 
           <Paragraph>
-            <StyledLink to="http://oaksparkdancepavilion.com/">Oaks Park Dance Pavilion</StyledLink><br />
+            <StyledLink to="https://www.oakspark.com/dance-pavilion">Oaks Park Dance Pavilion</StyledLink><br />
             7805 Oaks Park Way<br />
             Portland, OR 97202<br />
             There is a $3 daily parking charge at Oaks Park
@@ -110,9 +110,9 @@ export default function Schedule() {
         <Box>
           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d358132.1996215507!2d-122.662034!3d45.471661!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54950ae61a3f21f5%3A0x8e96e1b9b9ac2b5c!2s7805%20SE%20Oaks%20Park%20Way%2C%20Portland%2C%20OR%2097202!5e0!3m2!1sen!2sus!4v1686634645346!5m2!1sen!2sus" 
           title="Google map embed for Oaks Park Dance Pavilion"  
-          style={{border: 0}} allowfullscreen="" loading="lazy" 
+          style={{border: 0}} allowFullScreen="" loading="lazy" 
           width={230} height={230}
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
+          referrerPolicy="no-referrer-when-downgrade" />
         </Box>
       </Box>
 
@@ -152,7 +152,7 @@ export default function Schedule() {
         <Box>
           <Paragraph sx={{ mt: -1 }}>
             <strong>Potluck Brunch and Dance Party</strong><br />
-            10:30am – 2:00pm
+            10:30am - 2:00pm
           </Paragraph>
 
           <Paragraph>
@@ -166,9 +166,9 @@ export default function Schedule() {
         <Box>
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.4569422495774!2d-122.69491339999998!3d45.4605984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54950b150fb27023%3A0x91b7ea2e34b56030!2s8936%20SW%2017th%20Ave%2C%20Portland%2C%20OR%2097219!5e0!3m2!1sen!2sus!4v1687465816734!5m2!1sen!2sus" 
           title="Google map embed for Burlingame Water Tower Hall"  
-          style={{border: 0}} allowfullscreen="" loading="lazy" 
+          style={{border: 0}} allowFullScreen="" loading="lazy" 
           width={230} height={230}
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
+          referrerPolicy="no-referrer-when-downgrade" />
         </Box>
       </Box>
 

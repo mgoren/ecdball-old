@@ -42,7 +42,7 @@ export default function Home() {
         All Ball weekend events at:
       </Typography>
       <Typography variant="h6">
-          Oaks Park Dance Pavilion<br/>
+          <StyledLink to="https://www.oakspark.com/dance-pavilion">Oaks Park Dance Pavilion</StyledLink><br/>
           7805 SE Oaks Park Way<br/>
           Portland, Oregon 97202
         </Typography>
