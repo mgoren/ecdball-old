@@ -41,8 +41,6 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
 
     const updatedOrder = {
       ...order,
-      volunteer: order.volunteer,
-      share: order.share,
       people: order.people.slice(0, order.admissionQuantity).map(updateApartment),
       total,
       deposit: paymentMethod === 'check' ? 0 : total,

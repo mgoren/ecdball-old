@@ -1,18 +1,11 @@
 import { Box, Typography } from '@mui/material';
-import { VOLUNTEER_OPTIONS } from 'config';
+import { VOLUNTEER_OPTIONS, HOSPITALITY_OPTIONS } from 'config';
 
 export default function OrderSummary({ order, currentPage }) {
   const total = order.admissionCost * order.admissionQuantity + order.donation;
 
-  let volunteerTitles = order.volunteer.map(volunteer => {
-    const volunteerOption = VOLUNTEER_OPTIONS.find(option => option.value === volunteer);
-    return volunteerOption ? volunteerOption.label : volunteer;
-  });
-  volunteerTitles.sort((a, b) => {
-    const aIndex = VOLUNTEER_OPTIONS.findIndex(option => option.label === a);
-    const bIndex = VOLUNTEER_OPTIONS.findIndex(option => option.label === b);
-    return aIndex - bIndex;
-  });
+  let volunteerTitles = getCheckboxTitles({ property: order.volunteer, options: VOLUNTEER_OPTIONS });
+  let hospitalityTitles = getCheckboxTitles({ property: order.hospitality, options: HOSPITALITY_OPTIONS });
 
   return (
     <>
@@ -40,6 +33,7 @@ export default function OrderSummary({ order, currentPage }) {
           </Typography>
           <p>
             Volunteer: {!!order.volunteer.length ? volunteerTitles.join(', ') : ' not signed up'}<br />
+            Hospitality: {!!order.hospitality.length ? hospitalityTitles.join(', ') : ' not signed up'}<br />
             Share my info with other organizers: {order.share.toString().length > 0 ? 'yes' : 'no'}<br />
             {order.comments && <>Comments: {order.comments}<br /></>}
           </p>
@@ -69,4 +63,17 @@ export default function OrderSummary({ order, currentPage }) {
 function displayAddress(address, apartment) {
   const displayApartment = apartment?.length > 0 && isFinite(apartment.slice(0,1)) ? `#${apartment}` : apartment;
   return apartment ? `${address} ${displayApartment}` : address;
+}
+
+function getCheckboxTitles({ property, options }) {
+  let checkboxTitles = property.map(property => {
+    const checkboxOption = options.find(option => option.value === property);
+    return checkboxOption ? checkboxOption.label : property;
+  });
+  checkboxTitles.sort((a, b) => {
+    const aIndex = options.findIndex(option => option.label === a);
+    const bIndex = options.findIndex(option => option.label === b);
+    return aIndex - bIndex;
+  });
+  return checkboxTitles;
 }
