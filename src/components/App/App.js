@@ -7,6 +7,7 @@ import Schedule from 'components/Static/Schedule';
 import Dances from 'components/Static/Dances';
 import Fragrance from 'components/Static/Fragrance';
 import Contact from 'components/Static/Contact';
+import Payment from 'components/Static/Payment';
 import Registration from 'components/Registration';
 import MaterialLayout from 'components/Layout/';
 // import * as S from './Global-styles';
@@ -26,6 +27,7 @@ export default function App() {
             <Route exact path="/dances" element=<Dances /> />
             <Route exact path="/fragrance" element=<Fragrance /> />
             <Route exact path="/contact" element=<Contact /> />
+            <Route exact path="/waystopay" element=<Payment /> />
             <Route exact path="/registration" element=<Registration /> />
           </Routes>
         </MaterialLayout>

@@ -10,13 +10,12 @@ import OrderSummary from "components/OrderSummary";
 import Receipt from "components/Receipt";
 import { logBuildDate, cache, cached } from 'utils';
 import { PAYPAL_OPTIONS, ORDER_DEFAULTS, TITLE, CONFIRMATION_CHECK_TITLE, CONFIRMATION_PAYPAL_TITLE } from "config";
-// import { Checkbox } from '@mui/material';
-// import { StyledPaper } from 'components/Layout/SharedStyles';
+// import { PageTitle, Paragraph, StyledPaper, StyledLink } from 'components/Layout/SharedStyles';
 
 export default function Registration() {
   // const [registering, setRegistering] = useState(false);
   return (
-    // registering || cached('order') ? <RealRegistration /> : <PreRegistration setRegistering={setRegistering} />
+    // registering ? <RealRegistration /> : <PreRegistration setRegistering={setRegistering} />
     <RealRegistration />
   );
 }
@@ -24,20 +23,30 @@ export default function Registration() {
 // const PreRegistration = ({ setRegistering }) => {
 //   return(
 //     <StyledPaper>
-//       <p>I acknowledge that I will follow the ECD Ball COVID Safety Policy in effect on October 28/29, 2022.</p>
+//       <PageTitle>Ways to Pay</PageTitle>
 
-//       <p>If I have not attended a PCDC dance event in 2022, I will...</p>
-//       <ul>
-//         <li>Bring proof of my COVID vaccination and at least 1 booster (if I am eligible).</li>
-//         <li>Sign a PCDC events waiver.</li>
-//       </ul>
+//       <Paragraph>
+//         <strong>1. Pay as part of online registration</strong><br />
+//         The preferred method of paying for the Ball is to pay electronically as part of the online registration process. 
+//         You will be able to do this by credit card, debit card, or with PayPal. 
+//         If you don't pay online at registration time, just use one of the other methods below.
+//       </Paragraph>
 
-//       <p>I acknowledge that today's mask requirements are that everyone must wear a mask while in hall, except while eating, drinking, or performing on stage.  If PCDC rules change to allow optional masking, the Ball will be mask optional.</p>
+//       <Paragraph>
+//         <strong>2. Pay electronically at a later date via PayPal.Me</strong><br />
+//           If you prefer to pay electronically at a later date, you can pay via PayPal.Me <StyledLink to={websiteLink(PAYPAL_ME_URL)}>here</StyledLink>. 
+//           This requires you to have a PayPal account, but you can sign up for one on the spot. You can then pay by credit card, debit card, or your bank account. 
+//           Please specify the registration amount and "Add a Note" to include your name. 
+//       </Paragraph>
 
-//       <p>
-//         I understand and agree to these requirements:
-//         <Checkbox onChange={() => setRegistering(true)} />
-//       </p>
+//       <Paragraph>
+//         <strong>3. Write a paper check</strong><br />
+//         <em>Make your check out to PCDC</em>, write your name in the memo area, and mail to:<br />
+//         Portland ECD Ball<br />
+//         David Macemon<br />
+//         19936 Derby St<br />
+//         West Linn, OR 97068
+//       </Paragraph>
 //     </StyledPaper>
 //   );
 // }

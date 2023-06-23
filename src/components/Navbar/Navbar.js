@@ -13,6 +13,7 @@ const pages = [
   { title: 'Dances', path: '/dances' },
   { title: 'Fragrance-Free', path: '/fragrance' },
   { title: 'Contact Us', path: '/contact' },
+  { title: 'Ways to Pay', path: '/waystopay' },
   { title: 'Registration', path: '/registration' }
 ];
 
