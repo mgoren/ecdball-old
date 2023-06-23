@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { StyledLink, StyledPaper, PageTitle, Paragraph, SectionDivider, Header, UsefulBox } from 'components/Layout/SharedStyles';
+import { StyledLink, StyledPaper, PageTitle, Paragraph, SectionDivider, Header } from 'components/Layout/SharedStyles';
 
 export default function Workshops() {
 
