@@ -26,9 +26,15 @@ export const StyledGreyButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const StyledLink = ({ children, to, ...props }) => {
+export const StyledLink = ({ children, internal=false, to, ...props }) => {
   return (
-    <Link color="secondary" target="_blank" rel="noreferrer" href={to} {...props}>
+    <Link
+      href={to}
+      color='secondary'
+      target={internal ? '' : '_blank'}
+      rel={internal ? '' : 'noreferrer'}
+      {...props}
+    >
       {children}
     </Link>
   );
@@ -63,7 +69,7 @@ export const Header = ({ children, ...props }) => {
 
 export const Paragraph = ({ children, ...props }) => {
   return (
-    <Typography variant="body1" sx={{ mt :1, mb: 2 }} {...props}>
+    <Typography variant="body1" sx={{ my: 2 }} {...props}>
       {children}
     </Typography>
   )
