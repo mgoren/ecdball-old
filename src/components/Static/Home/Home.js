@@ -39,7 +39,7 @@ export default function Home() {
       </Paragraph>
 
       <Typography variant="h5">
-        All Ball weekend events at:
+        Friday and Saturday events at
       </Typography>
       <Typography variant="h6">
           <StyledLink to="https://www.oakspark.com/dance-pavilion">Oaks Park Dance Pavilion</StyledLink><br/>
@@ -54,7 +54,7 @@ export default function Home() {
       <SectionDivider/>
 
       <Typography variant="h5" gutterBottom>
-        Pre-ball <StyledLink internal={true} to="/workshops">workshops</StyledLink>:
+        Pre-Ball <StyledLink internal={true} to="/workshops">workshops</StyledLink>:
       </Typography>
 
       <Typography variant="h6" gutterBottom>
@@ -67,7 +67,7 @@ export default function Home() {
       <SectionDivider/>
 
       <Typography variant="h4" fontStyle="italic" gutterBottom>
-        Registration Open
+        Registration Opening Soon
       </Typography>
     </StyledPaper>
   );

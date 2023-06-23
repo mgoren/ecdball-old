@@ -261,7 +261,7 @@ export default function Staff() {
           <Paragraph>
           Highly regarded by dancers, musicians, and callers for his high-quality sound work, John 
           Oorthuys has handled the sound board for many dances, balls, camps, and special events for 
-          PCDC and surrounding Pacific Northwest communities. He's has been the Ball sound engineer 
+          PCDC and surrounding Pacific Northwest communities. He has been the Ball sound engineer 
           for years and years, and his wizardry makes the sound fantastic.
           </Paragraph>
         </Box>

@@ -12,7 +12,7 @@ export default function Schedule() {
       </PageTitle>
 
       <Paragraph variant="body2" align="center">
-      (This page is our Weekend schedule - for our pre-Ball workshops, 
+      (This page is our Weekend schedule &mdash; for our pre-Ball workshops, 
           go <StyledLink internal={true} to="/workshops">here)</StyledLink>
       </Paragraph>
 
@@ -35,7 +35,7 @@ export default function Schedule() {
         <Box>
           <Paragraph sx={{ mt: -1 }}>
             <strong>Pre-Ball Dance</strong><br />
-            7:30pm - 10:30pm
+            7:30pm &mdash; 10:30pm
           </Paragraph>
 
           <Paragraph>
@@ -86,13 +86,13 @@ export default function Schedule() {
         <Box>
           <Paragraph sx={{ mt: -1 }}>
             <strong>Ball Workshop</strong><br />
-            12:00 noon - 2:30pm
+            12:00 noon &mdash; 2:30pm
           </Paragraph>
 
           <Paragraph>
             <strong>The Ball</strong><br />
             Waltzing at 7:00pm<br />
-            Dancing 7:30pm - 11:00pm
+            Dancing 7:30pm &mdash; 11:00pm
           </Paragraph>
 
           <Paragraph>
@@ -152,7 +152,7 @@ export default function Schedule() {
         <Box>
           <Paragraph sx={{ mt: -1 }}>
             <strong>Potluck Brunch and Dance Party</strong><br />
-            10:30am - 2:00pm
+            10:30am &mdash; 2:00pm
           </Paragraph>
 
           <Paragraph>
@@ -178,7 +178,7 @@ export default function Schedule() {
       </Paragraph>
 
       <Paragraph align="justify">
-        Please change into you dance shoes when entering the hall.
+        Please change into your dance shoes when entering the hall.
       </Paragraph>
 
       <Paragraph align="justify">

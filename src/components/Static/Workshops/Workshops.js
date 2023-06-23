@@ -109,10 +109,13 @@ export default function Workshops() {
 
           <Paragraph>
             <strong>Location:</strong><br />
-              <StyledLink to="https://www.oakspark.com/dance-pavilion">Oaks Park Dance Pavilion</StyledLink><br />
-              7805 Oaks Park Way<br />
-              Portland, OR 97202<br />
-              There is a $3 daily parking charge at Oaks Park
+            <StyledLink to="https://www.oakspark.com/dance-pavilion">Oaks Park Dance Pavilion</StyledLink><br />
+            7805 Oaks Park Way<br />
+            Portland, OR 97202<br />
+          </Paragraph>
+
+          <Paragraph>
+            There is a $3 daily parking charge at Oaks Park.
           </Paragraph>
         </Box>
 
