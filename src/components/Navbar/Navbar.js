@@ -17,6 +17,9 @@ const pages = [
   { title: 'Registration', path: '/registration' }
 ];
 
+const row1 = pages.slice(0, 5);
+const row2 = pages.slice(5);
+
 export default function Navbar({ toggleColorMode }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
 
@@ -32,7 +35,9 @@ export default function Navbar({ toggleColorMode }) {
     <AppBar position="relative" color="default">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+
+          {/* hamburger menu for xs and sm screens */}
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}>
             <IconButton size="large" onClick={handleOpenNavMenu} color="inherit" aria-label="navigation menu" aria-controls="menu-appbar" aria-haspopup="true">
               <MenuIcon />
             </IconButton>
@@ -60,29 +65,47 @@ export default function Navbar({ toggleColorMode }) {
                 </Link>
               ))}
             </Menu>
-            {/* <ListItem sx={{ my: 2, color: 'inherit', display: 'block' }}>
+            <ListItem sx={{ my: 2, color: 'inherit', display: 'block' }}>
               <Typography textAlign="center">ECD Ball 2023</Typography>
-            </ListItem> */}
+            </ListItem>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Link
-                component={RouterLink}
-                to={page.path}
-                key={page.title}
-                style={{ textDecoration: 'none', color: 'inherit' }}
-                onClick={handleCloseNavMenu}
-              >
-                <ListItem sx={{ my: 2, color: 'inherit', display: 'block', pt: 0, pb: 0 }}>
-                  {page.title}
-                </ListItem>
-              </Link>
-            ))}
+
+          {/* 2 line navbar for md screens */}
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex', lg: 'none' }, flexDirection: 'column' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-evenly', mb: 0 }}>
+              <PageLinks pages={row1} onClick={handleCloseNavMenu} />
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
+              <PageLinks pages={row2} onClick={handleCloseNavMenu} />
+            </Box>
           </Box>
-          {/* {window.location.hostname === 'localhost' && <Typography sx={{ color: 'red', fontWeight: 'bold' }}>[ LOCALHOST ]</Typography>} */}
+
+          {/* 1 line navbar for lg and up screens */}
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', lg: 'flex' } }}>
+            <PageLinks pages={pages} onClick={handleCloseNavMenu} />
+          </Box>
+
+          {/* color mode toggle always goes to the right */}
           <ColorModeToggle toggleColorMode={toggleColorMode} />
+
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
+
+const PageLinks = ({ pages, onClick }) => (
+  pages.map((page) => (
+    <Link
+      component={RouterLink}
+      to={page.path}
+      key={page.title}
+      style={{ textDecoration: 'none', color: 'inherit' }}
+      onClick={onClick}
+    >
+      <ListItem sx={{ my: 1, color: 'inherit', display: 'block', pt: 0, pb: 0 }}>
+        {page.title}
+      </ListItem>
+    </Link>
+  ))
+);

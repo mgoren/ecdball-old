@@ -106,11 +106,11 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
 
       {!paying && !processing &&
         <>
-          <Hidden mdDown>
+          <Hidden smDown>
             <ButtonRow backButtonProps = {{ onClick: handleClickBackButton }} />
           </Hidden>
 
-          <Hidden mdUp>
+          <Hidden smUp>
             <MyMobileStepper currentPage={'checkout'} onClickBack={handleClickBackButton} />
           </Hidden>
         </>

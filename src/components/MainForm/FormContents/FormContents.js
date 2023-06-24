@@ -61,7 +61,7 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
         />
       </Hidden>
 
-      <Hidden mdUp>
+      <Hidden smUp>
         <MyMobileStepper currentPage={currentPage} onClickBack={handleClickBackButton} />
       </Hidden>
     </Form>

@@ -3,6 +3,15 @@ import { cyan, red, grey } from '@mui/material/colors';
 import { responsiveFontSizes } from '@mui/material/styles';
 
 let lightTheme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 674,
+      md: 900,
+      lg: 1190,
+      xl: 1536,
+    }
+  },
   palette: {
     mode: 'light',
     background: {
@@ -22,6 +31,15 @@ let lightTheme = createTheme({
 lightTheme = responsiveFontSizes(lightTheme);
 
 let darkTheme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 674,
+      md: 900,
+      lg: 1190,
+      xl: 1536,
+    }
+  },
   palette: {
     mode: 'dark',
     primary: cyan,
