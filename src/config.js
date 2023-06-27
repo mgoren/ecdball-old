@@ -184,6 +184,7 @@ export const ORDER_DEFAULTS = {
   donation: DONATION_RANGE[0],
   volunteer: [],
   hospitality: [],
+  scholarship: [],
   share: [],
   comments: ''
 }
@@ -201,14 +202,22 @@ export const HOSPITALITY_OPTIONS = [
   { label: 'I am offering hospitality', value: 'offering' },
 ];
 
+export const SCHOLARSHIP_OPTIONS = [
+  { label: 'I am requesting a scholarship', value: 'yes' },
+];
+
+export const SHARE_OPTIONS = [
+  { label: 'YES! Please share my information with other organizers/events.', value: 'yes' },
+]
+
 export const DANCES = [
   "The Archer",
   "Bath Carnival",
   "Braye's Maggot",
-  "Felix's Name Day",
+  "Felix's Name Day*",
   "The Flighty Nymph",
   "Flora and Phaon",
-  "Foxfire",
+  "Foxfire*",
   "Gleaners",
   "Graphite",
   "Ivy and a Rose",

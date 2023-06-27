@@ -8,7 +8,7 @@ import Header from 'components/Header';
 import IntroHeader from 'components/Header/IntroHeader';
 import OrderSummary from "components/OrderSummary";
 import Receipt from "components/Receipt";
-import { logBuildDate, cache, cached } from 'utils';
+import { cache, cached } from 'utils';
 import { PAYPAL_OPTIONS, ORDER_DEFAULTS, TITLE, CONFIRMATION_CHECK_TITLE, CONFIRMATION_PAYPAL_TITLE } from "config";
 // import { PageTitle, Paragraph, StyledPaper, StyledLink } from 'components/Layout/SharedStyles';
 
@@ -57,7 +57,7 @@ const RealRegistration = () => {
   const [error, setError] = useState(null);
   const CONFIRMATION_TITLE = order.paypalEmail === 'check' ? CONFIRMATION_CHECK_TITLE : CONFIRMATION_PAYPAL_TITLE;
 
-  useEffect(() => { logBuildDate() }, []);
+  // useEffect(() => { logBuildDate() }, []);
   useEffect(() => { cache('order', order) }, [order]);
   useEffect(() => { cache('currentPage', currentPage) }, [currentPage]);
 

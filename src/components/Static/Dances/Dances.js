@@ -9,22 +9,26 @@ const col2 = DANCES.slice(halfLength);
 export default function Dances() {
   return (
     <StyledPaper extraStyles={{ maxWidth: 750 }} align="center">
-
       <PageTitle>
         List of Dances
       </PageTitle>
 
+      <Paragraph>
+        Find dance instructions, selected sheet music, and videos in 
+        the <StyledLink to="/ecdball/2023PortlandBall_DanceInstructions.pdf">Dance Instructions packet</StyledLink>.
+      </Paragraph>
+
       <Grid container>
         <Grid item xs={12} sm={6}>
           {col1.map((item, index) => (
-            <Box key={index} sx={{ border: '1px solid', mb: 1, p: 1, mr: 2 }}>
+            <Box key={index} sx={{ border: 'none', mb: 1, p: 1, mr: 2 }}>
               {item}
             </Box>
           ))}
         </Grid>
         <Grid item xs={12} sm={6}>
           {col2.map((item, index) => (
-            <Box key={index} sx={{ border: '1px solid', mb: 1, p: 1, mr: 2 }}>
+            <Box key={index} sx={{ border: 'none', mb: 1, p: 1, mr: 2 }}>
               {item}
             </Box>
           ))}
@@ -34,14 +38,14 @@ export default function Dances() {
       <SectionDivider />
 
       <Paragraph>
-        <em>All dances will be prompted but workshop attendance is advised.</em>
+        * Indicates that this dance will not be walked and will be prompted during the Ball
       </Paragraph>
-
       <Paragraph>
-        Find dance instructions, selected sheet music, and videos in 
-        the <StyledLink to="/ecdball/2023PortlandBall_DanceInstructions.pdf">Dance Instructions packet</StyledLink>.
+        The rest of the dances will be walked and prompted.
       </Paragraph>
-
+      <Paragraph>
+        Workshop attendance is advised.
+      </Paragraph>
     </StyledPaper>
   );
 }

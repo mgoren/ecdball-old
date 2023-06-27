@@ -37,7 +37,7 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
   }
 
 	const saveOrderToFirebase = (paypalOrder) => {
-    console.log(`paid via ${paymentMethod}`);
+    // console.log(`paid via ${paymentMethod}`);
 
     const updatedOrder = {
       ...order,
@@ -50,10 +50,10 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
     const receipt = renderToStaticMarkup(<Receipt order={updatedOrder} currentPage='confirmation' />);
     const additionalPersonReceipt = renderToStaticMarkup(<AdditionalPersonReceipt order={updatedOrder} />);
     const updatedOrderWithReceipt = { ...updatedOrder, receipt, additionalPersonReceipt };
-    console.log('setting order', updatedOrderWithReceipt);
+    // console.log('setting order', updatedOrderWithReceipt);
     setOrder(updatedOrderWithReceipt);
 		push(ref(db, 'orders/'), updatedOrderWithReceipt).then(() => {
-			console.log('order saved to firebase');
+			// console.log('order saved to firebase');
       // clearCache('order');
       // cache('lastCompletedOrder', updatedOrderWithReceipt);
       setPaying(false);

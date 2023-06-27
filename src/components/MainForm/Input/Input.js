@@ -193,9 +193,9 @@ const AddressAutocompleteInput = ({ label, ...props }) => {
     onPlaceSelected: (place) => {
       if (!place?.address_components) return;
 
-      console.log('place', place)
+      // console.log('place', place)
       const addressComponents = place.address_components;
-      console.log(addressComponents);
+      // console.log(addressComponents);
 
       const fieldToComponentMapping = {
         address: ['street_number', 'route'],
@@ -217,7 +217,7 @@ const AddressAutocompleteInput = ({ label, ...props }) => {
         };
       }, {});
 
-      console.log(fieldValues);
+      // console.log(fieldValues);
 
       const personIndex = field.name.split('[')[1].split(']')[0];
       Object.keys(fieldValues).forEach(async(key) => {

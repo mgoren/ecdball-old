@@ -3,13 +3,12 @@ import { scrollToTop } from 'utils.js';
 import { Input, CheckboxInput } from '../Input';
 import { StyledPaper, Title } from 'components/Layout/SharedStyles';
 import { Box, Typography } from '@mui/material';
-import { VOLUNTEER_OPTIONS, HOSPITALITY_OPTIONS } from 'config';
+import { VOLUNTEER_OPTIONS, HOSPITALITY_OPTIONS, SCHOLARSHIP_OPTIONS, SHARE_OPTIONS } from 'config';
 
 export default function MiscInfo() {
   useEffect(() => { scrollToTop(); },[])
   return (
     <StyledPaper className='MiscInfo'>
-      
       <Box sx={{ mb: 6 }}>
         <Title>Volunteering</Title>
         <CheckboxInput
@@ -23,7 +22,6 @@ export default function MiscInfo() {
       <Box sx={{ mb: 6 }}>
         <Title>Hospitality (limited availability)</Title>
         <CheckboxInput
-          label=''
           name='hospitality'
           options={HOSPITALITY_OPTIONS}
         />
@@ -31,12 +29,19 @@ export default function MiscInfo() {
       </Box>
 
       <Box sx={{ mb: 6 }}>
+        <Title>Scholarships (limited availability)</Title>
+        <CheckboxInput
+          name='scholarship'
+          options={SCHOLARSHIP_OPTIONS}
+        />
+        <Typography sx={{ mt: 1.5 }}>Our registrar, David Macemon will contact you. At checkout please select "Check" payment.</Typography>
+      </Box>
+
+      <Box sx={{ mb: 6 }}>
         <Title>Contact information sharing</Title>
         <CheckboxInput
           name='share'
-          options={[
-            { label: 'YES! Please share my information with other organizers/events.', value: 'yes' },
-          ]}
+          options={SHARE_OPTIONS}
         />
       </Box>
 
@@ -46,7 +51,6 @@ export default function MiscInfo() {
         name='comments'
         label="Please elaborate on any of the above questions or add any additional comments about your registration. Let us know if we missed anything, or there is something else we should know."
       />
-
     </StyledPaper>
   );
 }

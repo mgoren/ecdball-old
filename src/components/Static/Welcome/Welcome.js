@@ -4,7 +4,6 @@ export default function Welcome() {
 
   return (
     <StyledPaper extraStyles={{ maxWidth: 750 }}>
-
       <PageTitle>
         Welcome!
       </PageTitle>
@@ -14,7 +13,7 @@ export default function Welcome() {
       </Header>
 
       <Paragraph>
-        Following are the covid safety requirements for the 2023 Portland English Country Ball. 
+        Following are the COVID safety requirements for the 2023 Portland English Country Ball. 
         Should the public health situation require us to change these safety policies, attendees 
         will be notified by email and will be offered the option to cancel their registration and 
         receive a full refund.
@@ -32,9 +31,8 @@ export default function Welcome() {
       </Paragraph>
 
       <Paragraph>
-        <strong>VACCINATIONS:</strong> Per PCDC's current policies, covid vaccination and at least 1 booster is 
-        required. If we have not verified your vaccination status at a PCDC event, please bring your 
-        vaccination card or digital proof of vaccination to the ball.
+        <strong>VACCINATIONS:</strong> As of September 5th, 2023 PCDC is no longer verifying vaccination status 
+        (barring any unforeseen circumstances) at any events.
       </Paragraph>
 
       <Paragraph>
@@ -50,9 +48,9 @@ export default function Welcome() {
       </Paragraph>
 
       <Paragraph>
-        <strong>If you are sick or test positive for covid,</strong> please do not attend the ball. We will issue a full 
-        refund for dancers who need to cancel because of covid symptoms, a positive test, or exposure 
-        to covid within the last 5 days. To be eligible for a refund, you need to contact us prior to 
+        <strong>If you are sick or test positive for COVID,</strong> please do not attend the ball. We will issue a full 
+        refund for dancers who need to cancel because of COVID symptoms, a positive test, or exposure 
+        to COVID within the last 5 days. To be eligible for a refund, you need to <StyledLink internal={true} to="/contact">contact us</StyledLink> prior to 
         the ball.
       </Paragraph>
 
@@ -61,10 +59,17 @@ export default function Welcome() {
       </Header>
 
       <Paragraph>
-        At the Ball, dances will be walked through to remind dancers of the figures, and all dances 
-        will be prompted.  We encourage you to familiarize yourself with 
-        the <StyledLink internal={true} to="/dances">dances on the program</StyledLink> and check out 
-        the information in our <StyledLink to="/ecdball/2023PortlandBall_DanceInstructions.pdf">Dance Instructions packet</StyledLink>.
+        At the Ball, most dances will be walked through to remind dancers of the figures, and all dances will be prompted. 
+        We encourage you to familiarize yourself with the <StyledLink internal={true} to="/dances">dances on the program</StyledLink> and 
+        check out the information in our <StyledLink to="/ecdball/2023PortlandBall_DanceInstructions.pdf">Dance Instructions packet</StyledLink>.
+      </Paragraph>
+
+      <Header>
+        Scholarships
+      </Header>
+
+      <Paragraph>
+        We have a limited number of scholarships available. If you need a scholarship, please request it when you register.
       </Paragraph>
 
       <Header>
@@ -74,7 +79,7 @@ export default function Welcome() {
       <Paragraph>
         We would love to have your help with the many small and easy tasks required to make this 
         Ball a success,  such as helping to set up and decorate the hall on Saturday morning or 
-        packing things away after the ball.  You can easily sign up for volunteering on our registration 
+        packing things away after the ball.  You can sign up for volunteering on our registration 
         form, or email our <StyledLink to="mailto:volunteering@portlandecdball.info">volunteer coordinator</StyledLink> to 
         ask how you can help.
       </Paragraph>
@@ -94,7 +99,7 @@ export default function Welcome() {
       </Header>
 
       <Paragraph>
-        In the Portland area, there will be 3 <StyledLink internal={true} to="/workshops">workshop sessions</StyledLink> in 
+        In the Portland area, there will be three <StyledLink internal={true} to="/workshops">workshop sessions</StyledLink> in 
         September and October to prepare for the Ball.
       </Paragraph>
 
@@ -105,9 +110,6 @@ export default function Welcome() {
       <Paragraph>
         There is a $3/day parking fee at Oaks Park.
       </Paragraph>
-
-
-
     </StyledPaper>
   );
 }

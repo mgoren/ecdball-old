@@ -34,7 +34,8 @@ export default function OrderSummary({ order, currentPage }) {
           <p>
             Volunteer: {!!order.volunteer.length ? volunteerTitles.join(', ') : ' not signed up'}<br />
             Hospitality: {!!order.hospitality.length ? hospitalityTitles.join(', ') : ' not signed up'}<br />
-            Share my info with other organizers: {order.share.toString().length > 0 ? 'yes' : 'no'}<br />
+            Scholarship: {!!order.scholarship.length ? 'requested' : ' not requested'}<br />
+            Share my info with other organizers: {!!order.share.length ? 'yes' : 'no'}<br />
             {order.comments && <>Comments: {order.comments}<br /></>}
           </p>
         </Box>

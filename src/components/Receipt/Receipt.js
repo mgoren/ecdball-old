@@ -87,7 +87,8 @@ export function SharedReceipt() {
     <>
       <Typography component='p' sx={{ mt: 2 }}>
         COVID Policy: Masks are optional at this year's Ball. 
-        Vaccination / booster and signed waivers are still required. 
+        Per PCDC policy, vaccination / booster are no longer verified. 
+        Signed waivers are still required. 
         If you have not signed a PCDC waiver, you may download a waiver <StyledLink to={websiteLink(WAIVER_URL)}>here</StyledLink> to bring with you. 
         We will also have copies at the Ball.
       </Typography>

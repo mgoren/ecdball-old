@@ -5,7 +5,6 @@ export default function Workshops() {
 
   return (
     <StyledPaper extraStyles={{ maxWidth: 750 }}>
-
       <PageTitle>
         Workshops
       </PageTitle>
@@ -133,11 +132,6 @@ export default function Workshops() {
         that in the evening more time can be spent dancing rather than learning. We strongly advise 
         attendance at the workshop - plus it is fun!
       </Paragraph>
-
-      
-
-
-
     </StyledPaper>
   );
 }

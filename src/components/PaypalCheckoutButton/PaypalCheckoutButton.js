@@ -23,7 +23,7 @@ const PaypalCheckoutButton = ({ paypalButtonsLoaded, setPaypalButtonsLoaded, tot
 	useEffect(() => {
 		awaitPayPalButtons(() => {
 			setPaypalButtonsLoaded(true);
-			console.log("PayPal buttons are present on the screen");
+			// console.log("PayPal buttons are present on the screen");
 		});
 	}, [setPaypalButtonsLoaded]);
 

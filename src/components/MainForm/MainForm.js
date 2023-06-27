@@ -22,7 +22,7 @@ export default function MainForm({ order, setOrder, currentPage, setCurrentPage 
     const trimmedOrder = removeExtraPeople(submittedOrder);
     const sanitizedOrder = sanitizeObject(trimmedOrder);
     const orderWithCountry = { ...sanitizedOrder, people: sanitizedOrder.people.map(updateCountry) };
-    console.log(orderWithCountry);
+    // console.log(orderWithCountry);
     setOrder(orderWithCountry);
     setCurrentPage(currentPage === NUM_PAGES ? 'checkout' : currentPage + 1);
   }

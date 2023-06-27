@@ -24,7 +24,7 @@ export default function FormContents({ admissionQuantity, setAdmissionQuantity, 
   useEffect(() => {
     if (formik.isSubmitting && Object.keys(formik.errors).length > 0) {
       const firstInvalidFieldName = getFirstInvalidFieldName(formik.errors);
-      console.log('validation failed on', firstInvalidFieldName);
+      // console.log('validation failed on', firstInvalidFieldName);
       if (firstInvalidFieldName) {
         const invalidFieldElement = document.getElementsByName(firstInvalidFieldName)[0];
         if (invalidFieldElement) {
