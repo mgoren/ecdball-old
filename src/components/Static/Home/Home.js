@@ -33,17 +33,16 @@ export default function Home() {
         See the <StyledLink internal={true} to="/welcome">Welcome</StyledLink> page for more information.
       </Paragraph>
 
-      <Typography variant="h6" sx={{ mb: 2 }}>
+      <Typography variant="h6">
         Registration: $50/person
       </Typography>
+      <Paragraph sx={{ mt: 0 }}>
+        Friday night dance is open to all and is not included in this fee.
+      </Paragraph>
       <Paragraph>
         Friday and Saturday events at<br />
         <StyledLink to="https://www.oakspark.com/dance-pavilion">Oaks Park Dance Pavilion</StyledLink><br/>
         <StyledLink to="https://goo.gl/maps/kEXUGHVriT88hvKG8">7805 SE Oaks Park Way, Portland, OR 97202</StyledLink>
-      </Paragraph>
-      <Paragraph>
-        Friday night dance is open to all.<br/>
-        (Admission fee not included in Ball Registration.)
       </Paragraph>
 
       <SectionDivider/>
