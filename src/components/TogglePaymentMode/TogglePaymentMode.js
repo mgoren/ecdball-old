@@ -12,7 +12,9 @@ export default function TogglePaymentMode({ paymentMethod, setPaymentMethod }) {
     <>
       {PAYMENT_METHODS.includes('check') && PAYMENT_METHODS.includes('paypal') &&
         <Typography align='center'>
-          <Button size='small' color='secondary' onClick={() => togglePaymentMethod()}>{text}</Button>
+          <Button size='small' color='secondary' variant='contained' sx={{ my: 2 }} onClick={() => togglePaymentMethod()}>
+            {text}
+          </Button>
         </Typography>
       }
     </>

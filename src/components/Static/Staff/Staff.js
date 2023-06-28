@@ -133,7 +133,7 @@ export default function Staff() {
           <StyledLink to="https://www.erikweberg.com/"><strong>Erik Weberg</strong></StyledLink> plays 
           flutes, harmonicas, and bombardes (yes, plural). He is a regular musician at English country 
           dances in Portland, and he organizes and plays for a monthly contra dance with the band 
-          Joyride. He is also an English and contra dance caller, performing at festivals and weekends 
+          Joyride. He has also been an English and contra dance caller, performing at festivals and weekends 
           around the country, and programmed Northwest Passage for many years. Erik is also co-producer 
           of the Portland Megaband contra dance event.
         </Paragraph>
