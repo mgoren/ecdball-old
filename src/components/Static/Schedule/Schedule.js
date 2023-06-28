@@ -134,16 +134,16 @@ export default function Schedule() {
       </Box>
 
       <Paragraph>
-        We'll gather at the Burlingame Water Tower Hall where our weekly English dance happens.
+        We'll gather at the Burlingame Water Tower Hall where our weekly English dance happens.<br />
+        Our local dancers will provide potluck, coffee, tea, and juice.
       </Paragraph>
       <Paragraph>
         Please change into your dance shoes when entering the hall.
       </Paragraph>
       <Paragraph>
-        Our local dancers will provide potluck, coffee, tea, and juice.
+        The Open caller / Open Band dancing will start 12:30ish.
       </Paragraph>
       <Paragraph>
-        The Open caller / Open Band dancing will start 12:30ish.<br/>
         Musicians, please bring music stands and copies of Barnes books.<br/>
         Callers bring easy dances that are in Barnes.
       </Paragraph>

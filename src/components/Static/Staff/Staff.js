@@ -13,7 +13,7 @@ export default function Staff() {
   return (
     <StyledPaper extraStyles={{ maxWidth: 750 }}>
       <PageTitle>
-        Portland ECD Ball 2023
+        Performers
       </PageTitle>
 
       <Header id="ErikWeberg1">
@@ -159,9 +159,7 @@ export default function Staff() {
         PCDC and surrounding Pacific Northwest communities. He has been the Ball sound engineer 
         for years and years, and his wizardry makes the sound fantastic.
         </Paragraph>
-        <Box sx={{ mt: 3 }}>
-          <img src={process.env.PUBLIC_URL + '/ecdball/JohnOorthuys.jpg'} alt="John Oorthuys" style={{ width: 225 }} />
-        </Box>
+        <img src={process.env.PUBLIC_URL + '/ecdball/JohnOorthuys.jpg'} alt="John Oorthuys" style={{ width: 225 }} />
       </Box>
     </StyledPaper>
   );
