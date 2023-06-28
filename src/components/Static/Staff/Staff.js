@@ -12,19 +12,14 @@ export default function Staff() {
 
   return (
     <StyledPaper extraStyles={{ maxWidth: 750 }}>
-      <PageTitle>
-        Performers
-      </PageTitle>
+      <PageTitle>Performers</PageTitle>
 
-      <Header id="ErikWeberg1">
-        Calling by <em>Erik Weberg</em>
-      </Header>
-
-      <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, columnGap: 2 }}>
-        <Box sx={{ mt: 3 }}>
+      <Header id="ErikWeberg1">Calling by <em>Erik Weberg</em></Header>
+      <Box>
+        <Box sx={{ mt: 2, pr: 3, float: { xs: 'none', sm: 'left' } }}>
           <img src={process.env.PUBLIC_URL + '/ecdball/ErikWeberg1.jpg'} alt="Erik Weberg" style={{ width: 225 }} />
         </Box>
-        <Paragraph>
+        <Paragraph sx={{ pt: 1 }}>
           I'm happily anticipating calling the Portland English ball for you this Fall. 
           Here is a brief summary of my calling trajectory and some thoughts on my own approach to programming and calling dances. 
           I called contra dances first during the 90s, then in around 2000 I started calling English dances here in Portland. 
@@ -41,15 +36,16 @@ export default function Staff() {
           Travel safely; I'll see you soon.
         </Paragraph>
       </Box>
+      <Box sx={{ clear: 'both' }} />
 
       <SectionDivider />
 
-      <Header id="FineCompanions">
-        Music by <em>Fine Companions</em>
-      </Header>
-
-      <Box sx={{ display: "flex", flexDirection: { xs: "column-reverse", sm: "row" }, columnGap: 2 }}>
-        <Paragraph>
+      <Header id="FineCompanions">Music by <em>Fine Companions</em></Header>
+      <Box>
+        <Box sx={{ mt: 2, pl: { xs: 'none', sm: 3 }, float: { xs: 'none', sm: 'right' } }}>
+          <img src={process.env.PUBLIC_URL + '/ecdball/FineCompanions.png'} alt="Fine Companions"  style={{ width: 225 }} />
+        </Box>
+        <Paragraph sx={{ pt: 1 }}>
         Start with four great talents, mix in some magic and get a musical 
         feast better than the sum of its ingredients.   This Portland favorite 
         just keeps growing their reputation and it's all good!  The band features 
@@ -57,18 +53,16 @@ export default function Staff() {
         saxophone, and Erik Weberg on flute. If you like lots of dreamy textures 
         and rich harmonies, this is the band for you!
         </Paragraph>
-        <Box sx={{ mt: 1 }}>
-          <img src={process.env.PUBLIC_URL + '/ecdball/FineCompanions.png'} alt="Fine Companions"  style={{ width: 225 }} />
-        </Box>
       </Box>
+      <Box sx={{ clear: 'both' }} />
 
       <SectionDivider />
 
-      <Box id="BetsyBranch" sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, columnGap: 2 }}>
-        <Box sx={{ mt: 3 }}>
+      <Box id="BetsyBranch">
+        <Box sx={{ pr: 3, float: { xs: 'none', sm: 'left' } }}>
           <img src={process.env.PUBLIC_URL + '/ecdball/BetsyBranch.png'} alt="Betsy Branch" style={{ width: 170 }} />
         </Box>
-        <Paragraph>
+        <Paragraph sx={{ mb: 2 }}>
           <StyledLink to="https://fiddlefrau.com/"><strong>Betsy Branch</strong></StyledLink> has 
           been a mainstay of the Portland, Oregon dance community for many years. Her exuberant 
           dance fiddling has delighted dancers on both coasts and her warmth and engaging smile 
@@ -82,16 +76,13 @@ export default function Staff() {
           transcriber.
         </Paragraph>
       </Box>
+      <Box sx={{ clear: 'both' }} />
 
       <SectionDivider />
 
-      <Box id="LisaScott" sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, columnGap: 2 }}>
-        <Box sx={{ mt: 3 }}>
-          <img 
-            src={process.env.PUBLIC_URL + '/ecdball/LisaScott.png'} 
-            alt="Lisa Scott" 
-            style={{ width: 170 }}
-          />
+      <Box id="LisaScott">
+        <Box sx={{ pr: 3, float: { xs: 'none', sm: 'left' } }}>
+          <img src={process.env.PUBLIC_URL + '/ecdball/LisaScott.png'} alt="Lisa Scott" style={{ width: 170 }} />
         </Box>
         <Paragraph>
           <strong>Lisa Scott</strong>	is an accomplished pianist and 
@@ -106,11 +97,12 @@ export default function Staff() {
           rhythms and her lyrical style make her music a joy for dancers.
         </Paragraph>
       </Box>
+      <Box sx={{ clear: 'both' }} />
 
       <SectionDivider />
 
-      <Box id="BillTomczak" sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, columnGap: 2 }}>
-        <Box sx={{ mt: 3 }}>
+      <Box id="BillTomczak">
+        <Box sx={{ pr: 3, float: { xs: 'none', sm: 'left' } }}>
           <img src={process.env.PUBLIC_URL + '/ecdball/BillTomczak.png'} alt="Bill Tomczak" style={{ width: 170 }} />
         </Box>
         <Paragraph>
@@ -129,11 +121,12 @@ export default function Staff() {
           Mary Lea and friends.
         </Paragraph>
       </Box>
+      <Box sx={{ clear: 'both' }} />
 
       <SectionDivider />
 
-      <Box id="ErikWeberg2" sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, columnGap: 2 }}>
-        <Box sx={{ mt: 3 }}>
+      <Box id="ErikWeberg2">
+        <Box sx={{ pr: 3, float: { xs: 'none', sm: 'left' } }}>
           <img src={process.env.PUBLIC_URL + '/ecdball/ErikWeberg2.png'} alt="Erik Weberg" style={{ width: 170 }} />
         </Box>
         <Paragraph>
@@ -145,22 +138,23 @@ export default function Staff() {
           of the Portland Megaband contra dance event.
         </Paragraph>
       </Box>
+      <Box sx={{ clear: 'both' }} />
 
       <SectionDivider />
 
-      <Header id="JohnOorthuys">
-        Sound by <em>John Oorthuys</em>
-      </Header>
-
-      <Box sx={{ display: "flex", flexDirection: { xs: "column-reverse", sm: "row" }, columnGap: 2 }}>
-        <Paragraph>
+      <Header id="JohnOorthuys">Sound by <em>John Oorthuys</em></Header>
+      <Box>
+        <Box sx={{ mt: 2, pl: { xs: 'none', sm: 3 }, float: { xs: 'none', sm: 'right' } }}>
+          <img src={process.env.PUBLIC_URL + '/ecdball/JohnOorthuys.jpg'} alt="John Oorthuys" style={{ width: 225 }} />
+        </Box>
+        <Paragraph sx={{ pt: 1 }}>
         Highly regarded by dancers, musicians, and callers for his high-quality sound work, John 
         Oorthuys has handled the sound board for many dances, balls, camps, and special events for 
         PCDC and surrounding Pacific Northwest communities. He has been the Ball sound engineer 
         for years and years, and his wizardry makes the sound fantastic.
         </Paragraph>
-        <img src={process.env.PUBLIC_URL + '/ecdball/JohnOorthuys.jpg'} alt="John Oorthuys" style={{ width: 225 }} />
       </Box>
+      <Box sx={{ clear: 'both' }} />
     </StyledPaper>
   );
 }

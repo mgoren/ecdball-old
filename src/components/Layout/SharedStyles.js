@@ -77,6 +77,6 @@ export const Paragraph = ({ children, ...props }) => {
 
 export const SectionDivider = ({ children, ...props }) => {
   return (
-    <Divider component="hr" sx={{borderBottomWidth: 4, mt: 4, mb: 4}}/>
+    <Divider component="hr" sx={{borderBottomWidth: 4, my: 4 }}/>
   )
 }
