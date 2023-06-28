@@ -19,7 +19,7 @@ export default function Staff() {
         <Box sx={{ mt: 2, pr: 3, float: { xs: 'none', sm: 'left' } }}>
           <img src={process.env.PUBLIC_URL + '/ecdball/ErikWeberg1.jpg'} alt="Erik Weberg" style={{ width: 225 }} />
         </Box>
-        <Paragraph sx={{ pt: 1 }}>
+        <Paragraph sx={{ pt: 1, mb: 0 }}>
           I'm happily anticipating calling the Portland English ball for you this Fall. 
           Here is a brief summary of my calling trajectory and some thoughts on my own approach to programming and calling dances. 
           I called contra dances first during the 90s, then in around 2000 I started calling English dances here in Portland. 
@@ -45,7 +45,7 @@ export default function Staff() {
         <Box sx={{ mt: 2, pl: { xs: 'none', sm: 3 }, float: { xs: 'none', sm: 'right' } }}>
           <img src={process.env.PUBLIC_URL + '/ecdball/FineCompanions.png'} alt="Fine Companions"  style={{ width: 225 }} />
         </Box>
-        <Paragraph sx={{ pt: 1 }}>
+        <Paragraph sx={{ pt: 1, mb: 0 }}>
         Start with four great talents, mix in some magic and get a musical 
         feast better than the sum of its ingredients.   This Portland favorite 
         just keeps growing their reputation and it's all good!  The band features 
@@ -62,7 +62,7 @@ export default function Staff() {
         <Box sx={{ pr: 3, float: { xs: 'none', sm: 'left' } }}>
           <img src={process.env.PUBLIC_URL + '/ecdball/BetsyBranch.png'} alt="Betsy Branch" style={{ width: 170 }} />
         </Box>
-        <Paragraph sx={{ mb: 2 }}>
+        <Paragraph sx={{ mb: 0 }}>
           <StyledLink to="https://fiddlefrau.com/"><strong>Betsy Branch</strong></StyledLink> has 
           been a mainstay of the Portland, Oregon dance community for many years. Her exuberant 
           dance fiddling has delighted dancers on both coasts and her warmth and engaging smile 
@@ -84,7 +84,7 @@ export default function Staff() {
         <Box sx={{ pr: 3, float: { xs: 'none', sm: 'left' } }}>
           <img src={process.env.PUBLIC_URL + '/ecdball/LisaScott.png'} alt="Lisa Scott" style={{ width: 170 }} />
         </Box>
-        <Paragraph>
+        <Paragraph sx={{ mb: 0 }}>
           <strong>Lisa Scott</strong>	is an accomplished pianist and 
           teacher. Coming from a musical heritage, she earned a Bachelor of 
           Music at Lewis and Clark College. She studied the art of accompaniment 
@@ -105,7 +105,7 @@ export default function Staff() {
         <Box sx={{ pr: 3, float: { xs: 'none', sm: 'left' } }}>
           <img src={process.env.PUBLIC_URL + '/ecdball/BillTomczak.png'} alt="Bill Tomczak" style={{ width: 170 }} />
         </Box>
-        <Paragraph>
+        <Paragraph sx={{ mb: 0 }}>
           <StyledLink to="https://billtomczak.com/"><strong>Bill Tomczak</strong></StyledLink> started 
           playing clarinet at the age of 9. After a typical round of high school bands and concerts, 
           he entered Northwestern University as a music major and studied under several teachers from 
@@ -129,7 +129,7 @@ export default function Staff() {
         <Box sx={{ pr: 3, float: { xs: 'none', sm: 'left' } }}>
           <img src={process.env.PUBLIC_URL + '/ecdball/ErikWeberg2.png'} alt="Erik Weberg" style={{ width: 170 }} />
         </Box>
-        <Paragraph>
+        <Paragraph sx={{ mb: 0 }}>
           <StyledLink to="https://www.erikweberg.com/"><strong>Erik Weberg</strong></StyledLink> plays 
           flutes, harmonicas, and bombardes (yes, plural). He is a regular musician at English country 
           dances in Portland, and he organizes and plays for a monthly contra dance with the band 
@@ -147,7 +147,7 @@ export default function Staff() {
         <Box sx={{ mt: 2, pl: { xs: 'none', sm: 3 }, float: { xs: 'none', sm: 'right' } }}>
           <img src={process.env.PUBLIC_URL + '/ecdball/JohnOorthuys.jpg'} alt="John Oorthuys" style={{ width: 225 }} />
         </Box>
-        <Paragraph sx={{ pt: 1 }}>
+        <Paragraph sx={{ pt: 1, mb: 0 }}>
         Highly regarded by dancers, musicians, and callers for his high-quality sound work, John 
         Oorthuys has handled the sound board for many dances, balls, camps, and special events for 
         PCDC and surrounding Pacific Northwest communities. He has been the Ball sound engineer 
