@@ -23,18 +23,9 @@ export default function Workshops() {
         <strong>October 29:</strong> Erik Weberg calling; music by Betsy Branch, Bill Tomczak and Lisa Scott
       </Paragraph>
 
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          justifyContent: "space-between",
-          mt: 4,
-          mb: 2,
-          columnGap: 4
-        }}
-      >
+      <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, justifyContent: "space-between", mb: 2 }}>
         <Box>
-          <Paragraph sx={{ mt: -1 }}>
+          <Paragraph>
           <strong>Time:</strong> 3:00p-5:00p
           </Paragraph>
 
@@ -78,26 +69,17 @@ export default function Workshops() {
 
       <SectionDivider />
 
-      <Header>
+      <Header sx={{ mb: 0 }}>
         "Day of" Ball Workshop
       </Header>
 
-      <Paragraph variant="body2" sx={{ mt: -1 }}>
+      <Paragraph variant="body2" sx={{ mt: 0 }}>
         <em>(Ball attendees only - included in the price of registration)</em>
       </Paragraph>
 
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          justifyContent: "space-between",
-          mt: 4,
-          mb: 2,
-          columnGap: 4
-        }}
-      >
+      <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, justifyContent: "space-between", mb: 2 }}>
         <Box>
-          <Paragraph sx={{ mt: -1 }}>
+          <Paragraph>
             <strong>Date:</strong> November 4
           </Paragraph>
 
