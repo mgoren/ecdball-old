@@ -23,7 +23,7 @@ export default function Staff() {
           I'm happily anticipating calling the Portland English ball for you this Fall. 
           Here is a brief summary of my calling trajectory and some thoughts on my own approach to programming and calling dances. 
           I called contra dances first during the 90s, then in around 2000 I started calling English dances here in Portland. 
-          I addition to calling at our local ECD, I have also enjoyed calling ball events here and in other communities, 
+          In addition to calling at our local ECD, I have also enjoyed calling ball events here and in other communities, 
           and at various weeks, weekends, and festivals around North America. 
           I love the variety of textures and moods inherent in English dance repertoire, 
           and that's where my primary interest in calling dances currently lies. 
@@ -91,7 +91,7 @@ export default function Staff() {
           at the University of Southern California and in New York. She began 
           Scottish dancing, soon earned her preliminary teaching certificate, 
           and then learned to play for Scottish dance. Lisa has played piano for 
-          Scottish dance in the U.S., Canada, and Japan, and Scotland. Many years 
+          Scottish dance in the U.S., Canada, Japan, and Scotland. Many years 
           ago she fell in love with English country dance and music and has been 
           playing for workshops and balls ever since. Lisa's sensitivity to dance 
           rhythms and her lyrical style make her music a joy for dancers.
