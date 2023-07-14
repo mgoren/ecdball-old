@@ -14,7 +14,7 @@ const pages = [
   { title: 'Fragrance-Free', path: '/fragrance' },
   { title: 'Contact Us', path: '/contact' },
   { title: 'Ways to Pay', path: '/waystopay' },
-  // { title: 'Registration', path: '/registration' }
+  { title: 'Registration', path: '/registration' }
 ];
 
 const row1 = pages.slice(0, 5);
