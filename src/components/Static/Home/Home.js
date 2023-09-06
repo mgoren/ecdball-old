@@ -30,6 +30,7 @@ export default function Home() {
       <Paragraph sx={{ my: 4 }}>
         This year's Ball will be mask optional.<br />
         We will no longer be verifying vaccination status.<br />
+        Signed waivers are no longer required.<br />
         See the <StyledLink internal={true} to="/welcome">Welcome</StyledLink> page for more information.
       </Paragraph>
 

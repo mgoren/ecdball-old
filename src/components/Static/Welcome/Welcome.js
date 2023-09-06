@@ -41,10 +41,7 @@ export default function Welcome() {
       </Paragraph>
 
       <Paragraph>
-        <strong>WAIVER:</strong> If you have not signed a waiver at a PCDC event, you will need to do 
-        that for the ball. We'll have waivers to sign at the event, or you can download 
-        one <StyledLink to="https://portlandcountrydance.org/files/PCDC_Events_Waiver.pdf">here</StyledLink>, 
-        sign it and bring it with you.
+        <strong>WAIVER:</strong> As of September 5th, 2023, PCDC is no longer requiring signed waivers to attend PCDC events.
       </Paragraph>
 
       <Paragraph>
