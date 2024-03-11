@@ -16,7 +16,14 @@ export default function Home() {
       <Typography variant="h6" sx={{ mb: 2 }}>
         Save the Date<br />
         Next year's Portland English Country Ball weekend<br />
-        is scheduled for November 1-2-3, 2024.<br />
+        is scheduled for November 1-2-3, 2024.
+      </Typography>
+      <Typography variant="h6" sx={{ mb: 2 }}>
+        Caller: Gaye Fifer<br />
+        Music: Betsy Branch, Bill Tomczak, and Lisa Scott<br />
+        Sound: John Oorthuys
+      </Typography>
+      <Typography variant="h6" sx={{ mb: 2 }}>
         Watch this space for more information.
       </Typography>
     </StyledPaper>
